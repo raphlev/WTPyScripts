@@ -80,7 +80,7 @@ class XMLTransformer:
         self.extracted_strings.clear()
         for enum_def_view in root.xpath(".//csvBeginEnumDefView"):
             # Extract the displayName value
-            display = enum_def_view.xpath("csvPropertyValue[csvname='displayName']/csvvalue/text()")
+            display = enum_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             self.extracted_strings.append(display[0])
             # Extract the name value
             # name = enum_def_view.findtext('./csvname') or ''
@@ -127,7 +127,7 @@ class XMLTransformer:
                     # Process for name, class, defaultValue, dataType and unit
                     iba = attr_def_view.findtext('./csvIBA') or ''
                     name = attr_def_view.findtext('./csvname') or ''
-                    display = attr_def_view.xpath("csvPropertyValue[csvname='displayName']/csvvalue/text()")
+                    display = attr_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
                     display = display[0] if display else ''                    
 
                     class_value = attr_def_view.findtext('./csvattDefClass') or ''
@@ -166,12 +166,12 @@ class XMLTransformer:
                             list_value = constraint_def_view.findtext('csvdefQualifier')
                             if not list_value: # If csvdefQualifier value is empty
                                 # Try to get csvname value
-                                next_enum_def = constraint_def_view.xpath("csvBeginEnumDefView[1]/csvname/text()")
+                                next_enum_def = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvname/text()")
                                 if next_enum_def and next_enum_def[0]:
                                     list_value = next_enum_def[0]
                                 else:
                                     # Fallback to csvmaster and call extract_data_Types_member_names
-                                    csvmaster_value = constraint_def_view.xpath("csvBeginEnumDefView[1]/csvmaster/text()")
+                                    csvmaster_value = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvmaster/text()")
                                     if csvmaster_value:
                                         list_value = csvmaster_value[0]
                                         enum_members = self.extract_data_Types_member_names(constraint_def_view)
@@ -188,20 +188,14 @@ class XMLTransformer:
 
     def extract_data_Types_member_names(self, constraint_def_view):
         member_names = []
-        inside_enum_def = False
-
         # Start from the constraint definition view and iterate through following elements
-        for el in constraint_def_view.xpath("following-sibling::*"):
-            if el.tag == '</csvBeginEnumDefView>':  # Check for the normalized closing tag
-                break  # End of enum definition scope
-            if el.tag == 'csvBeginEnumMemberView':
-                member_name_match = re.search(r'csvname="([^"]+)"', etree.tostring(el, encoding='unicode'))
-                selectable_match = re.search(r'selectable="([^"]+)"', etree.tostring(el, encoding='unicode'))
-                if member_name_match and selectable_match and selectable_match.group(1) == 'true':
-                    member_name = member_name_match.group(1)
+        for enum_def_view in constraint_def_view.xpath("./csvBeginEnumDefView[1]"):
+            for enum_member in enum_def_view.xpath(".//csvBeginEnumMemberView"):
+                member_name = enum_member.xpath("./csvname/text()")[0]
+                selectable = enum_member.xpath("./csvPropertyValue[csvname='selectable'][1]/csvvalue/text()")
+                if member_name and selectable[0].lower() == 'true':
                     member_names.append(member_name)
-
-        return ', '.join(member_names)
+        return '|'.join(member_names)
 
     def write_output(self,output_csv_file):
         if self.extracted_strings:

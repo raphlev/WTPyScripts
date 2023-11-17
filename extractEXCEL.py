@@ -96,10 +96,12 @@ class ExcelFileProcessor:
         self._remove_existing_output_file()
         try:
             if list(filter(lambda f: f.endswith('.csv'), os.listdir(self.csv_folder))):
-                for index, csv_file in enumerate(sorted(os.listdir(self.csv_folder)), start=2):
+                index = 2  # Start index at 2
+                for csv_file in sorted(os.listdir(self.csv_folder)):
                     if csv_file.endswith('.csv'):
                         self._add_csv_to_sheet(csv_file)
                         self._add_to_toc(os.path.splitext(csv_file)[0], index)
+                        index += 1  # Only increment index if file ends with .csv
                 self.wb.save(self.output_file)
                 print(f"Excel file saved at {self.output_file}")
             else:
