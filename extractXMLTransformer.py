@@ -210,6 +210,11 @@ class XMLTransformer:
         return '|'.join(member_names)
 
     def extract_data_Classification(self, root):
+        # UPDATE FUNCTION
+        # Create one CSV for all classif, add 2 columns for the csvBeginTypeDefView/csvname + csvBeginTypeDefView/csvtypeParent
+        # Get also other props csvPropertyValue from csvBeginTypeDefView usch as display EN or FR?
+        # Then Focus on csvBeginAttributeDefView list, do similarely as for the types, here only IBA .. ?
+
         # Clear the list for new data
         self.extracted_strings.clear()
 
