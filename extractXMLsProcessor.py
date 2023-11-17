@@ -21,12 +21,9 @@ class XMLFilesProcessor:
 
     def _process_file(self, file):
         input_file_path = os.path.join(self.input_dir, file)
-        # Construct the output file name by replacing the .xml extension with .csv
-        output_file_name = os.path.splitext(file)[0] + '.csv'
-        output_file_path = os.path.join(self.output_dir, output_file_name)
 
         try:
-            transformer = XMLTransformer(input_file_path, output_file_path)
+            transformer = XMLTransformer(input_file_path, self.output_dir)
             transformer.transform()
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
