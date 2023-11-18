@@ -226,11 +226,11 @@ class XMLTransformer:
             typeObject = parentType = displayType = ''
             instantiable = 'No'
             typeObject = type_def_view.findtext('./csvname') or ''
-            print('1' + typeObject)
+         
             parentType = type_def_view.findtext('./csvtypeParent') or ''
-            print('2' + parentType)
+
             instantiable = type_def_view.xpath("./csvPropertyValue[csvname='instantiable']/csvvalue/text()") or ''
-            print('3' + instantiable)
+          
             if instantiable and instantiable[0].lower() == 'true':
                 instantiable = 'Yes'
             else:
