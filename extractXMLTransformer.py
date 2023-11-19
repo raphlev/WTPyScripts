@@ -225,19 +225,21 @@ class XMLTransformer:
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
             typeObject = parentType = displayType = ''
             instantiable = 'No'
-            typeObject = type_def_view.findtext('./csvname') or ''
-         
-            parentType = type_def_view.findtext('./csvtypeParent') or ''
+            name = display = iba = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
+            required = single = upperCase = instantiable = 'No'
 
+            typeObject = type_def_view.findtext('./csvname') or ''
+            parentType = type_def_view.findtext('./csvtypeParent') or ''
             instantiable = type_def_view.xpath("./csvPropertyValue[csvname='instantiable']/csvvalue/text()") or ''
-          
             if instantiable and instantiable[0].lower() == 'true':
                 instantiable = 'Yes'
             else:
                 instantiable = 'No'
-
             displayType = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             displayType = displayType[0] if displayType else ''
+
+            # Append the extracted type as a new line
+            self.extracted_strings.append(f"{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                 name = display = iba = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
@@ -298,7 +300,7 @@ class XMLTransformer:
                                     list_value = csvmaster_value[0]
                                     enum_members = self.extract_data_Types_member_names(constraint_def_view)
 
-                # Append the extracted data as a new line
+                # Append the extracted attributr as a new line
                 self.extracted_strings.append(f"{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
         # else:
         #     print('Type non instantiable for : '+self.output_file+' - File not created !')
