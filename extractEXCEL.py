@@ -39,24 +39,18 @@ class ExcelFileProcessor:
 
     def _add_csv_to_sheet(self, csv_file):
         # Add each CSV file to a new sheet in the workbook
-        # Truncate sheet title to a maximum of 31 characters for Excel compatibility
-        sheet_title = os.path.splitext(csv_file)[0]
-        ws = self.wb.create_sheet(title=sheet_title[:31])
         csv_path = os.path.join(self.csv_folder, csv_file)
         
         # Solution 1 - Using CSV module from python
         # Read the CSV file and add its contents to the sheet
         try:
             with open(csv_path, mode='r', encoding='utf-8') as f:
-                reader = csv.reader(f, delimiter='~')
-                for row in reader:
-                    ws.append(row)
+                self._append_rows_to_sheet(csv_file,f)
         except UnicodeDecodeError:
+            print(f"******  UnicodeDecodeError: file {csv_file} transcoded to latin1 instead of utf-8 ******")
             # If utf-8 decoding fails, try another encoding such as 'latin1'
             with open(csv_path, mode='r', encoding='latin1') as f:
-                reader = csv.reader(f, delimiter='~')
-                for row in reader:
-                    ws.append(row)
+                self._append_rows_to_sheet(csv_file,f)
 
         # Solution 2 - Using pandas - can be used if Solution 1 has perf issue .. 
         # try:
@@ -76,6 +70,14 @@ class ExcelFileProcessor:
         #     raise e   
         
         # Call the new method to apply formatting
+
+    def _append_rows_to_sheet(self, csv_file, f):
+        # Truncate sheet title to a maximum of 31 characters for Excel compatibility
+        sheet_title = os.path.splitext(csv_file)[0]
+        ws = self.wb.create_sheet(title=sheet_title[:31])
+        reader = csv.reader(f, delimiter='~')
+        for row in reader:
+            ws.append(row)
         self._format_worksheet(ws)
 
     def _add_to_toc(self, sheet_title, index):

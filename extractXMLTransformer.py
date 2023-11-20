@@ -82,7 +82,7 @@ class XMLTransformer:
             print('Processing EnumDefView structure: ' + self.input_file)
             self.extract_data_Enums(root)
         else:
-            print('Different or unknown XML structure detected.')
+            print('Different or unknown XML structure detected: ' + self.input_file)
             # Placeholder for future functionality
 
         # Write the extracted strings to the output file
@@ -209,17 +209,15 @@ class XMLTransformer:
         return '|'.join(member_names)
 
     def extract_data_Classification(self, root):
-        # UPDATE FUNCTION
-        # Create one CSV for all classif, add 2 columns for the csvBeginTypeDefView/csvname + csvBeginTypeDefView/csvtypeParent
-        # Get also other props csvPropertyValue from csvBeginTypeDefView usch as display EN or FR?
-        # Then Focus on csvBeginAttributeDefView list, do similarely as for the types, here only IBA .. ?
-
         # Clear the list for new data
         self.extracted_strings.clear()
 
         # Prepare the header line for the CSV content
-        header_line = "type~parentType~instantiable~displayType~name~display~required~class~iba~type~length~unit~single~upperCase~regularExpr~defaultValue~list~enumMembers"
+        header_line = "depth~type~parentType~instantiable~displayType~name~display~required~class~iba~type~length~unit~single~upperCase~regularExpr~defaultValue~list~enumMembers"
         self.extracted_strings.append(header_line)
+
+        # keep track of typeObject and its depth
+        type_depth_map = {}
 
         # Iterate over each csvBeginTypeDefView element
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
@@ -238,8 +236,17 @@ class XMLTransformer:
             displayType = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             displayType = displayType[0] if displayType else ''
 
+            # Calculate depth
+            depth = 0
+            current_parent = parentType
+            while current_parent:
+                depth += 1
+                current_parent = type_depth_map.get(current_parent, None)
+            type_depth_map[typeObject] = parentType  # Map current type to its parent
+
+
             # Append the extracted type as a new line
-            self.extracted_strings.append(f"{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+            self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                 name = display = iba = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
@@ -301,7 +308,7 @@ class XMLTransformer:
                                     enum_members = self.extract_data_Types_member_names(constraint_def_view)
 
                 # Append the extracted attributr as a new line
-                self.extracted_strings.append(f"{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
         # else:
         #     print('Type non instantiable for : '+self.output_file+' - File not created !')
 
@@ -318,7 +325,7 @@ class XMLTransformer:
                     f.write(string + '\n')
             print(f"CSV File saved to {output_csv_file}")
         else:
-            print('CSV File not created, no data found !')
+            print(f'CSV File not created, no data found for {self.input_file}')
 
 def run():
     parser = argparse.ArgumentParser(description="Transform an XML file to a text file based on specific rules.")
