@@ -99,7 +99,7 @@ class XMLTransformer:
             # name = enum_def_view.findtext('./csvname') or ''
             name = enum_def_view.xpath("./csvname/text()")[0] or ''
             self.extracted_strings.append(name)
-            # Prepare the header line for the CSV content: concatenation of name and display name with | to split them
+            # Prepare the header line for the CSV content
             header_line = "name~displayName"
             self.extracted_strings.append(header_line)
             # Extract information for each 'csvBeginEnumMemberView'
@@ -123,7 +123,7 @@ class XMLTransformer:
         # Clear the list for new data
         self.extracted_strings.clear()
         # Prepare the header line for the CSV content
-        header_line = "name~display~required~class~iba~type~length~unit~single~upperCase~regularExpr~defaultValue~list~enumMembers"
+        header_line = "name~display~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
         self.extracted_strings.append(header_line)
 
         # Iterate over each csvBeginTypeDefView element
@@ -132,63 +132,7 @@ class XMLTransformer:
             if instantiable and instantiable[0].lower() == 'true':
                 # Iterate over each csvBeginAttributeDefView element within csvBeginTypeDefView
                 for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                    name = display = iba = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
-                    required = single = upperCase = 'No'
-
-                    # Process for name, class, defaultValue, dataType and unit
-                    iba = attr_def_view.findtext('./csvIBA') or ''
-                    name = attr_def_view.findtext('./csvname') or ''
-                    display = attr_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
-                    display = display[0] if display else ''                    
-
-                    class_value = attr_def_view.findtext('./csvattDefClass') or ''
-                    class_value = class_value.replace('com.ptc.core.lwc.server.', '')
-
-                    defaultValue = attr_def_view.findtext('./csvdefaults') or ''
-                    defaultValue = defaultValue.replace('DATA|java.lang.String|', '')
-                    defaultValue = defaultValue.replace('DATA|java.lang.long|', '')
-                    defaultValue = defaultValue.replace('DATA|java.lang.Boolean|', '')
-
-                    datatype = attr_def_view.findtext('./csvdatatype') or ''
-                    datatype = datatype.replace('java.lang.', '')
-                    datatype = datatype.replace('java.sql.', '')
-                    datatype = datatype.replace('wt.units.', '')
-
-                    unit = attr_def_view.findtext('./csvQoM') or ''
-
-                    # Process constraints within the attribute
-                    for constraint_def_view in attr_def_view.xpath("./csvBeginConstraintDefView"):
-                        rule_classname = constraint_def_view.findtext('csvruleClassname')
-                        if 'ValueRequiredConstraint' in rule_classname:
-                            required = 'Yes'
-                        if 'StringLengthConstraint' in rule_classname:
-                            length = constraint_def_view.findtext('csvruleData') or ''
-                            length = length.replace('DATA|com.ptc.core.meta.common.AnalogSet|[DATA|java.lang.Long|', '')
-                            length = length.replace(r' \, DATA|java.lang.Long|', '-')
-                            length = length.replace(']', '')
-                        if 'RegularExpressionConstraint' in rule_classname:
-                            regularExpr = constraint_def_view.findtext('csvruleData') or ''
-                            regularExpr = regularExpr.replace('DATA|com.ptc.core.meta.common.RegularExpressionSet|DATA|java.lang.Boolean|false , DATA|java.lang.String|', '')
-                        if 'SingleValuedConstraint' in rule_classname:
-                            single = 'Yes'
-                        if 'UpperCaseConstraint' in rule_classname:
-                            upperCase = 'Yes'
-                        if 'DiscreteSetConstraint' in rule_classname:
-                            list_value = constraint_def_view.findtext('csvdefQualifier')
-                            if not list_value: # If csvdefQualifier value is empty
-                                # Try to get csvname value
-                                next_enum_def = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvname/text()")
-                                if next_enum_def and next_enum_def[0]:
-                                    list_value = next_enum_def[0]
-                                else:
-                                    # Fallback to csvmaster and call extract_data_Types_member_names
-                                    csvmaster_value = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvmaster/text()")
-                                    if csvmaster_value:
-                                        list_value = csvmaster_value[0]
-                                        enum_members = self.extract_data_Types_member_names(constraint_def_view)
-
-                    # Append the extracted data as a new line
-                    self.extracted_strings.append(f"{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                    self.extract_attribute_definitions(attr_def_view, '', '', 0, instantiable, '', 'Types')
             # else:
             #     print('Type non instantiable for : '+self.output_file+' - File not created !')
 
@@ -213,7 +157,7 @@ class XMLTransformer:
         self.extracted_strings.clear()
 
         # Prepare the header line for the CSV content
-        header_line = "depth~type~parentType~instantiable~displayType~name~display~required~class~iba~type~length~unit~single~upperCase~regularExpr~defaultValue~list~enumMembers"
+        header_line = "depth~type~parentType~instantiable~displayType~name~display~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
         self.extracted_strings.append(header_line)
 
         # keep track of typeObject and its depth
@@ -223,8 +167,8 @@ class XMLTransformer:
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
             typeObject = parentType = displayType = ''
             instantiable = 'No'
-            name = display = iba = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
-            required = single = upperCase = instantiable = 'No'
+            name = display = iba = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
+            required = single = upperCase = instantiable = ''
 
             typeObject = type_def_view.findtext('./csvname') or ''
             parentType = type_def_view.findtext('./csvtypeParent') or ''
@@ -246,69 +190,10 @@ class XMLTransformer:
 
 
             # Append the extracted type as a new line
-            self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+            self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                name = display = iba = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
-                required = single = upperCase = instantiable = 'No'
-                
-                # Process for name, class, defaultValue, dataType and unit
-                iba = attr_def_view.findtext('./csvIBA') or ''
-                name = attr_def_view.findtext('./csvname') or ''
-
-                # Process for required, single, upperCase, length, unit
-
-                display = attr_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
-                display = display[0] if display else ''
-
-                class_value = attr_def_view.findtext('./csvattDefClass') or ''
-                class_value = class_value.replace('com.ptc.core.lwc.server.', '')
-
-                defaultValue = attr_def_view.findtext('./csvdefaults') or ''
-                defaultValue = defaultValue.replace('DATA|java.lang.String|', '')
-                defaultValue = defaultValue.replace('DATA|java.lang.long|', '')
-                defaultValue = defaultValue.replace('DATA|java.lang.Boolean|', '')
-
-                datatype = attr_def_view.findtext('./csvdatatype') or ''
-                datatype = datatype.replace('java.lang.', '')
-                datatype = datatype.replace('java.sql.', '')
-                datatype = datatype.replace('wt.units.', '')
-
-                unit = attr_def_view.findtext('./csvQoM') or ''
-
-                # Process constraints within the attribute
-                for constraint_def_view in attr_def_view.xpath("./csvBeginConstraintDefView"):
-                    rule_classname = constraint_def_view.findtext('csvruleClassname')
-                    if 'ValueRequiredConstraint' in rule_classname:
-                        required = 'Yes'
-                    if 'StringLengthConstraint' in rule_classname:
-                        length = constraint_def_view.findtext('csvruleData') or ''
-                        length = length.replace('DATA|com.ptc.core.meta.common.AnalogSet|[DATA|java.lang.Long|', '')
-                        length = length.replace(r' \, DATA|java.lang.Long|', '-')
-                        length = length.replace(']', '')
-                    if 'RegularExpressionConstraint' in rule_classname:
-                        regularExpr = constraint_def_view.findtext('csvruleData') or ''
-                        regularExpr = regularExpr.replace('DATA|com.ptc.core.meta.common.RegularExpressionSet|DATA|java.lang.Boolean|false , DATA|java.lang.String|', '')
-                    if 'SingleValuedConstraint' in rule_classname:
-                        single = 'Yes'
-                    if 'UpperCaseConstraint' in rule_classname:
-                        upperCase = 'Yes'
-                    if 'DiscreteSetConstraint' in rule_classname:
-                        list_value = constraint_def_view.findtext('csvdefQualifier')
-                        if not list_value: # If csvdefQualifier value is empty
-                            # Try to get csvname value
-                            next_enum_def = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvname/text()")
-                            if next_enum_def and next_enum_def[0]:
-                                list_value = next_enum_def[0]
-                            else:
-                                # Fallback to csvmaster and call extract_data_Types_member_names
-                                csvmaster_value = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvmaster/text()")
-                                if csvmaster_value:
-                                    list_value = csvmaster_value[0]
-                                    enum_members = self.extract_data_Types_member_names(constraint_def_view)
-
-                # Append the extracted attributr as a new line
-                self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{required}~{class_value}~{iba}~{datatype}~{length}~{unit}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification')
         # else:
         #     print('Type non instantiable for : '+self.output_file+' - File not created !')
 
@@ -316,6 +201,95 @@ class XMLTransformer:
         if len(self.extracted_strings) == 1:
             self.extracted_strings.clear()
         return self.extracted_strings
+
+    def extract_attribute_definitions(self, attr_def_view, typeObject, parentType, depth, instantiable, displayType, mode):
+            name = display = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
+            required = single = upperCase = iba = 'No'
+            
+            # Process for name, class, defaultValue, dataType and unit
+            if attr_def_view.findtext('./csvIBA'):
+                iba = 'Yes'
+            name = attr_def_view.findtext('./csvname') or ''
+
+            # Process for required, single, upperCase, length, unit
+
+            display = attr_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
+            display = display[0] if display else ''
+
+            class_value = attr_def_view.findtext('./csvattDefClass') or ''
+            class_value = class_value.replace('com.ptc.core.lwc.server.', '')
+
+            defaultValue = attr_def_view.findtext('./csvdefaults') or ''
+            defaultValue = defaultValue.replace('DATA|java.lang.String|', '')
+            defaultValue = defaultValue.replace('DATA|java.lang.long|', '')
+            defaultValue = defaultValue.replace('DATA|java.lang.Boolean|', '')
+
+            datatype = attr_def_view.findtext('./csvdatatype') or ''
+            datatype = datatype.replace('java.lang.', '')
+            datatype = datatype.replace('java.sql.', '')
+            datatype = datatype.replace('wt.units.', '')
+
+            unit = attr_def_view.findtext('./csvQoM') or ''
+
+            # Process constraints within the attribute
+            for constraint_def_view in attr_def_view.xpath("./csvBeginConstraintDefView"):
+                rule_classname = constraint_def_view.findtext('csvruleClassname')
+                if 'ValueRequiredConstraint' in rule_classname:
+                    required = 'Yes'
+                if 'StringLengthConstraint' in rule_classname:
+                    length = constraint_def_view.findtext('csvruleData') or ''
+                    length = length.replace('DATA|com.ptc.core.meta.common.AnalogSet|[DATA|java.lang.Long|', '')
+                    length = length.replace(r' \, DATA|java.lang.Long|', '-')
+                    length = length.replace(']', '')
+
+                if 'RegularExpressionConstraint' in rule_classname:
+                    regularExpr = constraint_def_view.findtext('csvruleData') or ''
+                    regularExpr = regularExpr.replace('DATA|com.ptc.core.meta.common.RegularExpressionSet|DATA|java.lang.Boolean|false , DATA|java.lang.String|', '')
+                if 'SingleValuedConstraint' in rule_classname:
+                    single = 'Yes'
+                if 'UpperCaseConstraint' in rule_classname:
+                    upperCase = 'Yes'
+                if 'DiscreteSetConstraint' in rule_classname:
+                    # If csvdefQualifier value is not empty: this is specific to Classification rule data
+                    list_value = constraint_def_view.findtext('csvdefQualifier') or ''
+                    if list_value:
+                        # classification node value that is set as a constraint
+                        # list_value = list_value + ': ' + (constraint_def_view.findtext('csvruleData') or '')
+                        list_value = constraint_def_view.findtext('csvruleData') or ''
+                        list_value = list_value.replace('DATA|com.ptc.core.meta.common.DiscreteSet|DATA|java.lang.Boolean|false , DATA|java.lang.String|com.ptc.core.lwc.common.dynamicEnum.provider.ClassificationEnumerationInfoProvider|ns=com.ptc.csm.default_clf_namespace:nn=', '')
+                    else:
+                        # Try to get csvname value
+                        enum_def = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvname/text()")
+                        if enum_def and enum_def[0]:
+                            enum_members = enum_def[0] # Name of Global Enum without values being overriden
+                        else:
+                            # Fallback to csvruleData for Legal Value List
+                            list_value = constraint_def_view.findtext('csvruleData') or ''
+                            if list_value:
+                                #list_value = 'LVL: ' + list_value
+                                list_value = list_value.replace('DATA|com.ptc.core.meta.common.DiscreteSet|DATA|java.lang.Boolean|false , ', '')
+                                list_value = list_value.replace('DATA|java.lang.String|', '')
+                                list_value = list_value.replace('DATA|java.lang.Long|', '')
+                                list_value = list_value.replace(' , ', '|')
+                            else:
+                                # Fallback to csvmaster for overriden Global Enums
+                                csvmaster_value = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvmaster/text()")
+                                if csvmaster_value:
+                                    enum_members = csvmaster_value[0] # Name of Global Enum with values being overriden
+                                    enum_members = enum_members + ': ' + self.extract_data_Types_member_names(constraint_def_view) # List of values with selectable=yes
+
+            # Replace length with default value for String if empty (information not available in XML)
+            if length == '' and datatype == 'String':
+                length = '500'
+            elif length.startswith('0-'):
+                length = length.replace('0-', '', 1) # Update format of value 
+
+            # Append the extracted attributes as a new line
+            if mode == 'Classification':
+                self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+            elif mode == 'Types':
+                    self.extracted_strings.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+
 
     def write_output(self,output_csv_file):
         if self.extracted_strings:
@@ -325,7 +299,7 @@ class XMLTransformer:
                     f.write(string + '\n')
             print(f"CSV File saved to {output_csv_file}")
         else:
-            print(f'CSV File not created, no data found for {self.input_file}')
+            print(f"CSV File not created, no data found for {self.input_file}")
 
 def run():
     parser = argparse.ArgumentParser(description="Transform an XML file to a text file based on specific rules.")

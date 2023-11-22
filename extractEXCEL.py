@@ -73,11 +73,18 @@ class ExcelFileProcessor:
 
     def _append_rows_to_sheet(self, csv_file, f):
         # Truncate sheet title to a maximum of 31 characters for Excel compatibility
-        sheet_title = os.path.splitext(csv_file)[0]
-        ws = self.wb.create_sheet(title=sheet_title[:31])
+        sheet_title = os.path.splitext(csv_file)[0][:31]
+        # If the sheet already exists, delete it
+        if sheet_title in self.wb.sheetnames:
+            sheet_to_remove = self.wb[sheet_title]
+            self.wb.remove(sheet_to_remove)
+        # Create a new sheet
+        ws = self.wb.create_sheet(title=sheet_title)
+        # Read from the CSV file and append rows to the sheet
         reader = csv.reader(f, delimiter='~')
         for row in reader:
             ws.append(row)
+        # Apply formatting to the worksheet
         self._format_worksheet(ws)
 
     def _add_to_toc(self, sheet_title, index):
