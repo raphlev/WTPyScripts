@@ -228,8 +228,25 @@ class XMLTransformer:
             datatype = datatype.replace('java.lang.', '')
             datatype = datatype.replace('java.sql.', '')
             datatype = datatype.replace('wt.units.', '')
+            datatype = datatype.replace('com.ptc.core.meta.common.', '')
 
             unit = attr_def_view.findtext('./csvQoM') or ''
+            # Add displayed unit - maybe be different from database units - TBC
+            unit = unit.replace('Electrical Capacitance', 'Electrical Capacitance (F)')
+            unit = unit.replace('Electrical Current', 'Electrical Current (A)')
+            unit = unit.replace('Mass', 'Mass (Kg)')
+            unit = unit.replace('Temperature', 'Temperature (degC)')
+            unit = unit.replace('Luminous Flux', 'Luminous Flux (lm)')
+            unit = unit.replace('Electrical Potential', 'Electrical Potential (V)')
+            unit = unit.replace('Frequency', 'Frequency (Hz)')
+            unit = unit.replace('Electrical Inductance', 'Electrical Inductance (H)')
+            unit = unit.replace('Luminous Intensity', 'Luminous Intensity (cd)')
+            unit = unit.replace('Pressure', 'Pressure (kPa)')
+            unit = unit.replace('Length', 'Length (mm)')
+            unit = unit.replace('Power', 'Power (W)')
+            unit = unit.replace('Electrical Resistance', 'Electrical Resistance (ohm)')
+            unit = unit.replace('Area', 'Area (m**2)')
+            unit = unit.replace('Time', 'Time (s)')
 
             # Process constraints within the attribute
             for constraint_def_view in attr_def_view.xpath("./csvBeginConstraintDefView"):
