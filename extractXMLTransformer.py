@@ -14,7 +14,7 @@ class XMLTransformer:
 
 
     def normalize_xml(self, xml_content):
-        # Define the replacements as a list of tuples
+        # Define the replacements as a list of tuples to be executed in same order
         replacements = [
             ('</csvBeginTypes>', ''),
             ('<csvBeginTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypes"/>', '<csvBeginTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypes">'),
@@ -140,17 +140,6 @@ class XMLTransformer:
         if len(self.extracted_strings) == 1:
             self.extracted_strings.clear()
         return self.extracted_strings
-
-    def extract_data_Types_member_names(self, constraint_def_view):
-        member_names = []
-        # Start from the constraint definition view and iterate through following elements
-        for enum_def_view in constraint_def_view.xpath("./csvBeginEnumDefView[1]"):
-            for enum_member in enum_def_view.xpath(".//csvBeginEnumMemberView"):
-                member_name = enum_member.xpath("./csvname/text()")[0]
-                selectable = enum_member.xpath("./csvPropertyValue[csvname='selectable'][1]/csvvalue/text()")
-                if member_name and selectable[0].lower() == 'true':
-                    member_names.append(member_name)
-        return '|'.join(member_names)
 
     def extract_data_Classification(self, root):
         # Clear the list for new data
@@ -307,6 +296,16 @@ class XMLTransformer:
             elif mode == 'Types':
                     self.extracted_strings.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
+    def extract_data_Types_member_names(self, constraint_def_view):
+        member_names = []
+        # Start from the constraint definition view and iterate through following elements
+        for enum_def_view in constraint_def_view.xpath("./csvBeginEnumDefView[1]"):
+            for enum_member in enum_def_view.xpath(".//csvBeginEnumMemberView"):
+                member_name = enum_member.xpath("./csvname/text()")[0]
+                selectable = enum_member.xpath("./csvPropertyValue[csvname='selectable'][1]/csvvalue/text()")
+                if member_name and selectable[0].lower() == 'true':
+                    member_names.append(member_name)
+        return '|'.join(member_names)
 
     def write_output(self,output_csv_file):
         if self.extracted_strings:
