@@ -9,14 +9,14 @@ from extract_xml_transformer import XMLTransformer
 # from openpyxl.utils.dataframe import dataframe_to_rows
 
 class ExcelFileProcessor:
-    def __init__(self, input_folder, output_folder, delete_csv=False):
+    def __init__(self, input_folder, output_folder, keep_csv=False):
         # Initialize the workbook creator with the directory of CSV files and the output file path
         print('-------------------------------BEGIN EXCEL PROCESSOR--------------------------------')
         self.input_folder = input_folder
         self.output_folder = output_folder
         # Define the name for the output Excel file and initialize the excel workbook
         self.output_file = os.path.join(output_folder, os.path.basename(os.path.normpath(output_folder))+'.xlsx')
-        self.delete_csv = delete_csv
+        self.keep_csv = keep_csv
         self.wb = Workbook()
         self.toc = self.wb.active
         self._setup_toc()
@@ -99,8 +99,8 @@ class ExcelFileProcessor:
         # except pd.errors.ParserError as e:
         #     raise e   
         
-        # Delete the CSV file if the delete_csv flag is True
-        if self.delete_csv:
+        # Delete the CSV file if the keep_csv flag is False
+        if not self.keep_csv:
             os.remove(csv_path)
             print(f"Deleted CSV file: {csv_path}")
 
@@ -259,9 +259,9 @@ class ExcelFileProcessor:
         parser = argparse.ArgumentParser(description="Generate CSV files from XML Files. Generate Excel workbook from CSV files with TOC.")
         parser.add_argument('-i', '--input_dir', required=True, help='Input directory containing XML files (Types, Enum, Classification).')
         parser.add_argument('-o', '--output_dir', required=True, help='Output directory for CSV and Excel files.')
-        parser.add_argument('--delete_csv', action='store_true', help='Optional: delete CSV files after processing')
+        parser.add_argument('--keep_csv', action='store_true', help='Optional: keep CSV files after processing')
         args = parser.parse_args()
-        excel_processor = ExcelFileProcessor(args.input_dir, args.output_dir, args.delete_csv)
+        excel_processor = ExcelFileProcessor(args.input_dir, args.output_dir, args.keep_csv)
         excel_processor.process_excel_file()
 
 if __name__ == "__main__":

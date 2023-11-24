@@ -3,10 +3,10 @@ import argparse
 from extract_excel_processor import ExcelFileProcessor
 
 class RecursiveExcelFileCreator:
-    def __init__(self, root_input_dir, root_output_dir, delete_csv=False):
+    def __init__(self, root_input_dir, root_output_dir, keep_csv=False):
         self.root_input_dir = root_input_dir
         self.root_output_dir = root_output_dir
-        self.delete_csv = delete_csv
+        self.keep_csv = keep_csv
 
     def process_directory(self, input_dir, output_dir):
         # Ensure output directory exists
@@ -14,7 +14,7 @@ class RecursiveExcelFileCreator:
             os.makedirs(output_dir, exist_ok=True)
 
         # Process the files in the current directory
-        processor = ExcelFileProcessor(input_dir, output_dir, self.delete_csv)
+        processor = ExcelFileProcessor(input_dir, output_dir, self.keep_csv)
         processor.process_excel_file()
 
     def process_all_subdirectories(self):
@@ -34,11 +34,11 @@ class RecursiveExcelFileCreator:
             parser = argparse.ArgumentParser(description="Recursively process XML files and generate Excel workbooks.")
             parser.add_argument('-i', '--input_dir', required=True, help='Root input directories containing XML files (Types, Enum, Classification).')
             parser.add_argument('-o', '--output_dir', required=True, help='Root output directory for Excel files.')
-            parser.add_argument('--delete_csv', action='store_true', help='Optional: delete CSV files after processing')
+            parser.add_argument('--keep_csv', action='store_true', help='Optional: keep CSV files after processing')
 
             args = parser.parse_args()
 
-            recursive_creator = RecursiveExcelFileCreator(args.input_dir, args.output_dir, args.delete_csv)
+            recursive_creator = RecursiveExcelFileCreator(args.input_dir, args.output_dir, args.keep_csv)
             recursive_creator.process_all_subdirectories()
         except Exception as e:
             message = f"******************  Process recursively excel files failed: ******************"
