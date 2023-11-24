@@ -161,7 +161,8 @@ class ExcelFileProcessor:
             stars = '*' * length
             print(stars)
             print(message)
-            print({e})
+            exception_type = type(e).__name__
+            print(f"{exception_type}: {e}")
             print(stars) 
 
     def create_excel_with_toc(self):
@@ -190,7 +191,8 @@ class ExcelFileProcessor:
             stars = '*' * length
             print(stars)
             print(message)
-            print({e})
+            exception_type = type(e).__name__
+            print(f"{exception_type}: {e}")
             print('An existing file with same name may be opened or used by someone else.')
             print(stars) 
 
@@ -219,7 +221,8 @@ class ExcelFileProcessor:
             stars = '*' * length
             print(stars)
             print(message)
-            print({e})
+            exception_type = type(e).__name__
+            print(f"{exception_type}: {e}")
             print(stars) 
 
     def process_excel_file(self):
