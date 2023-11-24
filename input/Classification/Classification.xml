@@ -15,16 +15,16 @@
    <csvBeginTypeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypeDefinition">
       <csvattTemplate>LWCSTRUCT</csvattTemplate>
       <csvnameSpace>com.ptc.csm.default_clf_namespace</csvnameSpace>
-      <csvname>SEPClassification</csvname>
+      <csvname>CUSTClassification</csvname>
       <csvcontainerDomain/>
       <csvtypeParent/>
    </csvBeginTypeDefView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>SEP</csvvalue>
-      <csvlocale_en_us>SEP</csvlocale_en_us>
-      <csvlocale_en_gb>SEP</csvlocale_en_gb>
+      <csvvalue>CUST</csvvalue>
+      <csvlocale_en_us>CUST</csvlocale_en_us>
+      <csvlocale_en_gb>CUST</csvlocale_en_gb>
       <csvlocale_fr></csvlocale_fr>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
@@ -39,7 +39,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -70,7 +70,7 @@
       <csvnameSpace>com.ptc.csm.default_clf_namespace</csvnameSpace>
       <csvname>CUSTOMClassification</csvname>
       <csvcontainerDomain/>
-      <csvtypeParent>SEPClassification</csvtypeParent>
+      <csvtypeParent>CUSTClassification</csvtypeParent>
    </csvBeginTypeDefView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
       <csvname>displayName</csvname>
@@ -173,7 +173,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -409,7 +409,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -684,7 +684,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -962,7 +962,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -1679,7 +1679,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -2255,7 +2255,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -2595,7 +2595,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -2712,7 +2712,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -2896,7 +2896,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -3464,7 +3464,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -4003,7 +4003,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -4604,7 +4604,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -4983,7 +4983,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -5197,7 +5197,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -5377,7 +5377,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -5585,7 +5585,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -5739,7 +5739,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -6075,7 +6075,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -6348,7 +6348,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -6514,7 +6514,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -6652,7 +6652,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -6915,7 +6915,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -7058,7 +7058,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -7414,7 +7414,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -7774,7 +7774,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -7870,7 +7870,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -7926,7 +7926,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -7982,7 +7982,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8097,7 +8097,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8232,7 +8232,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8353,7 +8353,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8424,7 +8424,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8525,7 +8525,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8740,7 +8740,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -8926,7 +8926,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -9068,7 +9068,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -9271,7 +9271,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -9643,7 +9643,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -9878,7 +9878,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -10071,7 +10071,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -10137,7 +10137,7 @@
    </csvPropertyValue>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -10320,7 +10320,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -10599,7 +10599,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -10857,7 +10857,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -11100,7 +11100,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -11341,7 +11341,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -11620,7 +11620,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -11961,7 +11961,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -12375,7 +12375,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -12740,7 +12740,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -13165,7 +13165,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -13511,7 +13511,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -13669,7 +13669,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -13865,7 +13865,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -14119,7 +14119,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -14477,7 +14477,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -14656,7 +14656,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -14878,7 +14878,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -15027,7 +15027,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -15181,7 +15181,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -15418,7 +15418,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -15667,7 +15667,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -15822,7 +15822,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -16065,7 +16065,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -16246,7 +16246,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>
@@ -16430,7 +16430,7 @@
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Default Layout</csvname>
-      <csvtypeContext>SEPClassification</csvtypeContext>
+      <csvtypeContext>CUSTClassification</csvtypeContext>
       <csvdefaultGroup>Classification Group</csvdefaultGroup>
       <csvprofiles/>
       <csvscreens/>

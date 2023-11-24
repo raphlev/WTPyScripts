@@ -1186,7 +1186,7 @@
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessEnumMembership">
-      <csvname>SEP</csvname>
+      <csvname>CUST</csvname>
    </csvBeginEnumMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>

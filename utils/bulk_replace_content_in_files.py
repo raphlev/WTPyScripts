@@ -26,7 +26,7 @@ def replace_in_files(root_directory, old_string, new_string):
 
 # Example Usage
 root_dir = 'D:/WTPyScripts/input' # Replace with your directory path
-old_str = 'OLD'  # Replace with the text you want to replace
-new_str = 'NEW'  # Replace with the new text
+old_str = '>SEP<'  # Replace with the text you want to replace
+new_str = '>CUST<'  # Replace with the new text
 
 replace_in_files(root_dir, old_str, new_str)
