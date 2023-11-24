@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NmLoader
+  SYSTEM "standard12_1.dtd">
+<NmLoader>
+   <csvTypeNodeIconRoot handler="com.ptc.core.lwc.server.TypeDefinitionLoader.getIconRoot">
+      <csviconRoot></csviconRoot>
+   </csvTypeNodeIconRoot>
+   <csvBeginTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypes"/>
+   <csvBeginTypeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypeDefinition">
+      <csvattTemplate>LWCTYPE</csvattTemplate>
+      <csvnameSpace/>
+      <csvname>ext.lps.custom.CUSTOMStandardAuthority</csvname>
+      <csvcontainerDomain/>
+      <csvtypeParent>ext.lps.LPSManufacturer</csvtypeParent>
+   </csvBeginTypeDefView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
+      <csvname>displayName</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>CUSTOM Standard Authority</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
+      <csvname>description</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>CUSTOM Standard Authority</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
+      <csvname>instantiable</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processTypePropertyValue">
+      <csvname>subtypeable</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvEndTypeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessTypeDefinition"/>
+   <csvEndTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessTypes"/>
+</NmLoader>

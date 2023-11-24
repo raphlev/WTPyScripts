@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NmLoader
+  SYSTEM "standard12_1.dtd">
+<NmLoader>
+   <csvBeginEnumDefView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumerationDefinition">
+      <csvname>CUSTOMProductionModes</csvname>
+      <csvcontainerDomain/>
+      <csvmaster/>
+      <csvsystem>false</csvsystem>
+      <csvorganizer>CUSTOM</csvorganizer>
+      <csvdomainRef>/System</csvdomainRef>
+   </csvBeginEnumDefView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumerationPropertyValue">
+      <csvname>displayName</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>Production Modes</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumerationPropertyValue">
+      <csvname>autoSort</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
+      <csvname>Development</csvname>
+   </csvBeginEnumMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>displayName</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>Development</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>selectable</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>0</csvvalue>
+   </csvPropertyValue>
+   <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
+   <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
+      <csvname>Production</csvname>
+   </csvBeginEnumMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>displayName</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>Production</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>selectable</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
+   <csvEndEnumDefView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumerationDefinition"/>
+</NmLoader>
