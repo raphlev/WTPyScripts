@@ -1,10 +1,10 @@
 from lxml import etree
 import argparse
-import sys
 import os
 
 class XMLTransformer:
     def __init__(self, input_file, output_folder, debug=False):
+        print('   -------------------------------BEGIN TRANSFORM--------------------------------------')
         self.input_file = input_file
         # Construct the output file name by replacing the .xml extension with .csv
         output_file_name = os.path.splitext(os.path.basename(input_file))[0] + '.csv'
@@ -12,6 +12,8 @@ class XMLTransformer:
         self.debug = debug
         self.extracted_strings = [] # Initialize a list to hold the extracted strings
 
+    def __del__(self):
+        print('   -------------------------------END   TRANSFORM--------------------------------------')
 
     def normalize_xml(self, xml_content):
         # Define the replacements as a list of tuples to be executed in same order
@@ -49,7 +51,7 @@ class XMLTransformer:
         debug_output_file =  os.path.splitext(self.output_file)[0] + '_normalized.xml'
         with open(debug_output_file, 'w') as f:
             f.write(content)
-        print(f"Debug output saved to {debug_output_file}")
+        print(f"   Debug output saved to {debug_output_file}")
 
     def transform(self):
         # Read the XML file content
@@ -72,17 +74,18 @@ class XMLTransformer:
             elif element.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
                 classifications = True
                 break
+        
         if types:
-            print('Processing Types structure: ' + self.input_file)
+            print('   Processing Types structure: ' + self.input_file)
             self.extract_data_Types(root)
         elif classifications:
-            print('Processing Classification structure: ' + self.input_file)
+            print('   Processing Classification structure: ' + self.input_file)
             self.extract_data_Classification(root)
         elif root.xpath(".//csvBeginEnumMemberView"):
-            print('Processing EnumDefView structure: ' + self.input_file)
+            print('   Processing EnumDefView structure: ' + self.input_file)
             self.extract_data_Enums(root)
         else:
-            print('Different or unknown XML structure detected: ' + self.input_file)
+            print('   Different or unknown XML structure detected: ' + self.input_file)
             # Placeholder for future functionality
 
         # Write the extracted strings to the output file
@@ -107,6 +110,9 @@ class XMLTransformer:
                 member_info = self.extract_data_Enums_member_info(enum_member)
                 if member_info:
                     self.extracted_strings.append(member_info)
+            # Add an empty row after processing each enum_def_view
+            self.extracted_strings.append('<EMPTY_ROW>') 
+                   
         return self.extracted_strings
 
     def extract_data_Enums_member_info(self, enum_member):
@@ -124,21 +130,37 @@ class XMLTransformer:
         self.extracted_strings.clear()
         # Prepare the header line for the CSV content
         header_line = "name~display~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
-        self.extracted_strings.append(header_line)
 
         # Iterate over each csvBeginTypeDefView element
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCTYPE']"):
+
+            # Extract the type name
+            typeName = type_def_view.xpath("./csvname/text()")[0] or ''
+            if typeName:
+                self.extracted_strings.append(typeName)
+            else:
+                self.extracted_strings.append('ERROR_EXTRACTING_TYPE_NAME')
+            # Extract the type display name
+            typeDisplayName = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")[0] or ''
+            if typeDisplayName:
+                self.extracted_strings.append(typeDisplayName)
+            else:
+                self.extracted_strings.append('ERROR_EXTRACTING_TYPE_DISPLAY_NAME')
+
+            self.extracted_strings.append(header_line)
             instantiable = type_def_view.xpath("./csvPropertyValue[csvname='instantiable']/csvvalue/text()")
             if instantiable and instantiable[0].lower() == 'true':
                 # Iterate over each csvBeginAttributeDefView element within csvBeginTypeDefView
                 for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                     self.extract_attribute_definitions(attr_def_view, '', '', 0, instantiable, '', 'Types')
-            # else:
-            #     print('Type non instantiable for : '+self.output_file+' - File not created !')
 
-        # remove if only header to prevent csv file with empty value
-        if len(self.extracted_strings) == 1:
+            # Add an empty row after processing each type_def_view
+            self.extracted_strings.append('<EMPTY_ROW>') 
+
+        # Remove all content if no attributes found to prevent any csv file with empty value
+        if len(self.extracted_strings) == 4 and self.extracted_strings[3]== '<EMPTY_ROW>' :
             self.extracted_strings.clear()
+
         return self.extracted_strings
 
     def extract_data_Classification(self, root):
@@ -313,9 +335,9 @@ class XMLTransformer:
             with open(output_csv_file, 'w') as f:
                 for string in self.extracted_strings:
                     f.write(string + '\n')
-            print(f"CSV File saved to {output_csv_file}")
+            print(f"   CSV File saved to {output_csv_file}")
         else:
-            print(f"CSV File not created, no data found for {self.input_file}")
+            print(f"   CSV File not created, no data found for {self.input_file}")
 
 def run():
     parser = argparse.ArgumentParser(description="Transform an XML file to a text file based on specific rules.")
@@ -328,8 +350,13 @@ def run():
         transformer = XMLTransformer(args.input, args.output, args.debug)
         transformer.transform()
     except Exception as e:
-        print(f"An error occurred while transforming {args.input}: {e}")
-        sys.exit(1)
+        message = f"   ******  An error occurred while transforming {args.input}: ******"
+        length = len(message)
+        stars = '*' * length
+        print("   "+stars)
+        print(message)
+        print({e})
+        print("   "+stars)
 
 if __name__ == "__main__":
     # XMLTransformer.run()
