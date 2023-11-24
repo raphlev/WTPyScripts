@@ -54,42 +54,55 @@ class XMLTransformer:
         print(f"   Debug output saved to {debug_output_file}")
 
     def transform(self):
-        # Read the XML file content
-        with open(self.input_file, 'r', encoding='utf-8') as file:
-            xml_content = file.read()
-        # Normalize the XML content
-        normalized_xml_content = self.normalize_xml(xml_content)
-        # Save the normalized content for debugging
-        if self.debug:
-            self.save_debug_output(normalized_xml_content)
-        # Parse the normalized XML content
-        root = etree.fromstring(normalized_xml_content.encode('utf-8'))
-        begin_types = root.xpath(".//csvBeginTypes")
-        classifications = False
-        types = False
-        for element in begin_types:
-            if element.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCTYPE']"):
-                types = True
-                break
-            elif element.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
-                classifications = True
-                break
-        
-        if types:
-            print('   Processing Types structure: ' + self.input_file)
-            self.extract_data_Types(root)
-        elif classifications:
-            print('   Processing Classification structure: ' + self.input_file)
-            self.extract_data_Classification(root)
-        elif root.xpath(".//csvBeginEnumMemberView"):
-            print('   Processing EnumDefView structure: ' + self.input_file)
-            self.extract_data_Enums(root)
-        else:
-            print('   Different or unknown XML structure detected: ' + self.input_file)
-            # Placeholder for future functionality
+        try:
+            # Read the XML file content
+            with open(self.input_file, 'r', encoding='utf-8') as file:
+                xml_content = file.read()
+            # Normalize the XML content
+            normalized_xml_content = self.normalize_xml(xml_content)
+            # Save the normalized content for debugging
+            if self.debug:
+                self.save_debug_output(normalized_xml_content)
+            # Parse the normalized XML content
+            root = etree.fromstring(normalized_xml_content.encode('utf-8'))
+            begin_types = root.xpath(".//csvBeginTypes")
+            classifications = False
+            types = False
+            for element in begin_types:
+                if element.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCTYPE']"):
+                    types = True
+                    break
+                elif element.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
+                    classifications = True
+                    break
+            
+            if types:
+                print('   Processing Types structure: ' + self.input_file)
+                self.extract_data_Types(root)
+            elif classifications:
+                print('   Processing Classification structure: ' + self.input_file)
+                self.extract_data_Classification(root)
+            elif root.xpath(".//csvBeginEnumMemberView"):
+                print('   Processing Global Enumeration structure: ' + self.input_file)
+                self.extract_data_Enums(root)
+            else:
+                print('   Unknown XML structure detected: ' + self.input_file)
+                # Placeholder for future functionality
 
-        # Write the extracted strings to the output file
-        self.write_output(self.output_file)
+            # Write the extracted strings to the output file
+            self.write_output(self.output_file)
+        except Exception as e:
+            message = f"******************  Transform xml file failed: ******************"
+            length = len(message)
+            stars = '*' * length
+            marks = '!' * length
+            print("   "+stars)
+            print("   "+marks)
+            print("   "+message)
+            exception_type = type(e).__name__
+            print(f"   {exception_type}: {e}")
+            print("   "+marks)
+            print("   "+stars)
 
     def extract_data_Enums(self, root):
         # Clear the list for new data
@@ -350,12 +363,16 @@ def run():
         transformer = XMLTransformer(args.input, args.output, args.debug)
         transformer.transform()
     except Exception as e:
-        message = f"   ******  An error occurred while transforming {args.input}: ******"
+        message = f"******************  An error occurred while transforming {args.input}: ******************"
         length = len(message)
         stars = '*' * length
+        marks = '!' * length
         print("   "+stars)
-        print(message)
-        print({e})
+        print("   "+marks)
+        print("   "+message)
+        exception_type = type(e).__name__
+        print(f"   {exception_type}: {e}")
+        print("   "+marks)
         print("   "+stars)
 
 if __name__ == "__main__":

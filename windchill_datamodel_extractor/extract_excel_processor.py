@@ -200,12 +200,9 @@ class ExcelFileProcessor:
             # Check if the file is an XML file
             if file.endswith(".xml"):
                 input_file_path = os.path.join(self.input_folder, file)
-                try:
-                    transformer = XMLTransformer(input_file_path, self.output_folder)
-                    # Parse and transform to CSV file
-                    transformer.transform()
-                except Exception as e:
-                    print(f"XMLFilesProcessor: an unexpected error occurred: {e}")
+                transformer = XMLTransformer(input_file_path, self.output_folder)
+                # Parse and transform to CSV file
+                transformer.transform()
 
     def create_output_directory(self):
         try:
@@ -226,22 +223,35 @@ class ExcelFileProcessor:
             print(stars) 
 
     def process_excel_file(self):
-        # Create the output directory if it doesn't exist
-        # Check if the output directory does not exist
-        if not os.path.exists(self.output_folder):
-            self.create_output_directory()
+        try:
+            # Create the output directory if it doesn't exist
+            # Check if the output directory does not exist
+            if not os.path.exists(self.output_folder):
+                self.create_output_directory()
 
-        # Iterate over all files in output directory
-        print("All existing *.csv files in output directory will be removed.")
-        for filename in os.listdir(self.output_folder):
-            if filename.endswith('.csv'):
-                os.remove(os.path.join(self.output_folder, filename))
+            # Iterate over all files in output directory
+            print("All existing *.csv files in output directory will be removed.")
+            for filename in os.listdir(self.output_folder):
+                if filename.endswith('.csv'):
+                    os.remove(os.path.join(self.output_folder, filename))
 
-        # Process each xml files
-        self.process_xml_files()
+            # Process each xml files
+            self.process_xml_files()
 
-        # Create the excel workbook
-        self.create_excel_with_toc()
+            # Create the excel workbook
+            self.create_excel_with_toc()
+        except Exception as e:
+            message = f"******************  Process excel file failed: ******************"
+            length = len(message)
+            stars = '*' * length
+            marks = '!' * length
+            print(stars)
+            print(marks)
+            print(message)
+            exception_type = type(e).__name__
+            print(f"{exception_type}: {e}")
+            print(marks)
+            print(stars)
 
     @staticmethod
     def run():

@@ -30,15 +30,28 @@ class RecursiveExcelFileCreator:
 
     @staticmethod
     def run():
-        parser = argparse.ArgumentParser(description="Recursively process XML files and generate Excel workbooks.")
-        parser.add_argument('-i', '--input_dir', required=True, help='Root input directories containing XML files (Types, Enum, Classification).')
-        parser.add_argument('-o', '--output_dir', required=True, help='Root output directory for Excel files.')
-        parser.add_argument('--delete_csv', action='store_true', help='Optional: delete CSV files after processing')
+        try:
+            parser = argparse.ArgumentParser(description="Recursively process XML files and generate Excel workbooks.")
+            parser.add_argument('-i', '--input_dir', required=True, help='Root input directories containing XML files (Types, Enum, Classification).')
+            parser.add_argument('-o', '--output_dir', required=True, help='Root output directory for Excel files.')
+            parser.add_argument('--delete_csv', action='store_true', help='Optional: delete CSV files after processing')
 
-        args = parser.parse_args()
+            args = parser.parse_args()
 
-        recursive_creator = RecursiveExcelFileCreator(args.input_dir, args.output_dir, args.delete_csv)
-        recursive_creator.process_all_subdirectories()
+            recursive_creator = RecursiveExcelFileCreator(args.input_dir, args.output_dir, args.delete_csv)
+            recursive_creator.process_all_subdirectories()
+        except Exception as e:
+            message = f"******************  Process recursively excel files failed: ******************"
+            length = len(message)
+            stars = '*' * length
+            marks = '!' * length
+            print(stars)
+            print(marks)
+            print(message)
+            exception_type = type(e).__name__
+            print(f"{exception_type}: {e}")
+            print(marks)
+            print(stars)
 
 if __name__ == "__main__":
     RecursiveExcelFileCreator.run()
