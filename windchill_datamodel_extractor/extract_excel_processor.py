@@ -51,8 +51,8 @@ class ExcelFileProcessor:
             if len(row) >= 2:
                 # Check if the first cell starts with "name" or "depth" and 
                 # the second cell starts with "display" or "type"
-                if ((row[0].value and (row[0].value.startswith("name") or row[0].value.startswith("depth"))) and
-                    (row[1].value and (row[1].value.startswith("display") or row[1].value.startswith("type")))):
+                if ((row[0].value and (row[0].value.startswith("name") or row[0].value.startswith("depth") or row[0].value.startswith("objType"))) and
+                    (row[1].value and (row[1].value.startswith("display") or row[1].value.startswith("type") or row[1].value.startswith("folder.id")))):
                     # Apply bold font to all cells in this row
                     for cell in row:
                         cell.font = Font(bold=True)

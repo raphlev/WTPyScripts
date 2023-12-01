@@ -2,7 +2,7 @@
 # Windchill Data Model Information Extraction Scripts
 
 ## Introduction
-This project provides a series of Python scripts to extract Windchill data model information and format the results into Excel files. It currently supports Enumerations, Types, and Classification XML files.
+This project provides a series of Python scripts to extract Windchill data model information and format the results into Excel files. It currently supports Enumerations, Types, Classification, Lifecycle and OIR XML files.
 
 ## Installation
 To run these scripts, you will need Python installed on your system along with some external libraries. You can install the required libraries using pip:

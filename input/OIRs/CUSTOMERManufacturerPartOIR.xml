@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE OrganizationConfig SYSTEM "standard11_1.dtd">
+<OrganizationConfig>
+    <TypeBasedRule>
+        <EngineRule isDefault="false" enabled="true">
+            <ruleName>CUSTOM Manufacturer Part</ruleName>
+            <ruleSpecification>
+				<![CDATA[
+                <AttributeValues objType="ext.lps.power.CUSTOMManufacturerPart">
+					<!-- set the folder -->
+					<AttrValue id="folder.id" algorithm="com.ptc.core.foundation.folder.server.impl.FolderPathAttributeAlgorithm">
+						<Arg>/Default/Parts</Arg>
+					</AttrValue>
+					<!-- set the lifecycle -->
+					<AttrValue id="lifeCycle.id" algorithm="com.ptc.core.foundation.lifecycle.server.impl.LifeCycleTemplateAttributeAlgorithm">
+						<Arg>CUSTOM Manufacturer Part Life Cycle</Arg>
+					</AttrValue>
+					<!-- disable auto-numbering -->
+					<AttrValue id="number" algorithm="com.ptc.windchill.enterprise.revisionControlled.server.impl.NumberGenerator"/>
+					<!-- set the version schema to the NumericStateBased one -->
+					<AttrValue id="MBA|versionInfo" algorithm="com.ptc.core.foundation.vc.server.impl.VersionInfoGenerator">
+						<Arg>wt.series.HarvardSeries.NumericStateBased</Arg>
+					</AttrValue>
+					<!-- specify AttrConstraint tag -->
+					<AttrConstraint id="folder.id" algorithm="com.ptc.core.rule.server.impl.GatherAttributeConstraints">
+						<Value algorithm="com.ptc.core.rule.server.impl.GetServerPreGeneratedValue"/>
+						<Value algorithm="com.ptc.core.rule.server.impl.GetImmutableConstraint"/>
+					</AttrConstraint>
+					<AttrConstraint id="lifeCycle.id" algorithm="com.ptc.core.rule.server.impl.GatherAttributeConstraints">
+						<Value algorithm="com.ptc.core.rule.server.impl.GetServerAssignedConstraint"/>
+						<Value algorithm="com.ptc.core.rule.server.impl.GetImmutableConstraint"/>
+					</AttrConstraint>
+					<AttrConstraint id="lifeCycle" algorithm="com.ptc.core.rule.server.impl.GatherAttributeConstraints">
+						<Value algorithm="com.ptc.core.rule.server.impl.GetServerAssignedConstraint"/>      
+						<Value algorithm="com.ptc.core.rule.server.impl.GetImmutableConstraint"/>
+					</AttrConstraint>
+					<AttrConstraint id="number" algorithm="com.ptc.core.rule.server.impl.GatherAttributeConstraints"/>
+                </AttributeValues>
+                ]]>
+            </ruleSpecification>
+            <ruleType type="INIT"/>
+        </EngineRule>
+        <logicalId>ext.lps.power.CUSTOMManufacturerPart</logicalId>
+    </TypeBasedRule>
+</OrganizationConfig>

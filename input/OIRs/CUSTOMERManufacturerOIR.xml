@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE OrganizationConfig SYSTEM "standard11_1.dtd">
+<OrganizationConfig>
+    <TypeBasedRule>
+        <EngineRule isDefault="false" enabled="true">
+            <ruleName>CUSTOM Manufacturer</ruleName>
+            <ruleSpecification>
+				<![CDATA[
+                <AttributeValues objType="ext.lps.power.CUSTOMManufacturer">
+					<!-- set the lifecycle -->
+					<AttrValue id="lifeCycle.id" algorithm="com.ptc.core.foundation.lifecycle.server.impl.LifeCycleTemplateAttributeAlgorithm">
+						<Arg>CUSTOM Manufacturer Life Cycle</Arg>
+					</AttrValue>
+					<!-- specify AttrConstraint tag -->
+					<AttrConstraint id="lifeCycle.id" algorithm="com.ptc.core.rule.server.impl.GatherAttributeConstraints">
+						<Value algorithm="com.ptc.core.rule.server.impl.GetServerAssignedConstraint"/>
+						<Value algorithm="com.ptc.core.rule.server.impl.GetImmutableConstraint"/>
+					</AttrConstraint>
+					<AttrConstraint id="lifeCycle" algorithm="com.ptc.core.rule.server.impl.GatherAttributeConstraints">
+						<Value algorithm="com.ptc.core.rule.server.impl.GetServerAssignedConstraint"/>      
+						<Value algorithm="com.ptc.core.rule.server.impl.GetImmutableConstraint"/>
+					</AttrConstraint>
+                </AttributeValues>
+                ]]>
+            </ruleSpecification>
+            <ruleType type="INIT"/>
+        </EngineRule>
+        <logicalId>ext.lps.power.CUSTOMManufacturer</logicalId>
+    </TypeBasedRule>
+</OrganizationConfig>

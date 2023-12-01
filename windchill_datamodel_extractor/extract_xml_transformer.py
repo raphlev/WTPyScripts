@@ -18,6 +18,7 @@ class XMLTransformer:
     def normalize_xml(self, xml_content):
         # Define the replacements as a list of tuples to be executed in same order
         replacements = [
+        # TYPES, CLASSIFICATION
             ('</csvBeginTypes>', ''),
             ('<csvBeginTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypes"/>', '<csvBeginTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessTypes">'),
             ('</csvBeginTypeDefView>', ''),
@@ -39,6 +40,14 @@ class XMLTransformer:
             ('<csvEndLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessLayoutDefinition"/>', '</csvBeginLayoutDefView>'),
             ('<csvEndTypeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessTypeDefinition"/>', '</csvBeginTypeDefView>'),
             ('<csvEndTypes handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessTypes"/>', '</csvBeginTypes>'),
+        # LIFECYCLE
+            ('</csvLifeCycleTemplateBegin>', ''),
+            ('<csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>', ''),
+            ('<csvLifeCycleTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createLifeCycleTemplateEnd"></csvLifeCycleTemplateEnd>', '</csvLifeCycleTemplateBegin>'),
+            ('<csvLifeCycleTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createLifeCycleTemplateEnd"/>', '</csvLifeCycleTemplateBegin>'),
+        # OIR
+            ('<![CDATA[', ''),
+            (']]>', ''),
         ]
 
         # Perform the replacements in order
@@ -66,8 +75,8 @@ class XMLTransformer:
             # Parse the normalized XML content
             root = etree.fromstring(normalized_xml_content.encode('utf-8'))
             begin_types = root.xpath(".//csvBeginTypes")
-            classifications = False
-            types = False
+            classifications = types = False
+
             for element in begin_types:
                 if element.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCTYPE']"):
                     types = True
@@ -77,14 +86,20 @@ class XMLTransformer:
                     break
             
             if types:
-                print('   Processing Types structure: ' + self.input_file)
-                self.extract_data_Types(root)
+                print('   Processing Types : ' + self.input_file)
+                self.extract_data_type(root)
             elif classifications:
-                print('   Processing Classification structure: ' + self.input_file)
-                self.extract_data_Classification(root)
+                print('   Processing Classification : ' + self.input_file)
+                self.extract_data_classification(root)
             elif root.xpath(".//csvBeginEnumMemberView"):
-                print('   Processing Global Enumeration structure: ' + self.input_file)
-                self.extract_data_Enums(root)
+                print('   Processing Global Enumeration : ' + self.input_file)
+                self.extract_data_enum(root)
+            elif root.xpath(".//csvLifeCycleTemplateBegin"):
+                print('   Processing Lifecycle : ' + self.input_file)
+                self.extract_data_lc(root)
+            elif root.xpath(".//TypeBasedRule"):
+                print('   Processing OIR : ' + self.input_file)
+                self.extract_data_oir(root)
             else:
                 print('   Unknown XML structure detected: ' + self.input_file)
                 # Placeholder for future functionality
@@ -104,7 +119,7 @@ class XMLTransformer:
             print("   "+marks)
             print("   "+stars)
 
-    def extract_data_Enums(self, root):
+    def extract_data_enum(self, root):
         # Clear the list for new data
         self.extracted_strings.clear()
         for enum_def_view in root.xpath(".//csvBeginEnumDefView"):
@@ -120,7 +135,7 @@ class XMLTransformer:
             self.extracted_strings.append(header_line)
             # Extract information for each 'csvBeginEnumMemberView'
             for enum_member in enum_def_view.xpath(".//csvBeginEnumMemberView"):
-                member_info = self.extract_data_Enums_member_info(enum_member)
+                member_info = self.extract_data_enum_member_info(enum_member)
                 if member_info:
                     self.extracted_strings.append(member_info)
             # Add an empty row after processing each enum_def_view
@@ -128,7 +143,7 @@ class XMLTransformer:
                    
         return self.extracted_strings
 
-    def extract_data_Enums_member_info(self, enum_member):
+    def extract_data_enum_member_info(self, enum_member):
         member_name = enum_member.xpath("./csvname/text()")[0]
         display_name = enum_member.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
         display_name = display_name[0] if display_name else '' 
@@ -138,7 +153,7 @@ class XMLTransformer:
         
         return f"{member_name}~{display_name}"
 
-    def extract_data_Types(self, root):
+    def extract_data_type(self, root):
         # Clear the list for new data
         self.extracted_strings.clear()
         # Prepare the header line for the CSV content
@@ -176,7 +191,7 @@ class XMLTransformer:
 
         return self.extracted_strings
 
-    def extract_data_Classification(self, root):
+    def extract_data_classification(self, root):
         # Clear the list for new data
         self.extracted_strings.clear()
 
@@ -317,7 +332,7 @@ class XMLTransformer:
                                 csvmaster_value = constraint_def_view.xpath("./csvBeginEnumDefView[1]/csvmaster/text()")
                                 if csvmaster_value:
                                     enum_members = csvmaster_value[0] # Name of Global Enum with values being overriden
-                                    enum_members = enum_members + ': ' + self.extract_data_Types_member_names(constraint_def_view) # List of values with selectable=yes
+                                    enum_members = enum_members + ': ' + self.extract_data_type_member_names(constraint_def_view) # List of values with selectable=yes
 
             # Replace length with default value for String if empty (information not available in XML)
             if length == '' and datatype == 'String':
@@ -331,7 +346,7 @@ class XMLTransformer:
             elif mode == 'Types':
                     self.extracted_strings.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
-    def extract_data_Types_member_names(self, constraint_def_view):
+    def extract_data_type_member_names(self, constraint_def_view):
         member_names = []
         # Start from the constraint definition view and iterate through following elements
         for enum_def_view in constraint_def_view.xpath("./csvBeginEnumDefView[1]"):
@@ -341,6 +356,55 @@ class XMLTransformer:
                 if member_name and selectable[0].lower() == 'true':
                     member_names.append(member_name)
         return '|'.join(member_names)
+
+    def extract_data_lc(self, root):
+        # Clear the list for new data
+        self.extracted_strings.clear()
+        for lc_template in root.xpath(".//csvLifeCycleTemplateBegin"):
+            # Extract the displayName value
+            display = lc_template.xpath("./csvname/text()")[0] or ''
+            self.extracted_strings.append(display)
+            # Prepare the header line for the CSV content
+            header_line = "name~displayName"
+            self.extracted_strings.append(header_line)
+            # Extract information for each 'csvPhaseTemplateBegin'
+            for phase in lc_template.xpath(".//csvPhaseTemplateBegin"):
+                phase_name = phase.xpath("./csvname/text()")
+                phase_name = phase_name[0] if phase_name else ''
+                phase_state = phase.xpath("./csvphaseState/text()")
+                phase_state = phase_state[0] if phase_state else ''
+                self.extracted_strings.append(f"{phase_state}~{phase_name}")
+            # Add an empty row after processing each lc_template
+            self.extracted_strings.append('<EMPTY_ROW>') 
+                   
+        return self.extracted_strings
+
+    def extract_data_oir(self, root):
+        # Clear the list for new data
+        self.extracted_strings.clear()
+        for base_rule in root.xpath(".//TypeBasedRule"):
+            # Extract the displayName value
+            rule_name = base_rule.xpath(".//ruleName/text()")[0] or ''
+            self.extracted_strings.append(rule_name)
+            # Prepare the header line for the CSV content
+            header_line = "objType~folder.id~lc.id~versioning~numbering"
+            self.extracted_strings.append(header_line)
+            # Extract information for each 'AttributeValues'
+            for attr_values in base_rule.xpath(".//AttributeValues"):
+                obj_type = attr_values.xpath("./@objType")[0] or ''
+                folder_id = attr_values.xpath('.//AttrValue[@id="folder.id"]/Arg/text()')
+                folder_id = folder_id[0] if folder_id else ''
+                lc_id = attr_values.xpath('.//AttrValue[@id="lifeCycle.id"]/Arg/text()')
+                lc_id = lc_id[0] if lc_id else ''
+                versioning = attr_values.xpath('.//AttrValue[@id="MBA|versionInfo"]/Arg/text()')
+                versioning = versioning[0] if versioning else ''
+                args_numbering = attr_values.xpath('.//AttrValue[@id="number"]/Arg/text()')
+                numbering = ''.join(args_numbering) if args_numbering else ''
+                self.extracted_strings.append(f"{obj_type}~{folder_id}~{lc_id}~{versioning}~{numbering}")
+            # Add an empty row after processing each base_rule
+            self.extracted_strings.append('<EMPTY_ROW>') 
+                   
+        return self.extracted_strings
 
     def write_output(self,output_csv_file):
         if self.extracted_strings:

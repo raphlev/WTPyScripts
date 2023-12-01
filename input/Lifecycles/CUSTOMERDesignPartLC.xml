@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE NmLoader SYSTEM "standard11_1.dtd">
+<NmLoader>
+  <csvLifeCycleTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createLifeCycleTemplate">
+    <csvname>CUSTOM Design Part LifeCycle</csvname>
+    <csvdescription></csvdescription>
+    <csvsupportedClass>wt.fc.WTObject</csvsupportedClass>
+    <csvfolderLocation>/System</csvfolderLocation>
+    <csvenabled>true</csvenabled>
+    <csvrouting>false</csvrouting>
+    <csvbasic>true</csvbasic>
+  </csvLifeCycleTemplateBegin>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>In Work</csvname>
+    <csvphaseState>INWORK</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Under Review</csvname>
+    <csvphaseState>UNDERREVIEW</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>In Work (Preliminary Design)</csvname>
+    <csvphaseState>INWORK_PRELIMINARY_DESIGN</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Prelancement</csvname>
+    <csvphaseState>PRELIMINARY_DESIGN</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>In Work (Design)</csvname>
+    <csvphaseState>INWORK_DESIGN</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Design</csvname>
+    <csvphaseState>DESIGN</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Prototype - en cours</csvname>
+    <csvphaseState>PROTOTYPE_INWORK</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Prototype</csvname>
+    <csvphaseState>PROTOTYPE</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>In Work (PreProduction)</csvname>
+    <csvphaseState>INWORK_PREPROD</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Preproduction</csvname>
+    <csvphaseState>PREPRODUCTION</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>In Work (Production)</csvname>
+    <csvphaseState>INWORK_PRODUCTION</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Production</csvname>
+    <csvphaseState>PRODUCTION</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseTemplateBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateBegin">
+    <csvname>Obsolete</csvname>
+    <csvphaseState>OBSOLETE</csvphaseState>
+    <csvphaseWorkflow></csvphaseWorkflow>
+    <csvgateWorkflow></csvgateWorkflow>
+    <csvseriesSelector></csvseriesSelector>
+  </csvPhaseTemplateBegin>
+  <csvPhaseTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createPhaseTemplateEnd"></csvPhaseTemplateEnd>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>DESIGN</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PREDESIGN</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>UNDERREVIEW</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>DESIGN</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PREDESIGN</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROTOTYPE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>DESIGN</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROTOTYPE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRELIMINARY_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>REVISE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>DESIGN</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROTOTYPE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE_INWORK</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROTOTYPE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>REVISE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>DESIGN</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE_INWORK</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROTOTYPE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_PREPROD</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE_INWORK</csvsuccessorPhaseState>
+    <csvphaseTransition>REVISE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PROTOTYPE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PREPRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PREPROD</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_PREPROD</csvsuccessorPhaseState>
+    <csvphaseTransition>REVISE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PREPRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PRODUCTION</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>INWORK_PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>UNDERREVIEW</csvsuccessorPhaseState>
+    <csvphaseTransition>LOCK</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>NEXT</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>OBSOLETE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>OBSOLETE</csvsuccessorPhaseState>
+    <csvphaseTransition>PROMOTE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>INWORK_PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>REVISE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>PRODUCTION</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>OBSOLETE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRELIMINARY_DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>OBSOLETE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>DESIGN</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>OBSOLETE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PROTOTYPE</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>OBSOLETE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PREPRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvPhaseSuccessionBegin handler="wt.lifecycle.LoadLifeCycle.createPhaseSuccessionBegin">
+    <csvlifeCycleName>CUSTOM Design Part LifeCycle</csvlifeCycleName>
+    <csvpredecessorPhaseState>OBSOLETE</csvpredecessorPhaseState>
+    <csvsuccessorPhaseState>PRODUCTION</csvsuccessorPhaseState>
+    <csvphaseTransition>SET_STATE</csvphaseTransition>
+  </csvPhaseSuccessionBegin>
+  <csvLifeCycleTemplateEnd handler="wt.lifecycle.LoadLifeCycle.createLifeCycleTemplateEnd"></csvLifeCycleTemplateEnd>
+</NmLoader>
