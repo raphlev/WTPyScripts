@@ -1,19 +1,23 @@
+import logging
 from lxml import etree
 import argparse
 import os
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
+
 class XMLTransformer:
     def __init__(self, input_file, output_folder, debug=False):
-        print('   -------------------------------BEGIN TRANSFORM--------------------------------------')
+        logging.info('   -------------------------------BEGIN TRANSFORM--------------------------------------')
         self.input_file = input_file
         # Construct the output file name by replacing the .xml extension with .csv
         output_file_name = os.path.splitext(os.path.basename(input_file))[0] + '.csv'
         self.output_file = os.path.join(output_folder, output_file_name)
         self.debug = debug
         self.extracted_strings = [] # Initialize a list to hold the extracted strings
-
+        if self.debug:
+                    logging.getLogger().setLevel(logging.DEBUG)
     def __del__(self):
-        print('   -------------------------------END   TRANSFORM--------------------------------------')
+        logging.info('   -------------------------------END   TRANSFORM--------------------------------------')
 
     def normalize_xml(self, xml_content):
         # Define the replacements as a list of tuples to be executed in same order
@@ -60,7 +64,7 @@ class XMLTransformer:
         debug_output_file =  os.path.splitext(self.output_file)[0] + '_normalized.xml'
         with open(debug_output_file, 'w') as f:
             f.write(content)
-        print(f"   Debug output saved to {debug_output_file}")
+        logging.debug(f"   Debug output saved to {debug_output_file}")
 
     def transform(self):
         try:
@@ -86,22 +90,22 @@ class XMLTransformer:
                     break
             
             if types:
-                print('   Processing Types : ' + self.input_file)
+                logging.info('   Processing Types : ' + self.input_file)
                 self.extract_data_type(root)
             elif classifications:
-                print('   Processing Classification : ' + self.input_file)
+                logging.info('   Processing Classification : ' + self.input_file)
                 self.extract_data_classification(root)
             elif root.xpath(".//csvBeginEnumMemberView"):
-                print('   Processing Global Enumeration : ' + self.input_file)
+                logging.info('   Processing Global Enumeration : ' + self.input_file)
                 self.extract_data_enum(root)
             elif root.xpath(".//csvLifeCycleTemplateBegin"):
-                print('   Processing Lifecycle : ' + self.input_file)
+                logging.info('   Processing Lifecycle : ' + self.input_file)
                 self.extract_data_lc(root)
             elif root.xpath(".//TypeBasedRule"):
-                print('   Processing OIR : ' + self.input_file)
+                logging.info('   Processing OIR : ' + self.input_file)
                 self.extract_data_oir(root)
             else:
-                print('   Unknown XML structure detected: ' + self.input_file)
+                logging.info('   Unknown XML structure detected: ' + self.input_file)
                 # Placeholder for future functionality
 
             # Write the extracted strings to the output file
@@ -111,13 +115,14 @@ class XMLTransformer:
             length = len(message)
             stars = '*' * length
             marks = '!' * length
-            print("   "+stars)
-            print("   "+marks)
-            print("   "+message)
+            logging.info("   "+stars)
+            logging.info("   "+marks)
+            logging.info("   "+message)
             exception_type = type(e).__name__
-            print(f"   {exception_type}: {e}")
-            print("   "+marks)
-            print("   "+stars)
+            logging.info(f"   {exception_type}: {e}")
+            logging.exception("   Exception:")
+            logging.info("   "+marks)
+            logging.info("   "+stars)
 
     def extract_data_enum(self, root):
         # Clear the list for new data
@@ -234,7 +239,7 @@ class XMLTransformer:
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                 self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification')
         # else:
-        #     print('Type non instantiable for : '+self.output_file+' - File not created !')
+        #     logging.info('Type non instantiable for : '+self.output_file+' - File not created !')
 
         # remove if only header to prevent csv file with empty value
         if len(self.extracted_strings) == 1:
@@ -412,9 +417,9 @@ class XMLTransformer:
             with open(output_csv_file, 'w') as f:
                 for string in self.extracted_strings:
                     f.write(string + '\n')
-            print(f"   CSV File saved to {output_csv_file}")
+            logging.info(f"   CSV File saved to {output_csv_file}")
         else:
-            print(f"   CSV File not created, no data found for {self.input_file}")
+            logging.info(f"   CSV File not created, no data found for {self.input_file}")
 
 def run():
     parser = argparse.ArgumentParser(description="Transform an XML file to a text file based on specific rules.")
@@ -431,13 +436,14 @@ def run():
         length = len(message)
         stars = '*' * length
         marks = '!' * length
-        print("   "+stars)
-        print("   "+marks)
-        print("   "+message)
+        logging.info("   "+stars)
+        logging.info("   "+marks)
+        logging.info("   "+message)
         exception_type = type(e).__name__
-        print(f"   {exception_type}: {e}")
-        print("   "+marks)
-        print("   "+stars)
+        logging.info(f"   {exception_type}: {e}")
+        logging.exception("   Exception:")
+        logging.info("   "+marks)
+        logging.info("   "+stars)
 
 if __name__ == "__main__":
     # XMLTransformer.run()

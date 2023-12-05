@@ -1,5 +1,6 @@
 import argparse
 import os
+import logging
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font, Alignment, NamedStyle
@@ -8,10 +9,12 @@ from extract_xml_transformer import XMLTransformer
 # import pandas as pd
 # from openpyxl.utils.dataframe import dataframe_to_rows
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
+
 class ExcelFileProcessor:
     def __init__(self, input_folder, output_folder, keep_csv=False):
         # Initialize the workbook creator with the directory of CSV files and the output file path
-        print('-------------------------------BEGIN EXCEL PROCESSOR--------------------------------')
+        logging.info('-------------------------------BEGIN EXCEL PROCESSOR--------------------------------')
         self.input_folder = input_folder
         self.output_folder = output_folder
         # Define the name for the output Excel file and initialize the excel workbook
@@ -23,16 +26,16 @@ class ExcelFileProcessor:
         message = f"******  Processing input folder: {self.input_folder} ******"
         length = len(message)
         stars = '*' * length
-        print(stars)
-        print(stars)
-        print(message)
-        print(stars)
-        print(stars) 
+        logging.info(stars)
+        logging.info(stars)
+        logging.info(message)
+        logging.info(stars)
+        logging.info(stars) 
 
     def __del__(self):
-        print('-------------------------------END  EXCEL PROCESSOR--------------------------------')
-        print('-----------------------------------------------------------------------------------')
-        print('-----------------------------------------------------------------------------------')
+        logging.info('-------------------------------END  EXCEL PROCESSOR--------------------------------')
+        logging.info('-----------------------------------------------------------------------------------')
+        logging.info('-----------------------------------------------------------------------------------')
     def _setup_toc(self):
         # Set up the Table of Contents sheet
         self.toc.title = "TOC"
@@ -75,9 +78,9 @@ class ExcelFileProcessor:
             message = f"******  UnicodeDecodeError: file {csv_file} transcoded to latin1 instead of utf-8 ******"
             length = len(message)
             stars = '*' * length
-            print(stars)
-            print(message)
-            print(stars)            
+            logging.info(stars)
+            logging.info(message)
+            logging.info(stars)            
             # If utf-8 decoding fails, try another encoding such as 'latin1'
             with open(csv_path, mode='r', encoding='latin1') as f:
                 self._append_rows_to_sheet(csv_file,f)
@@ -102,7 +105,7 @@ class ExcelFileProcessor:
         # Delete the CSV file if the keep_csv flag is False
         if not self.keep_csv:
             os.remove(csv_path)
-            print(f"Deleted CSV file: {csv_path}")
+            logging.info(f"Deleted CSV file: {csv_path}")
 
     def _append_rows_to_sheet(self, csv_file, f):
         # Extract the base name without the file extension
@@ -114,9 +117,9 @@ class ExcelFileProcessor:
             message = f"******  Sheet title '{base_name}' exceeds 31 characters and will be truncated to '{sheet_title}' ******"
             length = len(message)
             stars = '*' * length
-            print(stars)
-            print(message)
-            print(stars)
+            logging.info(stars)
+            logging.info(message)
+            logging.info(stars)
         # If the sheet already exists, delete it
         if sheet_title in self.wb.sheetnames:
             sheet_to_remove = self.wb[sheet_title]
@@ -135,7 +138,7 @@ class ExcelFileProcessor:
                 ws.append(row)
         # Apply formatting to the worksheet
         self._format_worksheet(ws)
-        print(f"Added CSV file to new worksheet: {csv_file} --> {sheet_title} ")
+        logging.info(f"Added CSV file to new worksheet: {csv_file} --> {sheet_title} ")
 
     def _add_to_toc(self, sheet_title, index):
         # Add the sheet name to the TOC with a hyperlink
@@ -152,18 +155,22 @@ class ExcelFileProcessor:
                 message = f"******  Deleted existing file: {self.output_file} ******"
                 length = len(message)
                 stars = '*' * length
-                print(stars)
-                print(message)
-                print(stars) 
+                logging.info(stars)
+                logging.info(message)
+                logging.info(stars) 
         except Exception as e:
             message = f"******  Failed to delete Excel file: {self.output_file} ******"
             length = len(message)
             stars = '*' * length
-            print(stars)
-            print(message)
+            marks = '!' * length
+            logging.info(stars)
+            logging.info(marks)
+            logging.info(message)
             exception_type = type(e).__name__
-            print(f"{exception_type}: {e}")
-            print(stars) 
+            logging.info(f"{exception_type}: {e}")
+            logging.exception("Exception: ")
+            logging.info(marks)
+            logging.info(stars) 
 
     def create_excel_with_toc(self):
         # Create the workbook and save it to the output file
@@ -180,21 +187,25 @@ class ExcelFileProcessor:
                 message = f"******  Excel file saved at {self.output_file} ******"
                 length = len(message)
                 stars = '*' * length
-                print(stars)
-                print(message)
-                print(stars) 
+                logging.info(stars)
+                logging.info(message)
+                logging.info(stars) 
             else:
-                print('No *.csv files found for : '+self.output_file+' - File not created !')
+                logging.info('No *.csv files found for : '+self.output_file+' - File not created !')
         except Exception as e:
             message = f"******  Failed to create Excel file: {self.output_file} ******"
             length = len(message)
             stars = '*' * length
-            print(stars)
-            print(message)
+            marks = '!' * length
+            logging.info(stars)
+            logging.info(marks)
+            logging.info(message)
             exception_type = type(e).__name__
-            print(f"{exception_type}: {e}")
-            print('An existing file with same name may be opened or used by someone else.')
-            print(stars) 
+            logging.info(f"{exception_type}: {e}")
+            logging.exception("Exception: ")
+            logging.info('An existing file with same name may be opened or used by someone else.')
+            logging.info(marks)
+            logging.info(stars) 
 
     def process_xml_files(self):
         # Iterate each file in the input directory
@@ -212,18 +223,22 @@ class ExcelFileProcessor:
             message = f"******  Created output directory: {self.output_folder} ******"
             length = len(message)
             stars = '*' * length
-            print(stars)
-            print(message)
-            print(stars) 
+            logging.info(stars)
+            logging.info(message)
+            logging.info(stars) 
         except OSError as e:
             message = f"******  Failed to create output directory: ******"
             length = len(message)
             stars = '*' * length
-            print(stars)
-            print(message)
+            marks = '!' * length
+            logging.info(stars)
+            logging.info(marks)
+            logging.info(message)
             exception_type = type(e).__name__
-            print(f"{exception_type}: {e}")
-            print(stars) 
+            logging.info(f"{exception_type}: {e}")
+            logging.exception("Exception: ")
+            logging.info(marks)
+            logging.info(stars) 
 
     def process_excel_file(self):
         try:
@@ -233,7 +248,7 @@ class ExcelFileProcessor:
                 self.create_output_directory()
 
             # Iterate over all files in output directory
-            print("All existing *.csv files in output directory will be removed.")
+            logging.info("All existing *.csv files in output directory will be removed.")
             for filename in os.listdir(self.output_folder):
                 if filename.endswith('.csv'):
                     os.remove(os.path.join(self.output_folder, filename))
@@ -248,13 +263,14 @@ class ExcelFileProcessor:
             length = len(message)
             stars = '*' * length
             marks = '!' * length
-            print(stars)
-            print(marks)
-            print(message)
+            logging.info(stars)
+            logging.info(marks)
+            logging.info(message)
             exception_type = type(e).__name__
-            print(f"{exception_type}: {e}")
-            print(marks)
-            print(stars)
+            logging.info(f"{exception_type}: {e}")
+            logging.exception("Exception: ")
+            logging.info(marks)
+            logging.info(stars) 
 
     @staticmethod
     def run():

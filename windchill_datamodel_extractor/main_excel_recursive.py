@@ -1,12 +1,19 @@
 import os
 import argparse
+import logging
 from extract_excel_processor import ExcelFileProcessor
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
 
 class RecursiveExcelFileCreator:
     def __init__(self, root_input_dir, root_output_dir, keep_csv=False):
         self.root_input_dir = root_input_dir
         self.root_output_dir = root_output_dir
         self.keep_csv = keep_csv
+        logging.info('-------------------------------BEGIN RECURSIVE LOOP---------------------------------')
+
+    def __del__(self):
+        logging.info('-------------------------------END   RECURSIVE LOOP---------------------------------')
 
     def process_directory(self, input_dir, output_dir):
         # Ensure output directory exists
@@ -45,13 +52,14 @@ class RecursiveExcelFileCreator:
             length = len(message)
             stars = '*' * length
             marks = '!' * length
-            print(stars)
-            print(marks)
-            print(message)
+            logging.info(stars)
+            logging.info(marks)
+            logging.info(message)
             exception_type = type(e).__name__
-            print(f"{exception_type}: {e}")
-            print(marks)
-            print(stars)
+            logging.info(f"{exception_type}: {e}")
+            logging.exception("Exception: ")
+            logging.info(marks)
+            logging.info(stars)
 
 if __name__ == "__main__":
     RecursiveExcelFileCreator.run()
