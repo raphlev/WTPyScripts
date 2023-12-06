@@ -27,7 +27,7 @@ Example:
 ```bash
 python .\windchill_datamodel_extractor\main_excel_recursive.py -i .\input\ -o .\output\
 ```
-This will create new .\output\ directory with additional subfoders containing different excel files related to the input folder structure.
+This will create new .\output\ directory with additional subfoders containing different excel files related to the input folder structure. Because optional --keep_csv argument is not used, all generated csv files have been removed from each output folders.
 
 ### extract_excel_processor.py
 To process XML files and generate Excel workbooks:
@@ -42,7 +42,7 @@ Example:
 ```bash
 python .\windchill_datamodel_extractor\extract_excel_processor.py -i .\input\Types -o .\output\Types
 ```
-This will create new .\Test\ directory with resulted excel file. Because optional --keep_csv argument is not used, aall generated csv files have been removed.
+This will create new .\Test\ directory with resulted excel file. Because optional --keep_csv argument is not used, all generated csv files have been removed from output folder.
 
 ### extract_xml_transformer.py
 To transform an XML file to a text file based on specific rules:
@@ -61,10 +61,10 @@ This will create new .\Test\ directory with resulted csv file. Because optional 
 
 ## Script Descriptions
 ### 1. main_excel_recursive.py
-This script is the entry point for processing directories recursively. It creates Excel files from XML files found in the specified input directory and its subdirectories.
+This script is the entry point for processing directories recursively. It creates Excel files from XML files found in the specified input directory and its subdirectories. It creates an excel file per each subdirectories found with valid XML files.
 
 ### 2. extract_excel_processor.py
-This script takes in a directory of XML files, processes them, and generates corresponding Excel workbooks with a Table of Contents. Used as stand-alone, it will create one excel file. It is also used by `main_excel_recursive.py` to create several Excel workbooks.
+This script takes in a directory of several XML files, processes them, and generates one Excel workbook with a Table of Content. Used as stand-alone, it will create one excel file. It is also used by `main_excel_recursive.py` to create several Excel workbooks.
 
 ### 3. extract_xml_transformer.py
-This script is responsible for transforming XML files into a specific structured text format. Used as stand-alone, it will create the csv files. It is also used by `extract_excel_processor.py` to create one Excel workbook.
+This script is responsible for transforming one XML file into a specific structured text format. Used as stand-alone, it will create the csv file. It is also used by `extract_excel_processor.py` to create one Excel workbook.
