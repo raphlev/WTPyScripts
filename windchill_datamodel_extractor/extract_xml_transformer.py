@@ -3,7 +3,7 @@ from lxml import etree
 import argparse
 import os
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(filename)s - %(message)s')
 
 class XMLTransformer:
     def __init__(self, input_file, output_folder, debug=False):

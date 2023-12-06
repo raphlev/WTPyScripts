@@ -9,8 +9,6 @@ from extract_xml_transformer import XMLTransformer
 # import pandas as pd
 # from openpyxl.utils.dataframe import dataframe_to_rows
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
-
 class ExcelFileProcessor:
     def __init__(self, input_folder, output_folder, keep_csv=False):
         # Initialize the workbook creator with the directory of CSV files and the output file path
