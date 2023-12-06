@@ -19,15 +19,15 @@ To run the main script that processes directories recursively:
 ```bash
 python main_excel_recursive.py -i [ROOT_INPUT_DIR] -o [ROOT_OUTPUT_DIR] [--keep_csv]
 ```
+- `-i` or `--input_dir`: Root input directory containing XML files.
+- `-o` or `--output_dir`: Root output directory for Excel files.
+- `--keep_csv`: (Optional) Keep CSV files after processing.
+
 Example:
 ```bash
 python .\windchill_datamodel_extractor\main_excel_recursive.py -i .\input\ -o .\output\
 ```
-This will create new .output directory with subfoders containing different excel files followin gthe input folder structure
-
-- `-i` or `--input_dir`: Root input directory containing XML files.
-- `-o` or `--output_dir`: Root output directory for Excel files.
-- `--keep_csv`: (Optional) Keep CSV files after processing.
+This will create new .output directory with subfoders containing different excel files followin gthe input folder structure.
 
 ### extract_excel_processor.py
 To process XML files and generate Excel workbooks:
@@ -46,6 +46,12 @@ python extract_xml_transformer.py -i [INPUT_FILE] -o [OUTPUT_FOLDER] [--debug]
 - `-i` or `--input`: Input XML file path.
 - `-o` or `--output`: Output folder.
 - `--debug`: (Optional) Enable debug mode to output the normalized XML file.
+
+Example:
+```bash
+python .\windchill_datamodel_extractor\extract_xml_transformer.py -i .\input\PartTypes\Classification_3.xml -o .\output\Test\ --debug
+```
+This will create new .\Test\ directory with resulted csv file. Also an xml file is created with content of denormalized xml from input xml file being processed.
 
 ## Script Descriptions
 ### 1. main_excel_recursive.py
