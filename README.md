@@ -18,6 +18,7 @@ Each script can be executed independently. Below are the ways to use them:
 To run the main script that processes directories recursively:
 ```bash
 python main_excel_recursive.py -i [ROOT_INPUT_DIR] -o [ROOT_OUTPUT_DIR] [--keep_csv]
+python .\windchill_datamodel_extractor\main_excel_recursive.py -i .\input\ -o .\output\
 ```
 - `-i` or `--input_dir`: Root input directory containing XML files.
 - `-o` or `--output_dir`: Root output directory for Excel files.
