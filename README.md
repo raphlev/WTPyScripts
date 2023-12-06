@@ -27,7 +27,7 @@ Example:
 ```bash
 python .\windchill_datamodel_extractor\main_excel_recursive.py -i .\input\ -o .\output\
 ```
-This will create new .output directory with subfoders containing different excel files followin gthe input folder structure.
+This will create new .\output\ directory with additional subfoders containing different excel files related to the input folder structure.
 
 ### extract_excel_processor.py
 To process XML files and generate Excel workbooks:
@@ -37,6 +37,12 @@ python extract_excel_processor.py -i [INPUT_DIR] -o [OUTPUT_DIR] [--keep_csv]
 - `-i` or `--input_dir`: Input directory containing XML files.
 - `-o` or `--output_dir`: Output directory for CSV and Excel files.
 - `--keep_csv`: (Optional) Keep CSV files after processing.
+
+Example:
+```bash
+python .\windchill_datamodel_extractor\extract_excel_processor.py -i .\input\Types -o .\output\Types
+```
+This will create new .\Test\ directory with resulted excel file. Because optional --keep_csv argument is not used, aall generated csv files have been removed.
 
 ### extract_xml_transformer.py
 To transform an XML file to a text file based on specific rules:
@@ -49,9 +55,9 @@ python extract_xml_transformer.py -i [INPUT_FILE] -o [OUTPUT_FOLDER] [--debug]
 
 Example:
 ```bash
-python .\windchill_datamodel_extractor\extract_xml_transformer.py -i .\input\PartTypes\Classification_3.xml -o .\output\Test\ --debug
+python .\windchill_datamodel_extractor\extract_xml_transformer.py -i .\input\Classification\Classification.xml -o .\output\Test\ --debug
 ```
-This will create new .\Test\ directory with resulted csv file. Also an xml file is created with content of denormalized xml from input xml file being processed.
+This will create new .\Test\ directory with resulted csv file. Because optional --debug argument is used, Classification_normalized.xml file is also created to verify the normalized xml content generated from input xml file being processed.
 
 ## Script Descriptions
 ### 1. main_excel_recursive.py
