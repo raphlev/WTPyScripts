@@ -42,7 +42,7 @@ Example:
 ```bash
 python .\windchill_datamodel_extractor\extract_excel_processor.py -i .\input\Types -o .\output\Types
 ```
-This will create new .\Test\ directory with resulted excel file. Because optional --keep_csv argument is not used, all generated csv files have been removed from output folder.
+This will create new .\output\Types\ directory with one resulted excel file. Because optional --keep_csv argument is not used, all generated csv files have been removed from output folder.
 
 ### extract_xml_transformer.py
 To transform an XML file to a text file based on specific rules:
@@ -57,11 +57,11 @@ Example:
 ```bash
 python .\windchill_datamodel_extractor\extract_xml_transformer.py -i .\input\Classification\Classification.xml -o .\output\Test\ --debug
 ```
-This will create new .\Test\ directory with resulted csv file. Because optional --debug argument is used, Classification_normalized.xml file is also created to verify the normalized xml content generated from input xml file being processed.
+This will create new .\output\Test\ directory with one resulted csv file. Because optional --debug argument is used, Classification_normalized.xml file is also created to verify the normalized xml content generated from input xml file being processed.
 
 ## Script Descriptions
 ### 1. main_excel_recursive.py
-This script is the entry point for processing directories recursively. It creates Excel files from XML files found in the specified input directory and its subdirectories. It creates an excel file per each subdirectories found with valid XML files.
+This script is the entry point for processing directories recursively. It creates Excel files from XML files found in the specified input directory and its subdirectories. It creates an excel file per each subdirectories found with valid input XML files.
 
 ### 2. extract_excel_processor.py
 This script takes in a directory of several XML files, processes them, and generates one Excel workbook with a Table of Content. Used as stand-alone, it will create one excel file. It is also used by `main_excel_recursive.py` to create several Excel workbooks.
