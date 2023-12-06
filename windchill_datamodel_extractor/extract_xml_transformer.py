@@ -16,6 +16,7 @@ class XMLTransformer:
         self.extracted_strings = [] # Initialize a list to hold the extracted strings
         if self.debug:
                     logging.getLogger().setLevel(logging.DEBUG)
+
     def __del__(self):
         logging.info('   -------------------------------END   TRANSFORM--------------------------------------')
 

@@ -34,6 +34,7 @@ class ExcelFileProcessor:
         logging.info('-------------------------------END  EXCEL PROCESSOR--------------------------------')
         logging.info('-----------------------------------------------------------------------------------')
         logging.info('-----------------------------------------------------------------------------------')
+ 
     def _setup_toc(self):
         # Set up the Table of Contents sheet
         self.toc.title = "TOC"
@@ -57,7 +58,6 @@ class ExcelFileProcessor:
                     # Apply bold font to all cells in this row
                     for cell in row:
                         cell.font = Font(bold=True)
-
         # Adjust the column widths
         for column_cells in ws.columns:
             max_length = max(len(str(cell.value)) for cell in column_cells if cell.value) + 2
