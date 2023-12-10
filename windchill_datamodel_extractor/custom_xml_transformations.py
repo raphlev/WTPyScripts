@@ -1,6 +1,6 @@
 class CustomXMLTransformations:
     @staticmethod
-    def normalize_xml(self, xml_content):
+    def normalize_xml(xml_content):
             # Define the replacements as a list of tuples to be executed in same order
             replacements = [
             # TYPES, CLASSIFICATION
