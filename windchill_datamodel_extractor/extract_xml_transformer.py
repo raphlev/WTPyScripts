@@ -91,22 +91,22 @@ class XMLTransformer:
                     break
             
             if types:
-                logging.info('   Processing Types : ' + self.input_file)
+                logging.info('   Processing Types XML(encoding utf-8): ' + self.input_file)
                 self.extract_data_type(root)
             elif classifications:
-                logging.info('   Processing Classification : ' + self.input_file)
+                logging.info('   Processing Classification XML(encoding utf-8): ' + self.input_file)
                 self.extract_data_classification(root)
             elif root.xpath(".//csvBeginEnumMemberView"):
-                logging.info('   Processing Global Enumeration : ' + self.input_file)
+                logging.info('   Processing Global Enumeration XML(encoding utf-8): ' + self.input_file)
                 self.extract_data_enum(root)
             elif root.xpath(".//csvLifeCycleTemplateBegin"):
-                logging.info('   Processing Lifecycle : ' + self.input_file)
+                logging.info('   Processing Lifecycle XML(encoding utf-8): ' + self.input_file)
                 self.extract_data_lc(root)
             elif root.xpath(".//TypeBasedRule"):
-                logging.info('   Processing OIR : ' + self.input_file)
+                logging.info('   Processing OIR XML(encoding utf-8): ' + self.input_file)
                 self.extract_data_oir(root)
             else:
-                logging.info('   Unknown XML structure detected: ' + self.input_file)
+                logging.info('   Unknown XML structure detected (encoding utf-8):' + self.input_file)
                 # Placeholder for future functionality
 
             # Write the extracted strings to the output file
@@ -414,11 +414,11 @@ class XMLTransformer:
 
     def write_output(self,output_csv_file):
         if self.extracted_strings:
-            # with open(self.output_csv_file, 'w', encoding='utf-8') as f:
-            with open(output_csv_file, 'w') as f:
+            with open(output_csv_file, 'w', encoding='utf-8') as f:
+            # with open(output_csv_file, 'w') as f:
                 for string in self.extracted_strings:
                     f.write(string + '\n')
-            logging.info(f"   CSV File saved to {output_csv_file}")
+            logging.info(f"   CSV File created (encoding utf-8): {output_csv_file}")
         else:
             logging.info(f"   CSV File not created, no data found for {self.input_file}")
 

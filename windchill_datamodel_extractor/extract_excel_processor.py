@@ -112,11 +112,15 @@ class ExcelFileProcessor:
         sheet_title = base_name[:31]
         # Check if the base name length exceeds 31 characters and log a message with hignlight
         if len(base_name) > 31:
-            message = f"******  Sheet title '{base_name}' exceeds 31 characters and will be truncated to '{sheet_title}' ******"
-            length = len(message)
-            stars = '*' * length
+            message1 = f"******  Sheet title '{base_name}' exceeds 31 characters ******"
+            message2 = f"******  It will be truncated to '{sheet_title}'"
+            length1 = len(message1)
+            length2 = len(message2)
+            message2 = message2 + ' ' * (length1 - length2 - len("******")) + "******"
+            stars = '*' * length1
             logging.info(stars)
-            logging.info(message)
+            logging.info(message1)
+            logging.info(message2)
             logging.info(stars)
         # If the sheet already exists, delete it
         if sheet_title in self.wb.sheetnames:
