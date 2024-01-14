@@ -226,19 +226,11 @@ class XMLTransformer:
             displayType = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             displayType = displayType[0] if displayType else ''
 
-            # Calculate depth and gather ancestor attributes
+            # Calculate depth
             depth = 0
             current_parent = parentType
-            ancestor_attributes = []
             while current_parent:
                 depth += 1
-                if current_parent in type_attributes_map:
-                    for attr in type_attributes_map[current_parent]:
-                        # Split the ancestor attribute
-                        parts = attr.split("~")
-                        # Reuse current node's values for the first five elements
-                        updated_attr = [str(depth), typeObject, parentType, instantiable, displayType] + parts[5:]
-                        ancestor_attributes.append("~".join(updated_attr))
                 current_parent = type_depth_map.get(current_parent, None)
 
             type_depth_map[typeObject] = parentType  # Map current type to its parent
@@ -251,11 +243,24 @@ class XMLTransformer:
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                 current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
 
-            # Insert ancestor attributes before current attributes
+            # Update and append ancestor attributes with current node's depth and other values
+            ancestor_attributes = []
+            if parentType in type_attributes_map:
+                for attr in type_attributes_map[parentType]:
+                    updated_attr = attr.split("~")
+                    # Update depth and keep current node's type, parentType, instantiable, and displayType
+                    updated_attr[0] = str(depth)
+                    updated_attr[1] = typeObject
+                    updated_attr[2] = parentType
+                    updated_attr[3] = instantiable
+                    updated_attr[4] = displayType
+                    ancestor_attributes.append("~".join(updated_attr))
+
             self.extracted_strings.extend(ancestor_attributes)
 
             # Store the current and ancestor attributes for future use
-            type_attributes_map[typeObject] = current_attributes
+            type_attributes_map[typeObject] = current_attributes + ancestor_attributes
+
 
         # else:
         #     logging.info('Type non instantiable for : '+self.output_file+' - File not created !')
