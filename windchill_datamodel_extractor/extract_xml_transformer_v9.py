@@ -235,19 +235,20 @@ class XMLTransformer:
 
             type_depth_map[typeObject] = parentType  # Map current type to its parent
 
-            # Prepare the type line
-            type_line = f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}"
+            # Append the type line
+            self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
             # Extract current attributes
             current_attributes = []
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                 current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
 
-            # Update and collect ancestor attributes
+            # Update and append ancestor attributes with current node's depth and other values
             ancestor_attributes = []
             if parentType in type_attributes_map:
                 for attr in type_attributes_map[parentType]:
                     updated_attr = attr.split("~")
+                    # Update depth and keep current node's type, parentType, instantiable, and displayType
                     updated_attr[0] = str(depth)
                     updated_attr[1] = typeObject
                     updated_attr[2] = parentType
@@ -255,16 +256,10 @@ class XMLTransformer:
                     updated_attr[4] = displayType
                     ancestor_attributes.append("~".join(updated_attr))
 
-            # Combine and sort the ancestor and current attributes based on the 6th column (name)
-            combined_attributes = ancestor_attributes + current_attributes
-            combined_attributes.sort(key=lambda x: x.split("~")[5])  # Sort based on the 6th column
-
-            # Append the sorted attributes, starting with the type line
-            self.extracted_strings.append(type_line)
-            self.extracted_strings.extend(combined_attributes)
+            self.extracted_strings.extend(ancestor_attributes)
 
             # Store the current and ancestor attributes for future use
-            type_attributes_map[typeObject] = combined_attributes
+            type_attributes_map[typeObject] = current_attributes + ancestor_attributes
 
 
         # else:

@@ -207,7 +207,6 @@ class XMLTransformer:
 
         # keep track of typeObject and its depth
         type_depth_map = {}
-        type_attributes_map = {}  # Map to store the attributes of each type
 
         # Iterate over each csvBeginTypeDefView element
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
@@ -232,41 +231,14 @@ class XMLTransformer:
             while current_parent:
                 depth += 1
                 current_parent = type_depth_map.get(current_parent, None)
-
             type_depth_map[typeObject] = parentType  # Map current type to its parent
 
-            # Prepare the type line
-            type_line = f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}"
 
-            # Extract current attributes
-            current_attributes = []
+            # Append the extracted type as a new line
+            self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
-
-            # Update and collect ancestor attributes
-            ancestor_attributes = []
-            if parentType in type_attributes_map:
-                for attr in type_attributes_map[parentType]:
-                    updated_attr = attr.split("~")
-                    updated_attr[0] = str(depth)
-                    updated_attr[1] = typeObject
-                    updated_attr[2] = parentType
-                    updated_attr[3] = instantiable
-                    updated_attr[4] = displayType
-                    ancestor_attributes.append("~".join(updated_attr))
-
-            # Combine and sort the ancestor and current attributes based on the 6th column (name)
-            combined_attributes = ancestor_attributes + current_attributes
-            combined_attributes.sort(key=lambda x: x.split("~")[5])  # Sort based on the 6th column
-
-            # Append the sorted attributes, starting with the type line
-            self.extracted_strings.append(type_line)
-            self.extracted_strings.extend(combined_attributes)
-
-            # Store the current and ancestor attributes for future use
-            type_attributes_map[typeObject] = combined_attributes
-
-
+                self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification')
         # else:
         #     logging.info('Type non instantiable for : '+self.output_file+' - File not created !')
 
@@ -278,7 +250,7 @@ class XMLTransformer:
     def extract_attribute_definitions(self, attr_def_view, typeObject, parentType, depth, instantiable, displayType, mode):
             name = display = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
             required = single = upperCase = iba = 'No'
-            attributes = []
+            
             # Process for name, class, defaultValue, dataType and unit
             if attr_def_view.findtext('./csvIBA'):
                 iba = 'Yes'
@@ -377,9 +349,6 @@ class XMLTransformer:
             # Append the extracted attributes as a new line
             if mode == 'Classification':
                 self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
-                # Append the attribute line to the attributes list
-                attributes.append(f"0~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
-                return attributes
             elif mode == 'Types':
                     self.extracted_strings.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
