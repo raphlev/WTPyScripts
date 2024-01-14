@@ -207,6 +207,7 @@ class XMLTransformer:
 
         # keep track of typeObject and its depth
         type_depth_map = {}
+        type_attributes_map = {}  # Map to store the attributes of each type
 
         # Iterate over each csvBeginTypeDefView element
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
@@ -225,20 +226,37 @@ class XMLTransformer:
             displayType = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             displayType = displayType[0] if displayType else ''
 
-            # Calculate depth
+            # Calculate depth and gather ancestor attributes
             depth = 0
             current_parent = parentType
+            ancestor_attributes = []
             while current_parent:
                 depth += 1
+                if current_parent in type_attributes_map:
+                    for attr in type_attributes_map[current_parent]:
+                        # Split the ancestor attribute
+                        parts = attr.split("~")
+                        # Reuse current node's values for the first five elements
+                        updated_attr = [str(depth), typeObject, parentType, instantiable, displayType] + parts[5:]
+                        ancestor_attributes.append("~".join(updated_attr))
                 current_parent = type_depth_map.get(current_parent, None)
+
             type_depth_map[typeObject] = parentType  # Map current type to its parent
 
-
-            # Append the extracted type as a new line
+            # Append the type line
             self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
+            # Extract current attributes
+            current_attributes = []
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification')
+                current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
+
+            # Insert ancestor attributes before current attributes
+            self.extracted_strings.extend(ancestor_attributes)
+
+            # Store the current and ancestor attributes for future use
+            type_attributes_map[typeObject] = current_attributes
+
         # else:
         #     logging.info('Type non instantiable for : '+self.output_file+' - File not created !')
 
@@ -250,7 +268,7 @@ class XMLTransformer:
     def extract_attribute_definitions(self, attr_def_view, typeObject, parentType, depth, instantiable, displayType, mode):
             name = display = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
             required = single = upperCase = iba = 'No'
-            
+            attributes = []
             # Process for name, class, defaultValue, dataType and unit
             if attr_def_view.findtext('./csvIBA'):
                 iba = 'Yes'
@@ -349,6 +367,9 @@ class XMLTransformer:
             # Append the extracted attributes as a new line
             if mode == 'Classification':
                 self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                # Append the attribute line to the attributes list
+                attributes.append(f"0~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                return attributes
             elif mode == 'Types':
                     self.extracted_strings.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
