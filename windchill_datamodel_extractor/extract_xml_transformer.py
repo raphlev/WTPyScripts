@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import logging
 from lxml import etree
 import argparse
@@ -259,12 +260,15 @@ class XMLTransformer:
             combined_attributes = ancestor_attributes + current_attributes
             combined_attributes.sort(key=lambda x: x.split("~")[5])  # Sort based on the 6th column
 
-            # Append the sorted attributes, starting with the type line
+            # Remove duplicates while maintaining order
+            unique_attributes = list(OrderedDict.fromkeys(combined_attributes))
+
+            # Append the sorted and unique attributes, starting with the type line
             self.extracted_strings.append(type_line)
-            self.extracted_strings.extend(combined_attributes)
+            self.extracted_strings.extend(unique_attributes)
 
             # Store the current and ancestor attributes for future use
-            type_attributes_map[typeObject] = combined_attributes
+            type_attributes_map[typeObject] = unique_attributes
 
 
         # else:
@@ -376,7 +380,7 @@ class XMLTransformer:
 
             # Append the extracted attributes as a new line
             if mode == 'Classification':
-                self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                #self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
                 # Append the attribute line to the attributes list
                 attributes.append(f"0~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
                 return attributes

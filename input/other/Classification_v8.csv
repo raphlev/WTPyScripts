@@ -1,0 +1,288 @@
+depth~type~parentType~instantiable~displayType~name~display~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues
+0~CUSTClassification~~No~CUST~~~~~~~~~~~~~
+1~CUSTOMClassification~CUSTClassification~No~CUSTOM~~~~~~~~~~~~~
+2~CUSTOMConsumable~CUSTOMClassification~No~Consumable~~~~~~~~~~~~~
+3~CUSTOMCablesandWires~CUSTOMConsumable~No~Cables and Wires~~~~~~~~~~~~~
+3~CUSTOMCablesandWires~CUSTOMConsumable~No~Cables and Wires~CUSTOMGauge~Gauge~Yes~No~String~~20~Yes~No~~~~
+4~CUSTOMCablesandWiresBondingBraid~CUSTOMCablesandWires~No~Bonding Braid~~~~~~~~~~~~~
+4~CUSTOMCablesandWiresBondingBraid~CUSTOMCablesandWires~No~Bonding Braid~CUSTOMConductorNumber~Number of Conductors~Yes~No~String~~500~Yes~No~~~~
+4~CUSTOMCablesandWiresBondingBraid~CUSTOMCablesandWires~No~Bonding Braid~CUSTOMCrossSectionArea~Cross Section Area~Yes~No~FloatingPointWithUnits~Area (m**2)~~Yes~No~~~~
+4~CUSTOMCablesandWiresBondingBraid~CUSTOMCablesandWires~No~Bonding Braid~CUSTOMMaterial~Material~Yes~Yes~String~~500~Yes~No~~~Copper|Aluminium|Other~
+4~CUSTOMCablesandWiresBondingBraid~CUSTOMCablesandWires~No~Bonding Braid~CUSTOMPlating~Plating~Yes~No~String~~20~Yes~No~~~~
+4~CUSTOMCablesandWiresBondingBraid~CUSTOMCablesandWires~No~Bonding Braid~CUSTOMSpecification~Specification~Yes~No~String~~20~Yes~No~~~~
+5~CUSTOMCablesandWiresCableFlat~CUSTOMCablesandWiresBondingBraid~Yes~Flat~~~~~~~~~~~~~
+5~CUSTOMCablesandWiresCableFlat~CUSTOMCablesandWiresBondingBraid~Yes~Flat~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMCablesandWiresCableFlat~CUSTOMCablesandWiresBondingBraid~Yes~Flat~CUSTOMWidth~Width~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMCablesandWiresCableRound~CUSTOMCablesandWiresBondingBraid~Yes~Round~~~~~~~~~~~~~
+5~CUSTOMCablesandWiresCableRound~CUSTOMCablesandWiresBondingBraid~Yes~Round~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~~~~~~~~~~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMColor~Color~Yes~No~String~~500~No~No~~~~CUSTOMColor
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMConductorDiameter~Conductor Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMConductorMaterial~Conductor Material~Yes~No~String~~500~Yes~No~~~Copper|Aluminium|Other~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMConductorNumber~Number of Conductors~Yes~No~String~~500~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMCrossSectionArea~Cross Section Area~Yes~No~FloatingPointWithUnits~Area (m**2)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMFirePerformance~Fire Performance~Yes~No~String~~500~Yes~No~~~Auto-extinguible|Fire retardant|Low smoke emission density|Low smoke emission without halogen (LSZH)~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMInsulatorMaterial~Insulator Material~Yes~No~String~~500~No~No~~~Rubber|Silicon Rubber|ETFE (ethylene tetrafluoroethylene)|PVDF (Kynar)|Neoprene|Polyamide|Polyolefin|Polyethylene|PTFE (teflon)|PVC|Silicon|Other~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMMaxOperatingTemperature~Max Operating Temperature~Yes~No~FloatingPointWithUnits~Temperature (degC)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMMinOperatingTemperature~Min Operating Temperature~Yes~No~FloatingPointWithUnits~Temperature (degC)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMNumberStrands~Number of Strands~Yes~No~Long~~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMPlating~Plating~Yes~No~String~~500~Yes~No~~~None|Ag|Ni|Sn|Sn-Pb|Other~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMShielding~Shielding~Yes~No~Boolean~~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMSpecification~Specification~Yes~No~String~~50~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMStrandDiameter~Strand Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMCablesandWiresCable~CUSTOMCablesandWires~No~Cable~CUSTOMVoltageRating~Voltage Rating~Yes~No~FloatingPointWithUnits~Electrical Potential (V)~~Yes~No~~~~
+5~CUSTOMCableAudioVideo~CUSTOMCablesandWiresCable~Yes~Audio Video~~~~~~~~~~~~~
+5~CUSTOMCableCoaxial~CUSTOMCablesandWiresCable~Yes~Coaxial~~~~~~~~~~~~~
+5~CUSTOMCableComputerCableAssemblies~CUSTOMCablesandWiresCable~Yes~Computer Cable Assemblies~~~~~~~~~~~~~
+5~CUSTOMCableElectricalCustomIndustrial~CUSTOMCablesandWiresCable~Yes~Electrical Custom & Industrial~~~~~~~~~~~~~
+5~CUSTOMCableNetworkCommunication~CUSTOMCablesandWiresCable~Yes~Network & Communication~~~~~~~~~~~~~
+5~CUSTOMCableOpticalFibre~CUSTOMCablesandWiresCable~Yes~Optical Fibre~~~~~~~~~~~~~
+5~CUSTOMCableRibbonFlat~CUSTOMCablesandWiresCable~Yes~Ribbon & Flat~~~~~~~~~~~~~
+5~CUSTOMCableRibbonFlat~CUSTOMCablesandWiresCable~Yes~Ribbon & Flat~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMCablesandWiresCableCableAccessories~CUSTOMCablesandWiresCable~Yes~Cable accessories~~~~~~~~~~~~~
+5~CUSTOMCablesandWiresCableCableAccessories~CUSTOMCablesandWiresCable~Yes~Cable accessories~CUSTOMConductorNumber~~Yes~No~String~~500~No~No~~~~
+5~CUSTOMCablesandWiresCableCableAccessories~CUSTOMCablesandWiresCable~Yes~Cable accessories~CUSTOMMountingMethod~Mounting Method~Yes~No~String~~500~Yes~No~~~~CUSTOMMountingMethods: Crimped|PressIn|SolderCups|SurfaceMount|ThroughHole
+5~CUSTOMCablesandWiresCableCableAccessories~CUSTOMCablesandWiresCable~Yes~Cable accessories~CUSTOMNumberofTerminations~Number of Terminations~Yes~No~Long~~~Yes~No~~~~
+5~CUSTOMCablesandWiresCableCableAccessories~CUSTOMCablesandWiresCable~Yes~Cable accessories~CUSTOMType~Type~Yes~No~String~~500~Yes~No~~~~
+4~CUSTOMCablesandWiresWire~CUSTOMCablesandWires~No~Wire~~~~~~~~~~~~~
+4~CUSTOMCablesandWiresWire~CUSTOMCablesandWires~No~Wire~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+5~CUSTOMWireAnodal~CUSTOMCablesandWiresWire~Yes~Anodal~~~~~~~~~~~~~
+5~CUSTOMWireAnodal~CUSTOMCablesandWiresWire~Yes~Anodal~CUSTOMMaterial~Material~Yes~Yes~String~~20~No~No~~~Acrylic|Aluminium|Aluminium Bronze|Aluminium Oxide|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Fiberglass|Helsyn|Iron-Based Superalloy|Kapton|Magnesium|Mica|N/A|Nickel|Nickel-Based Superalloy|Nickel-Copper Alloy|Nomex|Nylon|Nylon PVC|PEEK|PTFE|PVC|Paint (Topcoat)|Paint Primers|Phenolic Resin|Phosphor Bronze|Polyester|Polyimide|Polyurethane|Polyvinylidene Kynar|Refined Iron|Silicon Steel|Silicone|Silver|Sintermatt|Solder|Stainless Steel|Steel|TBC|Tin|Titanium Alloy|Tungsten|Varnish|Vidaflex|Xylan|Zinc|Zinc Alloy Electroplate~
+5~CUSTOMWireAnodal~CUSTOMCablesandWiresWire~Yes~Anodal~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~~~~~~~~~~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMColor~Color~Yes~No~String~~500~No~No~~~~CUSTOMColor
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMConductorDiameter~Conductor Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMConductorMaterial~Conductor Material~Yes~No~String~~500~Yes~No~~~Aluminium|Copper|Other~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMCrossSectionArea~Cross Section Area~Yes~No~FloatingPointWithUnits~Area (m**2)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMFirePerformance~Fire Performance~Yes~No~String~~500~Yes~No~~~Auto-extinguible|Fire retardant|Low smoke emission density|Low smoke emission without halogen (LSZH)~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMInsulatorMaterial~Insulator Material~Yes~No~String~~500~No~No~~~ETFE (ethylene tetrafluoroethylene)|Neoprene|Other|PTFE (teflon)|PVC|PVDF (Kynar)|Polyamide|Polyethylene|Polyolefin|Rubber|Silicon|Silicon Rubber~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMMaxOperatingTemperature~Max Operating Temperature~Yes~No~FloatingPointWithUnits~Temperature (degC)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMMinOperatingTemperature~Min Operating Temperature~Yes~No~FloatingPointWithUnits~Temperature (degC)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMNumberStrands~Number of Strands~Yes~No~Long~~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMPlating~Plating~Yes~No~String~~500~Yes~No~~~Ag|Ni|None|Other|Sn|Sn-Pb~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMShielding~Shielding~Yes~No~Boolean~~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMStrandDiameter~Strand Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireEquipment~CUSTOMCablesandWiresWire~Yes~Equipment~CUSTOMVoltageRating~Voltage Rating~Yes~No~FloatingPointWithUnits~Electrical Potential (V)~~Yes~No~~~~
+5~CUSTOMWireResistance~CUSTOMCablesandWiresWire~Yes~Resistance~~~~~~~~~~~~~
+5~CUSTOMWireResistance~CUSTOMCablesandWiresWire~Yes~Resistance~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+5~CUSTOMWireResistance~CUSTOMCablesandWiresWire~Yes~Resistance~CUSTOMMaterial~Material~Yes~Yes~String~~20~No~No~~~Acrylic|Aluminium|Aluminium Bronze|Aluminium Oxide|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Fiberglass|Helsyn|Iron-Based Superalloy|Kapton|Magnesium|Mica|N/A|Nickel|Nickel-Based Superalloy|Nickel-Copper Alloy|Nomex|Nylon|Nylon PVC|PEEK|PTFE|PVC|Paint (Topcoat)|Paint Primers|Phenolic Resin|Phosphor Bronze|Polyester|Polyimide|Polyurethane|Polyvinylidene Kynar|Refined Iron|Silicon Steel|Silicone|Silver|Sintermatt|Solder|Stainless Steel|Steel|TBC|Tin|Titanium Alloy|Tungsten|Varnish|Vidaflex|Xylan|Zinc|Zinc Alloy Electroplate~
+5~CUSTOMWireResistance~CUSTOMCablesandWiresWire~Yes~Resistance~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~~~~~~~~~~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMConductorDiameter~Conductor Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMConductorMaterial~Conductor Material~Yes~No~String~~500~Yes~No~~~Aluminium|Copper|Other~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMCrossSectionArea~Cross Section Area~Yes~No~FloatingPointWithUnits~Area (m**2)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMFirePerformance~Fire Performance~Yes~No~String~~500~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMInsulatorMaterial~Insulator Material~Yes~No~String~~500~No~No~~~ETFE (ethylene tetrafluoroethylene)|Neoprene|Other|PTFE (teflon)|PVC|PVDF (Kynar)|Polyamide|Polyethylene|Polyolefin|Rubber|Silicon|Silicon Rubber~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMMaxOperatingTemperature~Max Operating Temperature~Yes~No~FloatingPointWithUnits~Temperature (degC)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMMinOperatingTemperature~Min Operating Temperature~Yes~No~FloatingPointWithUnits~Temperature (degC)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMNumberStrands~Number of Strands~Yes~No~Long~~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMPlating~Plating~Yes~No~String~~500~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMShielding~Shielding~Yes~No~Boolean~~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMStrandDiameter~Strand Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireThermocoupleExtension~CUSTOMCablesandWiresWire~Yes~Thermocouple & Extension~CUSTOMVoltageRating~Voltage Rating~Yes~No~FloatingPointWithUnits~Electrical Potential (V)~~Yes~No~~~~
+5~CUSTOMWireTieBandingStripMesh~CUSTOMCablesandWiresWire~Yes~Tie, Banding Strip & Mesh~~~~~~~~~~~~~
+5~CUSTOMWireTieBandingStripMesh~CUSTOMCablesandWiresWire~Yes~Tie, Banding Strip & Mesh~CUSTOMMaterial~Material~Yes~Yes~String~~20~No~No~~~Acrylic|Aluminium|Aluminium Bronze|Aluminium Oxide|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Fiberglass|Helsyn|Iron-Based Superalloy|Kapton|Magnesium|Mica|N/A|Nickel|Nickel-Based Superalloy|Nickel-Copper Alloy|Nomex|Nylon|Nylon PVC|PEEK|PTFE|PVC|Paint (Topcoat)|Paint Primers|Phenolic Resin|Phosphor Bronze|Polyester|Polyimide|Polyurethane|Polyvinylidene Kynar|Refined Iron|Silicon Steel|Silicone|Silver|Sintermatt|Solder|Stainless Steel|Steel|TBC|Tin|Titanium Alloy|Tungsten|Varnish|Vidaflex|Xylan|Zinc|Zinc Alloy Electroplate~
+5~CUSTOMWireTieBandingStripMesh~CUSTOMCablesandWiresWire~Yes~Tie, Banding Strip & Mesh~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireWinding~CUSTOMCablesandWiresWire~No~Winding~~~~~~~~~~~~~
+5~CUSTOMWireWinding~CUSTOMCablesandWiresWire~No~Winding~CUSTOMConductorMaterial~Conductor Material~Yes~No~String~~500~Yes~No~~~~
+5~CUSTOMWireWinding~CUSTOMCablesandWiresWire~No~Winding~CUSTOMMaterial~Material~Yes~Yes~String~~20~No~No~~~Acrylic|Aluminium|Aluminium Bronze|Aluminium Oxide|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Fiberglass|Helsyn|Iron-Based Superalloy|Kapton|Magnesium|Mica|N/A|Nickel|Nickel-Based Superalloy|Nickel-Copper Alloy|Nomex|Nylon|Nylon PVC|PEEK|PTFE|PVC|Paint (Topcoat)|Paint Primers|Phenolic Resin|Phosphor Bronze|Polyester|Polyimide|Polyurethane|Polyvinylidene Kynar|Refined Iron|Silicon Steel|Silicone|Silver|Sintermatt|Solder|Stainless Steel|Steel|TBC|Tin|Titanium Alloy|Tungsten|Varnish|Vidaflex|Xylan|Zinc|Zinc Alloy Electroplate~
+6~CUSTOMWindingRectangular~CUSTOMWireWinding~Yes~Rectangular~~~~~~~~~~~~~
+6~CUSTOMWindingRectangular~CUSTOMWireWinding~Yes~Rectangular~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+6~CUSTOMWindingRectangular~CUSTOMWireWinding~Yes~Rectangular~CUSTOMWidth~Width~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+6~CUSTOMWindingRound~CUSTOMWireWinding~Yes~Round~~~~~~~~~~~~~
+6~CUSTOMWindingRound~CUSTOMWireWinding~Yes~Round~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMWireWrap~CUSTOMCablesandWiresWire~Yes~Wrap~~~~~~~~~~~~~
+5~CUSTOMWireWrap~CUSTOMCablesandWiresWire~Yes~Wrap~CUSTOMColor~Color~Yes~No~String~~500~No~No~~~~CUSTOMColor
+5~CUSTOMWireWrap~CUSTOMCablesandWiresWire~Yes~Wrap~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~~~~~~~~~~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMForm~Form~Yes~Yes~String~~500~Yes~No~~~~CUSTOMMaterialForm
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMMaterial~Material~Yes~No~String~~20~Yes~No~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMType~Material Type~Yes~Yes~String~~500~Yes~No~~~~
+3~CUSTOMConstructionMaterials~CUSTOMConsumable~No~Construction Materials~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMConstructionMaterialsAluminiumAlloys~CUSTOMConstructionMaterials~Yes~Aluminium Alloys~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsAluminiumAlloys~CUSTOMConstructionMaterials~Yes~Aluminium Alloys~CUSTOMAcrossFlats~Across Flats~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMConstructionMaterialsAluminiumAlloys~CUSTOMConstructionMaterials~Yes~Aluminium Alloys~CUSTOMGauge~Gauge~Yes~No~String~~20~Yes~No~~~~
+4~CUSTOMConstructionMaterialsAluminiumAlloys~CUSTOMConstructionMaterials~Yes~Aluminium Alloys~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMAluminiumType
+4~CUSTOMConstructionMaterialsCopperAlloys~CUSTOMConstructionMaterials~Yes~Copper Alloys~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsCopperAlloys~CUSTOMConstructionMaterials~Yes~Copper Alloys~CUSTOMAcrossFlats~Across Flats~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMConstructionMaterialsCopperAlloys~CUSTOMConstructionMaterials~Yes~Copper Alloys~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMCopperType
+4~CUSTOMConstructionMaterialsEngineeringPlastics~CUSTOMConstructionMaterials~No~Engineering Plastics~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsEngineeringPlastics~CUSTOMConstructionMaterials~No~Engineering Plastics~CUSTOMColor~Color~Yes~No~String~~20~No~No~~~~CUSTOMColor
+4~CUSTOMConstructionMaterialsEngineeringPlastics~CUSTOMConstructionMaterials~No~Engineering Plastics~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~
+5~CUSTOMConstructionMaterialsEngineeringPlasticsThermoplastics~CUSTOMConstructionMaterialsEngineeringPlastics~Yes~Thermoplastics~~~~~~~~~~~~~
+5~CUSTOMConstructionMaterialsEngineeringPlasticsThermoplastics~CUSTOMConstructionMaterialsEngineeringPlastics~Yes~Thermoplastics~CUSTOMType~~Yes~No~String~~500~No~No~~~~CUSTOMThermoplasticType
+5~CUSTOMConstructionMaterialsEngineeringPlasticsThermosettingplastic~CUSTOMConstructionMaterialsEngineeringPlastics~Yes~Thermosetting plastic~~~~~~~~~~~~~
+5~CUSTOMConstructionMaterialsEngineeringPlasticsThermosettingplastic~CUSTOMConstructionMaterialsEngineeringPlastics~Yes~Thermosetting plastic~CUSTOMType~~Yes~No~String~~500~No~No~~~~CUSTOMThermosettingPlasticType
+4~CUSTOMConstructionMaterialsMagnesiumAlloys~CUSTOMConstructionMaterials~Yes~Magnesium Alloys~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsMagnesiumAlloys~CUSTOMConstructionMaterials~Yes~Magnesium Alloys~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMMagnesiumType
+4~CUSTOMConstructionMaterialsRubber~CUSTOMConstructionMaterials~Yes~Rubber~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsRubber~CUSTOMConstructionMaterials~Yes~Rubber~CUSTOMColor~Color~Yes~No~String~~20~No~No~~~~CUSTOMColor
+4~CUSTOMConstructionMaterialsRubber~CUSTOMConstructionMaterials~Yes~Rubber~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMRubberType
+4~CUSTOMConstructionMaterialsSilverAlloys~CUSTOMConstructionMaterials~Yes~Silver Alloys~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsSilverAlloys~CUSTOMConstructionMaterials~Yes~Silver Alloys~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMSilverType
+4~CUSTOMConstructionMaterialsSpecificMetals~CUSTOMConstructionMaterials~Yes~Specific Metals~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsSpecificMetals~CUSTOMConstructionMaterials~Yes~Specific Metals~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMSpecialMetalType
+4~CUSTOMConstructionMaterialsSteelIron~CUSTOMConstructionMaterials~Yes~Steel/Iron~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsSteelIron~CUSTOMConstructionMaterials~Yes~Steel/Iron~CUSTOMAcrossFlats~Across Flats~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMConstructionMaterialsSteelIron~CUSTOMConstructionMaterials~Yes~Steel/Iron~CUSTOMGauge~Gauge~Yes~No~String~~20~Yes~No~~~~
+4~CUSTOMConstructionMaterialsSteelIron~CUSTOMConstructionMaterials~Yes~Steel/Iron~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMSteelType
+4~CUSTOMConstructionMaterialsToolmaterials~CUSTOMConstructionMaterials~Yes~Tool materials~~~~~~~~~~~~~
+4~CUSTOMConstructionMaterialsToolmaterials~CUSTOMConstructionMaterials~Yes~Tool materials~CUSTOMType~~Yes~No~String~~500~No~No~~~~
+4~CUSTOMConsumablesConstructionMaterialsSpecificMaterials~CUSTOMConstructionMaterials~Yes~Other Materials~~~~~~~~~~~~~
+4~CUSTOMConsumablesConstructionMaterialsSpecificMaterials~CUSTOMConstructionMaterials~Yes~Other Materials~CUSTOMType~~Yes~Yes~String~~500~No~No~~~~CUSTOMOtherMaterialType
+3~CUSTOMFinishingprocessingandlubricants~CUSTOMConsumable~No~Finishing, processing and lubricants~~~~~~~~~~~~~
+3~CUSTOMFinishingprocessingandlubricants~CUSTOMConsumable~No~Finishing, processing and lubricants~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+3~CUSTOMFinishingprocessingandlubricants~CUSTOMConsumable~No~Finishing, processing and lubricants~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+3~CUSTOMFinishingprocessingandlubricants~CUSTOMConsumable~No~Finishing, processing and lubricants~CUSTOMUse~Use~Yes~No~String~~500~Yes~No~~~~CUSTOMUse
+4~CUSTOMFinishingprocessingandlubricantsDryFilmLubricants~CUSTOMFinishingprocessingandlubricants~Yes~Dry Film Lubricants~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsGreases~CUSTOMFinishingprocessingandlubricants~Yes~Greases~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsOils~CUSTOMFinishingprocessingandlubricants~Yes~Oils~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsPaint~CUSTOMFinishingprocessingandlubricants~Yes~Paint~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsPaint~CUSTOMFinishingprocessingandlubricants~Yes~Paint~CUSTOMColor~Color~Yes~Yes~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMFinishingprocessingandlubricantsPrimer~CUSTOMFinishingprocessingandlubricants~Yes~Primer~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsPrimer~CUSTOMFinishingprocessingandlubricants~Yes~Primer~CUSTOMColor~Color~Yes~Yes~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMFinishingprocessingandlubricantsProcessingCompounds~CUSTOMFinishingprocessingandlubricants~Yes~Processing Compounds~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsProcessingCompounds~CUSTOMFinishingprocessingandlubricants~Yes~Processing Compounds~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMFinishingprocessingandlubricantsThinners~CUSTOMFinishingprocessingandlubricants~Yes~Thinners and Removers~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsVarnish~CUSTOMFinishingprocessingandlubricants~Yes~Varnish~~~~~~~~~~~~~
+4~CUSTOMFinishingprocessingandlubricantsVarnish~CUSTOMFinishingprocessingandlubricants~Yes~Varnish~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+3~CUSTOMIdentificationAndProtection~CUSTOMConsumable~No~Identification and Protection~~~~~~~~~~~~~
+3~CUSTOMIdentificationAndProtection~CUSTOMConsumable~No~Identification and Protection~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+3~CUSTOMIdentificationAndProtection~CUSTOMConsumable~No~Identification and Protection~CUSTOMMaterial~Material~Yes~Yes~String~~20~Yes~No~~~~
+3~CUSTOMIdentificationAndProtection~CUSTOMConsumable~No~Identification and Protection~CUSTOMSpecification~Specification~Yes~No~String~~50~Yes~No~~~~
+4~CUSTOMIdentificationAndProtectionCap~CUSTOMIdentificationAndProtection~No~Cap~~~~~~~~~~~~~
+4~CUSTOMIdentificationAndProtectionCap~CUSTOMIdentificationAndProtection~No~Cap~CUSTOMInnerDiameter~Inner Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMIdentificationAndProtectionCap~CUSTOMIdentificationAndProtection~No~Cap~CUSTOMMaterial~~Yes~No~String~~500~No~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyethylen|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+4~CUSTOMIdentificationAndProtectionCap~CUSTOMIdentificationAndProtection~No~Cap~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMCapPushFit~CUSTOMIdentificationAndProtectionCap~Yes~Push Fit~~~~~~~~~~~~~
+5~CUSTOMCapThreaded~CUSTOMIdentificationAndProtectionCap~Yes~Threaded~~~~~~~~~~~~~
+5~CUSTOMCapThreaded~CUSTOMIdentificationAndProtectionCap~Yes~Threaded~CUSTOMNominalThreadValue~Nominal Thread Value~Yes~Yes~String~~500~Yes~No~~~~
+5~CUSTOMCapThreaded~CUSTOMIdentificationAndProtectionCap~Yes~Threaded~CUSTOMThreadtype~Thread type~Yes~Yes~String~~500~Yes~No~~~~CUSTOMThreadType
+4~CUSTOMIdentificationAndProtectionInksMarkersAndWax~CUSTOMIdentificationAndProtection~Yes~Inks, Markers and Wax~~~~~~~~~~~~~
+4~CUSTOMIdentificationAndProtectionInksMarkersAndWax~CUSTOMIdentificationAndProtection~Yes~Inks, Markers and Wax~CUSTOMMaterial~~Yes~Yes~String~~20~Yes~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+4~CUSTOMIdentificationAndProtectionLabel~CUSTOMIdentificationAndProtection~No~Label~~~~~~~~~~~~~
+4~CUSTOMIdentificationAndProtectionLabel~CUSTOMIdentificationAndProtection~No~Label~CUSTOMMaterial~~Yes~Yes~String~~20~Yes~No~~~Aluminium|Aluminium Alloy|Aluminium Foil|PVC|Polyester|Polyimide|TBC~
+4~CUSTOMIdentificationAndProtectionLabel~CUSTOMIdentificationAndProtection~No~Label~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMIdentificationAndProtectionLabel~CUSTOMIdentificationAndProtection~No~Label~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+5~CUSTOMLabelBlankOrTemplate~CUSTOMIdentificationAndProtectionLabel~Yes~Blank or Template~~~~~~~~~~~~~
+5~CUSTOMLabelComplete~CUSTOMIdentificationAndProtectionLabel~Yes~Complete~~~~~~~~~~~~~
+4~CUSTOMIdentificationandProtectionWireMarkers~CUSTOMIdentificationAndProtection~Yes~Wire Markers~~~~~~~~~~~~~
+4~CUSTOMIdentificationandProtectionWireMarkers~CUSTOMIdentificationAndProtection~Yes~Wire Markers~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMIdentificationandProtectionWireMarkers~CUSTOMIdentificationAndProtection~Yes~Wire Markers~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMInsulationMaterials~CUSTOMConsumable~No~Insulation Materials~~~~~~~~~~~~~
+3~CUSTOMInsulationMaterials~CUSTOMConsumable~No~Insulation Materials~CUSTOMMaterial~Material~Yes~No~String~~20~Yes~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+4~CUSTOMInsulationMaterialsConformalCoating~CUSTOMInsulationMaterials~Yes~Conformal Coating~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsFilmProducts~CUSTOMInsulationMaterials~Yes~Film Products~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsFilmProducts~CUSTOMInsulationMaterials~Yes~Film Products~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsFilmProducts~CUSTOMInsulationMaterials~Yes~Film Products~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsFilmProducts~CUSTOMInsulationMaterials~Yes~Film Products~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsGlassBoardandCloth~CUSTOMInsulationMaterials~Yes~Glass Board and Cloth~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsGlassBoardandCloth~CUSTOMInsulationMaterials~Yes~Glass Board and Cloth~CUSTOMColor~Color~Yes~No~String~~500~No~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsGlassBoardandCloth~CUSTOMInsulationMaterials~Yes~Glass Board and Cloth~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsGlassBoardandCloth~CUSTOMInsulationMaterials~Yes~Glass Board and Cloth~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsGlassBoardandCloth~CUSTOMInsulationMaterials~Yes~Glass Board and Cloth~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsMicaProducts~CUSTOMInsulationMaterials~Yes~Mica Products~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsMicaProducts~CUSTOMInsulationMaterials~Yes~Mica Products~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsMicaProducts~CUSTOMInsulationMaterials~Yes~Mica Products~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsMicaProducts~CUSTOMInsulationMaterials~Yes~Mica Products~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsPaperProducts~CUSTOMInsulationMaterials~Yes~Paper Products~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsPaperProducts~CUSTOMInsulationMaterials~Yes~Paper Products~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsPaperProducts~CUSTOMInsulationMaterials~Yes~Paper Products~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsPaperProducts~CUSTOMInsulationMaterials~Yes~Paper Products~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsPottingCompounds~CUSTOMInsulationMaterials~Yes~Potting Compounds, Catalyst, Hardener~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsPottingCompounds~CUSTOMInsulationMaterials~Yes~Potting Compounds, Catalyst, Hardener~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsPottingCompounds~CUSTOMInsulationMaterials~Yes~Potting Compounds, Catalyst, Hardener~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsPottingCompounds~CUSTOMInsulationMaterials~Yes~Potting Compounds, Catalyst, Hardener~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsSleevingMetallic~CUSTOMInsulationMaterials~No~Sleeving, metallic~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsSleevingMetallic~CUSTOMInsulationMaterials~No~Sleeving, metallic~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsSleevingMetallic~CUSTOMInsulationMaterials~No~Sleeving, metallic~CUSTOMInnerDiameter~Inner Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingMetallic~CUSTOMInsulationMaterials~No~Sleeving, metallic~CUSTOMSpecification~Specification~Yes~Yes~String~~500~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingMetallic~CUSTOMInsulationMaterials~No~Sleeving, metallic~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingPlain~CUSTOMInsulationMaterials~Yes~Sleeving, Plain~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsSleevingPlain~CUSTOMInsulationMaterials~Yes~Sleeving, Plain~CUSTOMColor~Color~Yes~No~String~~20~No~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsSleevingPlain~CUSTOMInsulationMaterials~Yes~Sleeving, Plain~CUSTOMInnerDiameter~Inner Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingPlain~CUSTOMInsulationMaterials~Yes~Sleeving, Plain~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingPlain~CUSTOMInsulationMaterials~Yes~Sleeving, Plain~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsSleevingPlain~CUSTOMInsulationMaterials~Yes~Sleeving, Plain~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMColor~Color~Yes~No~String~~20~No~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMGauge~Gauge~Yes~No~String~~500~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMInnerDiameter~Inner Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsSleevingShrink~CUSTOMInsulationMaterials~Yes~Sleeving, Shrink~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSlotLiner~CUSTOMInsulationMaterials~Yes~Slot Liner~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsSlotLiner~CUSTOMInsulationMaterials~Yes~Slot Liner~CUSTOMSpecification~Specification~Yes~No~String~~50~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSlotLiner~CUSTOMInsulationMaterials~Yes~Slot Liner~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsSlotLiner~CUSTOMInsulationMaterials~Yes~Slot Liner~CUSTOMType~Type~Yes~No~String~~35~Yes~No~~~Shaped Film|Moulding~
+4~CUSTOMInsulationMaterialsSlotLiner~CUSTOMInsulationMaterials~Yes~Slot Liner~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMColor~Color~Yes~No~String~~500~No~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMSpecification~Specification~Yes~Yes~String~~50~No~No~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMThicknessMax~Thickness (Max.)~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMThicknessMin~Thickness (Min.)~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMType~Type~Yes~No~String~~35~Yes~No~~~Adhesive|Kapton|Lacing & Tying|Row Glass~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMWidthMax~Width (Max.)~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTape~CUSTOMInsulationMaterials~Yes~Tape~CUSTOMWidthMin~Width (Min.)~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTyingCords~CUSTOMInsulationMaterials~Yes~Tying Cords~~~~~~~~~~~~~
+4~CUSTOMInsulationMaterialsTyingCords~CUSTOMInsulationMaterials~Yes~Tying Cords~CUSTOMColor~Color~Yes~No~String~~500~No~No~~~~CUSTOMColor
+4~CUSTOMInsulationMaterialsTyingCords~CUSTOMInsulationMaterials~Yes~Tying Cords~CUSTOMOuterDiameter~Outer Diameter~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMInsulationMaterialsTyingCords~CUSTOMInsulationMaterials~Yes~Tying Cords~CUSTOMSpecification~Specification~Yes~No~String~~50~Yes~No~~~~
+3~CUSTOMJointingMaterials~CUSTOMConsumable~No~Jointing Materials~~~~~~~~~~~~~
+3~CUSTOMJointingMaterials~CUSTOMConsumable~No~Jointing Materials~CUSTOMSpecification~Specification~Yes~No~String~~50~No~No~~NULL~~
+3~CUSTOMJointingMaterials~CUSTOMConsumable~No~Jointing Materials~CUSTOMUse~Use~Yes~No~String~~500~Yes~No~~~~
+4~CUSTOMJointingMaterialsAdhesives~CUSTOMJointingMaterials~Yes~Adhesives~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsAdhesives~CUSTOMJointingMaterials~Yes~Adhesives~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMJointingMaterialsAdhesives~CUSTOMJointingMaterials~Yes~Adhesives~CUSTOMMaterial~Material~Yes~No~String~~50~Yes~No~~~~
+4~CUSTOMJointingMaterialsAdhesives~CUSTOMJointingMaterials~Yes~Adhesives~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMJointingMaterialsAdhesivetape~CUSTOMJointingMaterials~Yes~Adhesive Tape~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsAdhesivetape~CUSTOMJointingMaterials~Yes~Adhesive Tape~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~NULL~~CUSTOMColor
+4~CUSTOMJointingMaterialsAdhesivetape~CUSTOMJointingMaterials~Yes~Adhesive Tape~CUSTOMMaterial~Material~Yes~No~String~~50~Yes~No~~~~
+4~CUSTOMJointingMaterialsAdhesivetape~CUSTOMJointingMaterials~Yes~Adhesive Tape~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsAdhesivetape~CUSTOMJointingMaterials~Yes~Adhesive Tape~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsBrazingAlloys~CUSTOMJointingMaterials~Yes~Brazing Alloys~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsBrazingAlloys~CUSTOMJointingMaterials~Yes~Brazing Alloys~CUSTOMMaterial~Material~Yes~Yes~String~~20~Yes~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+4~CUSTOMJointingMaterialsBrazingAlloys~CUSTOMJointingMaterials~Yes~Brazing Alloys~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsBrazingAlloys~CUSTOMJointingMaterials~Yes~Brazing Alloys~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMJointingMaterialsBrazingAlloys~CUSTOMJointingMaterials~Yes~Brazing Alloys~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsBrazingAlloys~CUSTOMJointingMaterials~Yes~Brazing Alloys~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsFluxes~CUSTOMJointingMaterials~Yes~Fluxes~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsFluxes~CUSTOMJointingMaterials~Yes~Fluxes~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMJointingMaterialsGasketMaterials~CUSTOMJointingMaterials~Yes~Gasket Materials~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsGasketMaterials~CUSTOMJointingMaterials~Yes~Gasket Materials~CUSTOMMaterial~Material~Yes~Yes~String~~20~Yes~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+4~CUSTOMJointingMaterialsGasketMaterials~CUSTOMJointingMaterials~Yes~Gasket Materials~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsGasketMaterials~CUSTOMJointingMaterials~Yes~Gasket Materials~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsJointingCompounds~CUSTOMJointingMaterials~Yes~Jointing Compounds~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsJointingCompounds~CUSTOMJointingMaterials~Yes~Jointing Compounds~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMJointingMaterialsRTVCompounds~CUSTOMJointingMaterials~Yes~RTV Compounds~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsRTVCompounds~CUSTOMJointingMaterials~Yes~RTV Compounds~CUSTOMColor~Color~Yes~No~String~~500~Yes~No~~~~CUSTOMColor
+4~CUSTOMJointingMaterialsRTVCompounds~CUSTOMJointingMaterials~Yes~RTV Compounds~CUSTOMShelfLifemonths~Shelf Life (months)~Yes~No~FloatingPoint~~~Yes~No~~~~
+4~CUSTOMJointingMaterialsSolders~CUSTOMJointingMaterials~Yes~Solders~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsSolders~CUSTOMJointingMaterials~Yes~Solders~CUSTOMGauge~Gauge~Yes~No~String~~20~Yes~No~~~~
+4~CUSTOMJointingMaterialsSolders~CUSTOMJointingMaterials~Yes~Solders~CUSTOMMaterial~Material~Yes~Yes~String~~500~Yes~No~~~Bismuth-Tin (Bi/Sn)|Indium-Tin (In/Sn)|Lead-Silver (Pb/Ag)|Lead-Silver-Tin (Pb/Ag/Sn)|Lead-Tin (Pb/Sn)|Tin (Sn)|Tin-Antimony (Sn/Sb)|Tin-Copper (Sn/Cu)|Tin-Copper-Silver (Sn/Cu/Ag)|Tin-Indium-Silver-Bismuth (Sn/In/Ag/Bi)|Tin-Lead (Sn/Pb)|Tin-Lead-Antimony (Sn/Pb/Sb)|Tin-Lead-Bismuth (Sn/Pb/Bi)|Tin-Lead-Cadmium (Sn/Pb/Cd)|Tin-Lead-Copper (Sn/Pb/Cu)|Tin-Lead-Silver (Sn/Pb/Ag)|Tin-Silver (Sn/Ag)|Tin-Silver-Bismuth-Copper (Sn/Ag/Bi/Cu)|Tin-Silver-Copper (Sn/Ag/Cu)|Tin-Zinc (Sn/Zn)|Tin-Zinc-Bismuth (Sn/Zn/Bi)~
+4~CUSTOMJointingMaterialsSolders~CUSTOMJointingMaterials~Yes~Solders~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMJointingMaterialsWeldingAlloys~CUSTOMJointingMaterials~Yes~Welding Alloys~~~~~~~~~~~~~
+4~CUSTOMJointingMaterialsWeldingAlloys~CUSTOMJointingMaterials~Yes~Welding Alloys~CUSTOMMaterial~Material~Yes~Yes~String~~20~Yes~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+4~CUSTOMJointingMaterialsWeldingAlloys~CUSTOMJointingMaterials~Yes~Welding Alloys~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMPackaging~CUSTOMConsumable~Yes~Packaging~~~~~~~~~~~~~
+3~CUSTOMPackaging~CUSTOMConsumable~Yes~Packaging~CUSTOMMaterial~Material~Yes~No~String~~50~Yes~No~~~~
+3~CUSTOMThermalManagementMaterial~CUSTOMConsumable~Yes~Thermal Management Material~~~~~~~~~~~~~
+3~CUSTOMThermalManagementMaterial~CUSTOMConsumable~Yes~Thermal Management Material~CUSTOMMaterial~Material~Yes~Yes~String~~20~Yes~No~~~Aluminium|Aluminium Bronze|Brass|Bronze|Cobalt|Copper|Epoxy Resin|Helsyn|Kapton|Magnesium|N/A|Nickel|Nickel-Copper Alloy|Nylon|Nylon PVC|PTFE|PVC|Phenolic Resin|Phosphor Bronze|Polyester|Polyvinylidene Kynar|Refined Iron|Silver Alloy|Sintermatt|Steel|TBC|Titanium Alloy|Vidaflex~
+3~CUSTOMThermalManagementMaterial~CUSTOMConsumable~Yes~Thermal Management Material~CUSTOMThickness~Thickness~Yes~Yes~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMThermalManagementMaterial~CUSTOMConsumable~Yes~Thermal Management Material~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+3~CUSTOMWarrantyaccessories~CUSTOMConsumable~No~Warranty accessories~~~~~~~~~~~~~
+3~CUSTOMWarrantyaccessories~CUSTOMConsumable~No~Warranty accessories~CUSTOMMaterial~Material~Yes~Yes~String~~20~Yes~No~~~~
+3~CUSTOMWarrantyaccessories~CUSTOMConsumable~No~Warranty accessories~CUSTOMOuterDiameter~Outer Diameter~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMWarrantyAccessoriesLockingWire~CUSTOMWarrantyaccessories~Yes~Locking wire~~~~~~~~~~~~~
+4~CUSTOMWarrantyAccessoriesSolder~CUSTOMWarrantyaccessories~Yes~Solder~~~~~~~~~~~~~
+4~CUSTOMWarrantyAccessoriesSolder~CUSTOMWarrantyaccessories~Yes~Solder~CUSTOMThickness~Thickness~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~
+4~CUSTOMWarrantyAccessoriesSolder~CUSTOMWarrantyaccessories~Yes~Solder~CUSTOMWidth~Width~Yes~No~FloatingPointWithUnits~Length (mm)~~Yes~No~~~~

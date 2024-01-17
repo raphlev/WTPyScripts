@@ -260,6 +260,7 @@ class XMLTransformer:
 
             # Store the current and ancestor attributes for future use
             type_attributes_map[typeObject] = current_attributes + ancestor_attributes
+            # ATTENTION: self.extract_attribute_definitions add attributes in output csv: update for classif & type..
 
 
         # else:
