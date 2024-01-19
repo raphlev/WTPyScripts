@@ -1,4 +1,3 @@
-from collections import OrderedDict
 import logging
 from lxml import etree
 import argparse
@@ -236,14 +235,14 @@ class XMLTransformer:
 
             type_depth_map[typeObject] = parentType  # Map current type to its parent
 
-            # Prepare the type line
-            type_line = f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}"
+            # Append the type line
+            self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
             # Extract current attributes
             current_attributes = []
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
                 current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
-
+            self.extracted_strings.extend(current_attributes)
             # Update and append ancestor attributes with current node's depth and other values
             ancestor_attributes = []
             if parentType in type_attributes_map:
@@ -257,20 +256,10 @@ class XMLTransformer:
                     updated_attr[4] = displayType
                     ancestor_attributes.append("~".join(updated_attr))
 
-            # Combine and sort the ancestor and current attributes based on the 6th column (name)
-            combined_attributes = ancestor_attributes + current_attributes
-            combined_attributes.sort(key=lambda x: x.split("~")[5])  # Sort based on the 6th column
-
-            # Remove duplicates while maintaining order
-            unique_attributes = list(OrderedDict.fromkeys(combined_attributes))
-
-            # Append the sorted and unique attributes, starting with the type line
-            self.extracted_strings.append(type_line)
-            self.extracted_strings.extend(unique_attributes)
+            self.extracted_strings.extend(ancestor_attributes)
 
             # Store the current and ancestor attributes for future use
-            type_attributes_map[typeObject] = unique_attributes
-
+            type_attributes_map[typeObject] = current_attributes + ancestor_attributes
 
         # else:
         #     logging.info('Type non instantiable for : '+self.output_file+' - File not created !')
