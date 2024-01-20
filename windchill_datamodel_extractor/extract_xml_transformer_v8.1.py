@@ -186,7 +186,7 @@ class XMLTransformer:
             if instantiable and instantiable[0].lower() == 'true':
                 # Iterate over each csvBeginAttributeDefView element within csvBeginTypeDefView
                 for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                    self.extract_attribute_definitions(attr_def_view, '', '', 0, instantiable, '', 'Types')
+                    self.extracted_strings.extend(self.extract_attribute_definitions(attr_def_view, '', '', 0, instantiable, '', 'Types'))
 
             # Add an empty row after processing each type_def_view
             self.extracted_strings.append('<EMPTY_ROW>') 
@@ -238,7 +238,7 @@ class XMLTransformer:
             self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
 
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification')
+                self.extracted_strings.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
         # else:
         #     logging.info('Type non instantiable for : '+self.output_file+' - File not created !')
 
@@ -250,7 +250,7 @@ class XMLTransformer:
     def extract_attribute_definitions(self, attr_def_view, typeObject, parentType, depth, instantiable, displayType, mode):
             name = display = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
             required = single = upperCase = iba = 'No'
-            
+            attributes = []
             # Process for name, class, defaultValue, dataType and unit
             if attr_def_view.findtext('./csvIBA'):
                 iba = 'Yes'
@@ -348,9 +348,11 @@ class XMLTransformer:
 
             # Append the extracted attributes as a new line
             if mode == 'Classification':
-                self.extracted_strings.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                attributes.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
             elif mode == 'Types':
-                    self.extracted_strings.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                attributes.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                
+            return attributes
 
     def extract_data_type_member_names(self, constraint_def_view):
         member_names = []
