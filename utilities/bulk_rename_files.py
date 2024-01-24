@@ -1,12 +1,16 @@
+"""
+File: bulk_rename_files.py
+Author: Raphael Leveque
+Date: November , 2023
+Description: Recursively renames files in subdirectories by replacing old_string with new_string.
+    :param root_directory: The directory to start searching from.
+    :param old_string: The string in the filename to be replaced.
+    :param new_string: The string to replace with
+"""
+
 import os
 
 def rename_files(root_directory, old_string, new_string):
-    """
-    Recursively renames files in subdirectories by replacing old_string with new_string.
-    :param root_directory: The directory to start searching from.
-    :param old_string: The string in the filename to be replaced.
-    :param new_string: The string to replace with.
-    """
     for dirpath, dirnames, filenames in os.walk(root_directory):
         for filename in filenames:
             if old_string in filename:

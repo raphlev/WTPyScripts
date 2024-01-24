@@ -1,12 +1,16 @@
-import os
-
-def replace_in_files(root_directory, old_string, new_string):
-    """
-    Recursively replaces old_string with new_string in the contents of files.
+"""
+File: bulk_replace_content_in_files.py
+Author: Raphael Leveque
+Date: November , 2023
+Description: Recursively replaces old_string with new_string in the contents of files.
     :param root_directory: The directory to start searching from.
     :param old_string: The string in the file contents to be replaced.
     :param new_string: The string to replace with.
-    """
+"""
+
+import os
+
+def replace_in_files(root_directory, old_string, new_string):
     for dirpath, dirnames, filenames in os.walk(root_directory):
         for filename in filenames:
             file_path = os.path.join(dirpath, filename)
