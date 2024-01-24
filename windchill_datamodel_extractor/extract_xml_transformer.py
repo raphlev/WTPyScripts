@@ -164,7 +164,7 @@ class XMLTransformer:
         # Clear the list for new data
         self.extracted_strings.clear()
         # Prepare the header line for the CSV content
-        header_line = "name~display~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
+        header_line = "name~display~displayFR~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
 
         # Iterate over each csvBeginTypeDefView element
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCTYPE']"):
@@ -187,7 +187,7 @@ class XMLTransformer:
             if instantiable and instantiable[0].lower() == 'true':
                 # Iterate over each csvBeginAttributeDefView element within csvBeginTypeDefView
                 for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                    self.extracted_strings.extend(self.extract_attribute_definitions(attr_def_view, '', '', 0, instantiable, '', 'Types'))
+                    self.extracted_strings.extend(self.extract_attribute_definitions(attr_def_view, '', '', 0, instantiable, '', '', mode='Types'))
 
             # Add an empty row after processing each type_def_view
             self.extracted_strings.append('<EMPTY_ROW>') 
@@ -203,7 +203,7 @@ class XMLTransformer:
         self.extracted_strings.clear()
 
         # Prepare the header line for the CSV content
-        header_line = "depth~type~parentType~instantiable~displayType~name~display~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
+        header_line = "depth~classifType~parentClassifType~instantiable~displayClassifType~displayClassifTypeFR~attributeName~attributeDisplayName~attributeDisplayNameFR~iba~required~type~unit~length~single~upperCase~regularExpr~defaultValue~legalValues~EnumeratedValues"
         self.extracted_strings.append(header_line)
 
         # keep track of typeObject and its depth
@@ -212,9 +212,9 @@ class XMLTransformer:
 
         # Iterate over each csvBeginTypeDefView element
         for type_def_view in root.xpath(".//csvBeginTypeDefView[csvattTemplate='LWCSTRUCT']"):
-            typeObject = parentType = displayType = ''
+            typeObject = parentType = displayType = displayTypeFR = ''
             instantiable = 'No'
-            name = display = iba = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
+            name = display = displayFR = iba = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
             required = single = upperCase = instantiable = ''
 
             typeObject = type_def_view.findtext('./csvname') or ''
@@ -227,6 +227,9 @@ class XMLTransformer:
             displayType = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             displayType = displayType[0] if displayType else ''
 
+            displayTypeFR = type_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvlocale_fr/text()")
+            displayTypeFR = displayTypeFR[0] if displayTypeFR else ''
+
             # Calculate depth
             depth = 0
             current_parent = parentType
@@ -237,29 +240,30 @@ class XMLTransformer:
             type_depth_map[typeObject] = parentType  # Map current type to its parent
 
             # Prepare the type line
-            type_line = f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}"
+            type_line = f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{displayTypeFR}~{name}~{display}~{displayFR}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}"
 
             # Extract current attributes
             current_attributes = []
             for attr_def_view in type_def_view.xpath("./csvBeginAttributeDefView"):
-                current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, 'Classification'))
+                current_attributes.extend(self.extract_attribute_definitions(attr_def_view, typeObject, parentType, depth, instantiable, displayType, displayTypeFR, 'Classification'))
 
             # Update and append ancestor attributes with current node's depth and other values
             ancestor_attributes = []
             if parentType in type_attributes_map:
                 for attr in type_attributes_map[parentType]:
                     updated_attr = attr.split("~")
-                    # Update depth and keep current node's type, parentType, instantiable, and displayType
+                    # Update depth and keep current node's type, parentType, instantiable, and displayType, and displayTypeFR
                     updated_attr[0] = str(depth)
                     updated_attr[1] = typeObject
                     updated_attr[2] = parentType
                     updated_attr[3] = instantiable
                     updated_attr[4] = displayType
+                    updated_attr[5] = displayTypeFR
                     ancestor_attributes.append("~".join(updated_attr))
 
             # Combine and sort the ancestor and current attributes based on the 6th column (name)
             combined_attributes = ancestor_attributes + current_attributes
-            combined_attributes.sort(key=lambda x: x.split("~")[5])  # Sort based on the 6th column
+            combined_attributes.sort(key=lambda x: x.split("~")[6])  # Sort based on the 7th column
 
             # Remove duplicates while maintaining order
             unique_attributes = list(OrderedDict.fromkeys(combined_attributes))
@@ -280,8 +284,8 @@ class XMLTransformer:
             self.extracted_strings.clear()
         return self.extracted_strings
 
-    def extract_attribute_definitions(self, attr_def_view, typeObject, parentType, depth, instantiable, displayType, mode):
-            name = display = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
+    def extract_attribute_definitions(self, attr_def_view, typeObject, parentType, depth, instantiable, displayType, displayTypeFR, mode):
+            name = display = displayFR = class_value = datatype = length = unit = defaultValue = list_value = enum_members = regularExpr = ''
             required = single = upperCase = iba = 'No'
             attributes = []
             # Process for name, class, defaultValue, dataType and unit
@@ -293,6 +297,9 @@ class XMLTransformer:
 
             display = attr_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvvalue/text()")
             display = display[0] if display else ''
+
+            displayFR = attr_def_view.xpath("./csvPropertyValue[csvname='displayName']/csvlocale_fr/text()")
+            displayFR = displayFR[0] if displayFR else ''
 
             class_value = attr_def_view.findtext('./csvattDefClass') or ''
             class_value = class_value.replace('com.ptc.core.lwc.server.', '')
@@ -381,10 +388,10 @@ class XMLTransformer:
 
             # Append the extracted attributes as a new line
             if mode == 'Classification':
-                attributes.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+                attributes.append(f"{depth}~{typeObject}~{parentType}~{instantiable}~{displayType}~{displayTypeFR}~{name}~{display}~{displayFR}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
             elif mode == 'Types':
-                attributes.append(f"{name}~{display}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
-                
+                attributes.append(f"{name}~{display}~{displayFR}~{iba}~{required}~{datatype}~{unit}~{length}~{single}~{upperCase}~{regularExpr}~{defaultValue}~{list_value}~{enum_members}")
+
             return attributes
 
     def extract_data_type_member_names(self, constraint_def_view):
