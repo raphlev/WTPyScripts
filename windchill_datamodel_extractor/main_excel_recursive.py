@@ -1,3 +1,10 @@
+"""
+File: extract_xml_transformer.py
+Author: Raphael Leveque
+Date: November , 2023
+Description: See README. Intended to be used to transform Windchill configuration file into excel, this script is the entry point for processing directories recursively. It creates Excel files from XML files found in the specified input directory and its subdirectories. It creates an excel file per each subdirectories found with valid input XML files.
+"""
+
 import os
 import argparse
 import logging

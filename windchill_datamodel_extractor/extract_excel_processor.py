@@ -1,3 +1,10 @@
+"""
+File: extract_excel_processor.py
+Author: Raphael Leveque
+Date: November , 2023
+Description: See README. Intended to be used to transform Windchill configuration file into excel, this script takes in a directory of several XML files, processes them, and generates one Excel workbook with a Table of Content. Used as stand-alone, it will create one excel file. It is also used by `main_excel_recursive.py` to create several Excel workbooks.
+"""
+
 import argparse
 import os
 import logging

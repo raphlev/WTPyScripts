@@ -1,3 +1,10 @@
+"""
+File: extract_xml_transformer.py
+Author: Raphael Leveque
+Date: November , 2023
+Description: See README. Intended to be used to transform Windchill configuration file into excel, this script is responsible for transforming one XML file into a specific structured text format. Used as stand-alone, it will create the csv file. It is also used by `extract_excel_processor.py` to create one Excel workbook.
+"""
+
 from collections import OrderedDict
 import logging
 from lxml import etree
