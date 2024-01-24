@@ -1,7 +1,15 @@
+"""
+File: excel_data_anonymizer.py
+Author: Raphael Leveque
+Date: January , 2024
+Description: this script takes in an excel file, and anonymizes its content values. Specific rules related to source excel file are added (see comments in code). Number, Date and String types are considered to generate fake values of same type and same size.
+"""
+
 import pandas as pd
 import random
 import string
 import os
+from datetime import datetime, timedelta
 
 def is_number(s):
     """Check if the input is a number (integer or float)."""
@@ -11,6 +19,16 @@ def is_number(s):
     except ValueError:
         return False
 
+def is_date(cell):
+    """Check if the cell value is a date."""
+    if isinstance(cell, datetime):
+        return True
+    try:
+        pd.to_datetime(cell)
+        return True
+    except:
+        return False
+
 def random_number_string(length, is_float):
     """Generate a random number string of the specified length."""
     if is_float:
@@ -18,14 +36,16 @@ def random_number_string(length, is_float):
     else:
         return str(random.randint(10**(length-1), (10**length)-1))
 
+def update_date(cell):
+    """Update the date by adding one day."""
+    date = pd.to_datetime(cell)
+    updated_date = date + timedelta(days=1)
+    return updated_date
 
 def anonymize_excel(file_path, output_file_path):
     try:
-        # Check if the output file exists to set the correct mode
-        file_exists = os.path.exists(output_file_path)
-
         # Delete the output file if it exists
-        if file_exists:
+        if os.path.exists(output_file_path):
             os.remove(output_file_path)
             print(f"Existing output file '{output_file_path}' deleted.")
 
@@ -38,16 +58,23 @@ def anonymize_excel(file_path, output_file_path):
             print(f"Processing sheet: {sheet_name}")
             df = pd.read_excel(file_path, sheet_name=sheet_name)
 
-            start_row = 1 if excel_file.sheet_names.index(sheet_name) == 0 else 2
+            # Determine the starting row
+            if sheet_name == "Export":
+                start_row = 0  # For 'Export' sheet, start from row 3 (index 2)
+            else:
+                start_row = 1  # For other sheets, start from row 4 (index 3)
+
             non_empty_columns = df.dropna(axis=1, how='all').columns
 
             for col in non_empty_columns:
-                if excel_file.sheet_names.index(sheet_name) == 0 and col == df.columns[0]:
-                    continue  # Skip the first column of the first sheet
+                if sheet_name == "Export" and col == df.columns[0]:
+                    continue  # Skip the first column of the 'Export' sheet
                 for row in range(start_row, len(df)):
                     cell_value = df.at[row, col]
                     if pd.notna(cell_value):
-                        if is_number(cell_value):
+                        if is_date(cell_value):
+                            df.at[row, col] = update_date(cell_value)
+                        elif is_number(cell_value):
                             # Keep numbers with same size, change values
                             cell_str = str(cell_value)
                             is_float = '.' in cell_str
@@ -68,6 +95,7 @@ def anonymize_excel(file_path, output_file_path):
         print("Anonymization complete.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 input_file = 'D:/WTPyScripts/input/other/P0.xlsx'
 output_file = 'D:/WTPyScripts/input/other/P0_NEW.xlsx'
