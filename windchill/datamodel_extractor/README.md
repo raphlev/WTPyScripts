@@ -1,5 +1,5 @@
-
 # Windchill Data Model Information Extraction Scripts
+Author: Raphael Leveque
 
 ## Introduction
 This project provides a series of Python scripts to extract Windchill data model information and format the results into Excel files. It currently supports Enumerations, Types, Classification, Lifecycle and OIR XML files.
