@@ -1,9 +1,8 @@
 """
-Script Purpose: Extracts properties of enumerated values from an XML file and generates an output CSV file.
-Each enumerated value's properties, such as name, displayName, selectable, and sort_order, including their
-csvisDefault and csvvalue, are captured and written to the CSV with '~' as the delimiter.
-
-Developer: Raphael Leveque
+File: extract_xml_enumerated_values_to_csv.py
+Author: Raphael Leveque
+Date: February, 2024
+Description: Extracts properties of enumerated values from an XML file (Windchill Enumerated Values definition) and generates an output CSV file. Each enumerated value's properties, such as name, displayName, selectable, and sort_order, including their csvisDefault and csvvalue, are captured and written to the CSV with '~' as the delimiter.
 """
 
 import csv
