@@ -8,8 +8,8 @@ to a new CSV file in alphabetical order, ensuring no duplicates.
 Configuration:
 - Delimiter used in the input CSV: '|'
 - Index for 'Reference' column: 0 (first column)
-- Index for 'Revision' column: 5 (seventh column)
-- Index for 'Date Validation' column: 10 ??????????????????????????? (eleventh column)
+- Index for 'Revision' column: 5 (sixth column)
+- Index for 'Date Validation' column: 9 (tenth column)
 - Author: Raphael Leveque
 
 Usage:
@@ -33,7 +33,7 @@ def export_unique_revisions(input_csv, output_csv):
                 if len(row) > 10:  # Ensure the row has enough columns to access the date
                     reference = row[0]
                     revision = row[5]
-                    date_validation_str = row[10]
+                    date_validation_str = row[9]
                     
                     # Attempt to convert date validation to datetime object for comparison
                     try:
