@@ -95,7 +95,7 @@ This script transforms Windchill XML exports into structured CSV files.
 
 #### 3.1 highlight classification xml parsing logic: extract_data_classification Function Overview
 
-The `extract_data_classification` function is designed to process hierarchical XML data, extracting relevant information and transforming it into a flattened CSV format. This transformation involves several key processes to ensure that the data is accurately represented and maintains its hierarchical context in a tabular format.
+The `extract_data_classification` function is designed to extract relevant information from Windchill Classification XML export file and transforming it into a flattened CSV format.
 
 ##### Key Processes
 
@@ -115,7 +115,7 @@ The `extract_data_classification` function is designed to process hierarchical X
 
 8. **Append Sorted and Unique Attributes**: Adds the processed attributes to the CSV content, starting with a predefined type line that includes essential object information.
 
-9. **Store Current and Ancestor Attributes for Future Use**: Updates `type_attributes_map` with the processed attributes for each object, allowing for efficient access and reuse in processing subsequent objects.
+9. **Store Current and Ancestor Attributes for Future Use**: Updates `type_attributes_map` with the processed attributes for each object, allowing for  access and reuse in processing subsequent objects.
 
 ##### Logic and Features
 
