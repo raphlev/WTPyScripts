@@ -67,9 +67,33 @@ This script is the entry point for processing directories recursively. It create
 This script takes in a directory of several XML files, processes them, and generates one Excel workbook with a Table of Content. Used as stand-alone, it will create one excel file. It is also used by `main_excel_recursive.py` to create several Excel workbooks.
 
 ### 3. extract_xml_transformer.py
-This script is responsible for transforming one XML file into a specific structured text format. Used as stand-alone, it will create the csv file. It is also used by `extract_excel_processor.py` to create one Excel workbook.
+This script is responsible for transforming one XML file into a specific structured text format. Used as stand-alone, it will create the csv file. It is also used by `extract_excel_processor.py` to create one Excel workbook. It currently supports Enumerations, Types, Classification, Lifecycle and OIR XML files.
 
-#### extract_data_classification Function Overview
+
+
+#### Overview of XML Transformation Script
+
+This script is designed to process XML export files from PTC Windchill, offering comprehensive functionality for managing classifications, types, Object Initialization Rules (OIR), and Lifecycle configurations. It serves as a versatile tool for extracting, transforming, and flattening hierarchical XML data into a structured CSV format, facilitating easier analysis and integration with other systems.
+
+##### Key Components
+
+- **Classification Management**: Handles the extraction of hierarchical classifications, transforming them into a flat structure. This process includes managing depth calculations and inheritance of attributes from parent to child nodes.
+
+- **Type Handling**: Processes type definitions within the XML, extracting essential properties and characteristics. This functionality supports the detailed analysis and mapping of type-specific data.
+
+- **OIR Processing**: Extracts and processes Object Initialization Rules from the XML, translating complex initialization logic into a readable and manageable format.
+
+- **Lifecycle Configuration**: Manages the extraction of lifecycle configurations, enabling a clear understanding of state transitions, policies, and related metadata.
+
+##### Shared Functionality
+
+- **`extract_attribute_definitions` Function**: used across both classification and type management. This function extracts detailed property definitions, such as attribute names, display names, data types, and constraints, ensuring a comprehensive capture of the XML's semantic structure.
+
+##### Usage and Integration
+
+This script transforms Windchill XML exports into structured CSV files.
+
+#### 3.1 highlight classification xml parsing logic: extract_data_classification Function Overview
 
 The `extract_data_classification` function is designed to process hierarchical XML data, extracting relevant information and transforming it into a flattened CSV format. This transformation involves several key processes to ensure that the data is accurately represented and maintains its hierarchical context in a tabular format.
 
