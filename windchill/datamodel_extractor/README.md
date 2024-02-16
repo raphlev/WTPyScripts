@@ -73,7 +73,7 @@ This script is responsible for transforming one XML file into a specific structu
 
 #### Overview of XML Transformation Script
 
-This script is designed to process XML export files from PTC Windchill, offering comprehensive functionality for managing classifications, types, Object Initialization Rules (OIR), and Lifecycle configurations. It serves as a versatile tool for extracting, transforming, and flattening hierarchical XML data into a structured CSV format, facilitating easier analysis and integration with other systems.
+This script is designed to process XML export files from  Windchill, with functionality for managing classifications, types, Object Initialization Rules (OIR), and Lifecycle configurations. It is a tool for extracting, transforming, and flattening hierarchical XML data into a structured CSV format, which can be imported in excel file.
 
 ##### Key Components
 
@@ -81,9 +81,9 @@ This script is designed to process XML export files from PTC Windchill, offering
 
 - **Type Handling**: Processes type definitions within the XML, extracting essential properties and characteristics. This functionality supports the detailed analysis and mapping of type-specific data.
 
-- **OIR Processing**: Extracts and processes Object Initialization Rules from the XML, translating complex initialization logic into a readable and manageable format.
+- **OIR Processing**: Extracts and processes Object Initialization Rules from the XML.
 
-- **Lifecycle Configuration**: Manages the extraction of lifecycle configurations, enabling a clear understanding of state transitions, policies, and related metadata.
+- **Lifecycle Configuration**: Manages the extraction of lifecycle configurations (states only).
 
 ##### Shared Functionality
 
