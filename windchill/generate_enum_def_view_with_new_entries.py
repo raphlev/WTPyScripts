@@ -1,3 +1,10 @@
+"""
+File: generate_enum_def_view_with_new_entries.py
+Author: Raphael Leveque
+Date: February, 2024
+Description: This script merges enumeration definitions from an XML file with new entries from a CSV file, then outputs the updated enumeration to a new XML file. It supports sorting by name or displayName, and optionally preserves the original order of existing entries.
+"""
+
 import csv
 import argparse
 from lxml import etree
@@ -89,7 +96,7 @@ def generate_output(existing_entries, new_entries, output_file_path, sort_by, pr
     for entry in combined_entries:
         entry['sort_order'] = map_sort_order[entry['name']]
 
-    if preserve_order==False:
+    if not preserve_order:
          # reorder entries per name for the output file
         combined_entries = sorted(combined_entries, key=lambda x: (x['name'].lower()))
 
@@ -133,23 +140,19 @@ def format_entry_block(entry_details):
     # No additional processing needed for indentation
     return entry_block
 
-def main(input_xml_file, new_entries_csv_file, output_xml_file, sort_by, preserve_order):
-    existing_entries = parse_xml(input_xml_file)
-    new_entries = read_new_entries(new_entries_csv_file)
-    generate_output(existing_entries, new_entries, output_xml_file, sort_by, preserve_order)
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='Merge XML and CSV enumeration definitions.')
-    parser.add_argument('-input_xml_file', type=str, required=True, help='Path to the input XML file.')
-    parser.add_argument('-new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
-    parser.add_argument('-output_xml_file', type=str, required=True, help='Path for the output XML file.')
-    parser.add_argument('-sort_by', type=str, default='name', help="optional (name or displayName) - name is default - name: sort_order by internal name - displayName: sort_order by displayName")
-    parser.add_argument('-preserve_original_order', type=str, default='true', help="optional (true or false) - true is default - true: keep original ordering and insert new entries at the end of the file - false: reorder file entries by name")
-
+    parser.add_argument('-i', '--input_xml_file', type=str, required=True, help='Path to the input XML file.')
+    parser.add_argument('-n', '--new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
+    parser.add_argument('-o', '--output_xml_file', type=str, required=True, help='Path for the output XML file.')
+    parser.add_argument('-s', '--sort_by', type=str, choices=['name', 'displayName'], default='name', help="Sort entries by 'name' or 'displayName'.")
+    parser.add_argument('-p', '--preserve_original_order', action='store_true', help="Preserve the original order of entries, appending new ones at the end or reorder all entries at once")
+    
     args = parser.parse_args()
 
-    # Convert preserve_original_order to boolean
-    preserve_order = True if args.preserve_original_order.lower() == 'true' else False
+    existing_entries = parse_xml(args.input_xml_file)
+    new_entries = read_new_entries(args.new_entries_csv_file)
+    generate_output(existing_entries, new_entries, args.output_xml_file, args.sort_by, args.preserve_original_order)
 
-    # Now you can pass all arguments including defaults directly to your main function
-    main(args.input_xml_file, args.new_entries_csv_file, args.output_xml_file, args.sort_by, preserve_order)
+if __name__ == "__main__":
+    main()
