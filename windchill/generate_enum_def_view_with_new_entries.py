@@ -53,17 +53,22 @@ def parse_xml(file_path):
     return extracted_data
 
 def read_new_entries(csv_file_path):
+    expected_columns = ['name', 'displayName', 'csvlocale_fr']
     new_entries = []
     with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='~')
-        for row in reader:
-            new_entries.append(row) # assuming that CSV columns are name~displayName
-    
+        if not all(column in reader.fieldnames for column in expected_columns):
+            raise ValueError("CSV file format is incorrect. Expected columns: " + ", ".join(expected_columns))
+        else:
+            for row in reader:
+                new_entries.append(row)
+
     with open('extracted_new_entries.txt', 'w', encoding='utf-8') as f:
-        f.write('name~displayName\n')  # Write header
+        f.write('name~displayName~csvlocale_fr\n')  # Write header
         for entry in new_entries:
-            f.write(f"{entry['name']}~{entry['displayName']}\n")
-    
+            csvlocale_fr = entry.get('csvlocale_fr', '')
+            f.write(f"{entry['name']}~{entry['displayName']}~{csvlocale_fr}\n")
+
     return new_entries
 
 def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
@@ -87,10 +92,8 @@ def generate_output(existing_entries, new_entries, output_file_path, sort_by, pr
     if preserve_order==False:
          # reorder entries per name for the output file
         combined_entries = sorted(combined_entries, key=lambda x: (x['name'].lower()))
-    
 
-    # Writing to file, preserving the order of appearance for existing entries and appending new entries at the end
-    # Write the entries to the file using format_entry_block function
+    # Writing to file
     with open(output_file_path, 'w', encoding='utf-8') as file:
         for entry in combined_entries:
             file.write(format_entry_block(entry) + "\n")
@@ -137,11 +140,11 @@ def main(input_xml_file, new_entries_csv_file, output_xml_file, sort_by, preserv
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Merge XML and CSV enumeration definitions.')
-    parser.add_argument('--input_xml_file', type=str, required=True, help='Path to the input XML file.')
-    parser.add_argument('--new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
-    parser.add_argument('--output_xml_file', type=str, required=True, help='Path for the output XML file.')
-    parser.add_argument('--sort_by', type=str, default='name', help="optional (name or displayName) - name is default - name: sort_order by internal name - displayName: sort_order by displayName")
-    parser.add_argument('--preserve_original_order', type=str, default='true', help="optional (true or false) - true is default - true: keep original ordering and insert new entries at the end of the file - false: reorder file entries by name")
+    parser.add_argument('-input_xml_file', type=str, required=True, help='Path to the input XML file.')
+    parser.add_argument('-new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
+    parser.add_argument('-output_xml_file', type=str, required=True, help='Path for the output XML file.')
+    parser.add_argument('-sort_by', type=str, default='name', help="optional (name or displayName) - name is default - name: sort_order by internal name - displayName: sort_order by displayName")
+    parser.add_argument('-preserve_original_order', type=str, default='true', help="optional (true or false) - true is default - true: keep original ordering and insert new entries at the end of the file - false: reorder file entries by name")
 
     args = parser.parse_args()
 
