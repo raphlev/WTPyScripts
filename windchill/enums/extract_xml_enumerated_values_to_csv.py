@@ -35,6 +35,7 @@ def extract_enumerated_values_properties(xml_file_path):
                 'name': elem.find('csvname').text,
                 'displayName csvisDefault': '',
                 'displayName csvvalue': '',
+                'displayName csvlocale_fr': '',
                 'selectable csvisDefault': '',
                 'selectable csvvalue': '',
                 'sort_order csvisDefault': '',
@@ -44,8 +45,10 @@ def extract_enumerated_values_properties(xml_file_path):
             prop_name = elem.find('csvname').text
             csvisDefault = elem.find('csvisDefault').text if elem.find('csvisDefault') is not None else ''
             csvvalue = elem.find('csvvalue').text if elem.find('csvvalue') is not None else ''
+            csvlocale_fr = elem.find('csvlocale_fr').text if elem.find('csvlocale_fr') is not None else ''
             current_enum[f'{prop_name} csvisDefault'] = csvisDefault
             current_enum[f'{prop_name} csvvalue'] = csvvalue
+            current_enum[f'{prop_name} csvlocale_fr'] = csvlocale_fr
         elif elem.tag == 'csvEndEnumMemberView' and current_enum is not None:
             enumerated_values.append(current_enum)
             current_enum = None
