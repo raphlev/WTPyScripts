@@ -78,26 +78,64 @@ def read_new_entries(csv_file_path):
 
     return new_entries
 
-def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
-    # preserving the original order of existing entries and appending new entries at the end.
+def remove_duplicates_against_new_entries(entries):
+    seen = set()
+    unique_entries = []
+    duplicates = []
+    for entry in entries:
+        if entry['name'] in seen:
+            duplicates.append(entry)
+        else:
+            seen.add(entry['name'])
+            unique_entries.append(entry)
+    return unique_entries, duplicates
 
-    # Combine existing and new entries without sorting them first
-    combined_entries = existing_entries + new_entries
+def remove_duplicates_against_existing(existing_entries, new_entries):
+    existing_names = set(entry['name'] for entry in existing_entries)
+    unique_new_entries = []
+    duplicates = []
+    for entry in new_entries:
+        if entry['name'] not in existing_names:
+            unique_new_entries.append(entry)
+        else:
+            duplicates.append(entry)
+    return unique_new_entries, duplicates
+
+def log_duplicates(duplicates, filename):
+    with open(filename, 'w', encoding='utf-8') as file:
+        for duplicate in duplicates:
+            file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
+
+def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
+    # Step 1: Remove duplicates within new_entries
+    new_entries, duplicates_against_new_entries = remove_duplicates_against_new_entries(new_entries)
+    log_duplicates(duplicates_against_new_entries, 'duplicates_against_new_entries.txt')
+
+    # Step 2: Remove duplicates against existing_entries
+    unique_new_entries, duplicates_against_existing = remove_duplicates_against_existing(existing_entries, new_entries)
+    log_duplicates(duplicates_against_existing, 'duplicates_against_existing.txt')
+
+    # Combine unique new entries with existing entries
+    combined_entries = existing_entries + unique_new_entries
+
     # Sort combined entries based on the sort_by argument
     if sort_by not in ['name', 'displayName']:
         raise ValueError("sort_by argument must be 'name' or 'displayName'")
     sorted_position_entries = sorted(combined_entries, key=lambda x: (x[sort_by].lower()))
+
     # Update sort_order based on sorted position
     for index, entry in enumerate(sorted_position_entries):
         entry['sort_order'] = str(index)
+
     # Map to quickly find updated sort_order
     map_sort_order = {entry['name']: entry['sort_order'] for entry in sorted_position_entries}
+
     # Update the sort_order in the original combined list based on the mapping
     for entry in combined_entries:
         entry['sort_order'] = map_sort_order[entry['name']]
 
     if not preserve_order:
-         # reorder entries per name for the output file
+        # Reorder entries per name for the output file
         combined_entries = sorted(combined_entries, key=lambda x: (x['name'].lower()))
 
     # Writing to file
