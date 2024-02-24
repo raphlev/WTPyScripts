@@ -1,8 +1,30 @@
 """
-File: generate_enum_def_view_with_new_entries.py
+File: merge_xml_enumerated_values_with_new_entries.py
 Author: Raphael Leveque
 Date: February, 2024
-Description: This script merges enumeration definitions from an XML file with new entries from a CSV file, then outputs the updated enumeration to a new XML file. It supports sorting by name or displayName, and optionally preserves the original order of existing entries.
+Description: Merge XML and CSV enumeration definitions.
+options:
+  -h, --help            show this help message and exit
+  -i INPUT_XML_FILE, --input_xml_file INPUT_XML_FILE
+                        Path to the input XML file.
+  -n NEW_ENTRIES_CSV_FILE, --new_entries_csv_file NEW_ENTRIES_CSV_FILE
+                        Path to the CSV file with new entries.
+  -o OUTPUT_XML_FILE, --output_xml_file OUTPUT_XML_FILE
+                        Path for the output XML file.
+  -s {name,displayName}, --sort_by {name,displayName}
+                        OPTIONAL (default is 'name') Sort entries by 'name' or 'displayName'.
+  -p, --preserve_original_order
+                        OPTIONAL (if -p not used, reorder all entries per name) Preserve the original order of entries & appending    
+                        new ones at the end
+1°) This script merges enumeration definitions from an XML file with new entries from a CSV file, then outputs the updated enumeration to a new file. It supports sorting by name or displayName, and optionally preserves the original order of existing entries.
+- Input XML Enumerated Values: contains one EnumDefView entry with occurrences of EnumMemberView members (export file of enumerated values from Windchill)
+- Input CSV file: csv file with header row [name~displayName~csvlocale_fr] of new enumeration members to insert into xml file
+- Output file: list of merged EnumMemberView members in a text file which can be used to replace original XML Enumerated Values
+2°) It also support management of duplicates and output additional log files
+- extracted_data.txt: logs input xml file content into csv and json
+- extracted_new_entries.txt: logs input csv file into csv
+- duplicates_against_new_entries.txt: logs duplicates (name as key) found within csv input file
+- duplicates_against_existing.txt: logs duplicates (name as key) found in xml input file against csv input file
 """
 
 import csv
@@ -104,6 +126,7 @@ def remove_duplicates_against_existing(existing_entries, new_entries):
 def log_duplicates(duplicates, filename):
     with open(filename, 'w', encoding='utf-8') as file:
         for duplicate in duplicates:
+            file.write(f"{duplicate['name']}\n")  # Logging only the name for simplicity
             file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
 
 def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
@@ -121,22 +144,21 @@ def generate_output(existing_entries, new_entries, output_file_path, sort_by, pr
     # Sort combined entries based on the sort_by argument
     if sort_by not in ['name', 'displayName']:
         raise ValueError("sort_by argument must be 'name' or 'displayName'")
-    sorted_position_entries = sorted(combined_entries, key=lambda x: (x[sort_by].lower()))
+    sorted_combined_entries = sorted(combined_entries, key=lambda x: x[sort_by].lower())
 
     # Update sort_order based on sorted position
-    for index, entry in enumerate(sorted_position_entries):
+    for index, entry in enumerate(sorted_combined_entries):
         entry['sort_order'] = str(index)
 
     # Map to quickly find updated sort_order
-    map_sort_order = {entry['name']: entry['sort_order'] for entry in sorted_position_entries}
-
+    #map_sort_order = {entry['name']: entry['sort_order'] for entry in sorted_combined_entries}
     # Update the sort_order in the original combined list based on the mapping
-    for entry in combined_entries:
-        entry['sort_order'] = map_sort_order[entry['name']]
+    #for entry in combined_entries:
+    #    entry['sort_order'] = map_sort_order[entry['name']]
 
+    # If not preserving order, sort entries by name for the output
     if not preserve_order:
-        # Reorder entries per name for the output file
-        combined_entries = sorted(combined_entries, key=lambda x: (x['name'].lower()))
+        combined_entries = sorted(combined_entries, key=lambda x: x['name'].lower())
 
     # Writing to file
     with open(output_file_path, 'w', encoding='utf-8') as file:
@@ -183,8 +205,8 @@ def main():
     parser.add_argument('-i', '--input_xml_file', type=str, required=True, help='Path to the input XML file.')
     parser.add_argument('-n', '--new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
     parser.add_argument('-o', '--output_xml_file', type=str, required=True, help='Path for the output XML file.')
-    parser.add_argument('-s', '--sort_by', type=str, choices=['name', 'displayName'], default='name', help="Sort entries by 'name' or 'displayName'.")
-    parser.add_argument('-p', '--preserve_original_order', action='store_true', help="Preserve the original order of entries, appending new ones at the end or reorder all entries at once")
+    parser.add_argument('-s', '--sort_by', type=str, choices=['name', 'displayName'], default='name', help="OPTIONAL (default is 'name') Sort entries by 'name' or 'displayName'.")
+    parser.add_argument('-p', '--preserve_original_order', action='store_true', help="OPTIONAL (if -p not used, reorder all entries per name) Preserve the original order of entries & appending new ones at the end")
     
     args = parser.parse_args()
 
