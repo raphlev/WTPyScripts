@@ -25,6 +25,22 @@ options:
 - extracted_new_entries.txt: logs input csv file into csv
 - duplicates_against_new_entries.txt: logs duplicates (name as key) found within csv input file
 - duplicates_against_existing.txt: logs duplicates (name as key) found in xml input file against csv input file
+
+List ([]):
+Ordered: Maintains the order in which elements are added.
+Mutable: You can change, add, or remove items.
+Allows duplicates: Multiple elements can have the same value.
+
+Set (set()):
+Unordered: Does not maintain the order of elements.
+Mutable: You can add or remove items, but you can't change them.
+No duplicates: Each element must be unique.
+
+Dictionary ({}):
+Unordered (before Python 3.7, but ordered by insertion order from Python 3.7+): Does not maintain order traditionally, but in recent versions of Python, it retains the order of insertion.
+Mutable: You can add, remove, or change items.
+Key-Value pairs: Stores data as key-value pairs where each key must be unique.
+
 """
 
 import csv
@@ -113,15 +129,28 @@ def remove_duplicates_against_new_entries(entries):
     return unique_entries, duplicates
 
 def remove_duplicates_against_existing(existing_entries, new_entries):
-    existing_names = set(entry['name'] for entry in existing_entries)
+    existing_names = {entry['name']: entry for entry in existing_entries}
     unique_new_entries = []
     duplicates = []
+    updated_entries = []  # To keep track of entries updated from selectable: False to True
+
     for entry in new_entries:
-        if entry['name'] not in existing_names:
-            unique_new_entries.append(entry)
-        else:
+        if entry['name'] in existing_names:
             duplicates.append(entry)
-    return unique_new_entries, duplicates
+            # Check if we need to update the 'selectable' field to true
+            if existing_names[entry['name']].get('selectable') == 'false':
+                existing_names[entry['name']]['selectable'] = 'true'
+                updated_entries.append(existing_names[entry['name']])
+        else:
+            unique_new_entries.append(entry)
+
+    # Optionally, log the updated entries
+    if updated_entries:
+        with open('updated_selectable_entries.txt', 'w', encoding='utf-8') as file:
+            for updated_entry in updated_entries:
+                file.write(f"{updated_entry['name']}: selectable updated to True\n")
+
+    return unique_new_entries, duplicates, list(existing_names.values())
 
 def log_duplicates(duplicates, filename):
     with open(filename, 'w', encoding='utf-8') as file:
@@ -129,16 +158,24 @@ def log_duplicates(duplicates, filename):
             file.write(f"{duplicate['name']}\n")  # Logging only the name for simplicity
             file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
 
+def log_updates(updated_entries, filename):
+    with open(filename, 'w', encoding='utf-8') as file:
+        for entry in updated_entries:
+            file.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
 def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
     # Step 1: Remove duplicates within new_entries
     new_entries, duplicates_against_new_entries = remove_duplicates_against_new_entries(new_entries)
     log_duplicates(duplicates_against_new_entries, 'duplicates_against_new_entries.txt')
 
-    # Step 2: Remove duplicates against existing_entries
-    unique_new_entries, duplicates_against_existing = remove_duplicates_against_existing(existing_entries, new_entries)
+    # Step 2: Remove duplicates against existing_entries and update existing_entries if needed
+    unique_new_entries, duplicates_against_existing, updated_existing_entries = remove_duplicates_against_existing(existing_entries, new_entries)
     log_duplicates(duplicates_against_existing, 'duplicates_against_existing.txt')
 
-    # Combine unique new entries with existing entries
+    # Use the updated_existing_entries list for further processing
+    existing_entries = updated_existing_entries
+
+    # Combine unique new entries with updated existing entries
     combined_entries = existing_entries + unique_new_entries
 
     # Sort combined entries based on the sort_by argument
