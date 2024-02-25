@@ -100,15 +100,23 @@ def parse_xml(file_path):
 def read_new_entries(csv_file_path):
     expected_columns = ['name', 'displayName', 'csvlocale_fr']
     new_entries = []
-    with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter='~')
-        if not all(column in reader.fieldnames for column in expected_columns):
-            raise ValueError("CSV file format is incorrect. Expected columns: " + ", ".join(expected_columns))
-        else:
-            for row in reader:
-                new_entries.append(row)
+    try:
+        with open(csv_file_path, newline='', encoding='utf-16') as csvfile:
+            reader = csv.DictReader(csvfile, delimiter='~')
+            if not all(column in reader.fieldnames for column in expected_columns):
+                raise ValueError("CSV file format is incorrect. Expected columns: " + ", ".join(expected_columns))
+            else:
+                for row in reader:
+                    new_entries.append({
+                    'name': row['name'],
+                    'displayName': row['displayName'],
+                    'csvlocale_fr': row.get('csvlocale_fr', '')  # Provide a default value if column is missing
+                })
+    except UnicodeDecodeError:
+        raise UnicodeDecodeError("Failed to decode the CSV file. Please check the file encoding. UTF-16 was attempted.")
 
-    with open('extracted_new_entries.txt', 'w', encoding='utf-8') as f:
+
+    with open('extracted_new_entries.txt', 'w', encoding='utf-16') as f:
         f.write('name~displayName~csvlocale_fr\n')  # Write header
         for entry in new_entries:
             csvlocale_fr = entry.get('csvlocale_fr', '')
