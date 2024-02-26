@@ -101,7 +101,7 @@ def read_new_entries(csv_file_path):
     expected_columns = ['name', 'displayName', 'csvlocale_fr']
     new_entries = []
     try:
-        with open(csv_file_path, newline='', encoding='utf-16') as csvfile:
+        with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile, delimiter='~')
             if not all(column in reader.fieldnames for column in expected_columns):
                 raise ValueError("CSV file format is incorrect. Expected columns: " + ", ".join(expected_columns))
@@ -116,7 +116,7 @@ def read_new_entries(csv_file_path):
         raise UnicodeDecodeError("Failed to decode the CSV file. Please check the file encoding. UTF-16 was attempted.")
 
 
-    with open('extracted_new_entries.txt', 'w', encoding='utf-16') as f:
+    with open('extracted_new_entries.txt', 'w', encoding='utf-8') as f:
         f.write('name~displayName~csvlocale_fr\n')  # Write header
         for entry in new_entries:
             csvlocale_fr = entry.get('csvlocale_fr', '')
@@ -165,11 +165,6 @@ def log_duplicates(duplicates, filename):
         for duplicate in duplicates:
             file.write(f"{duplicate['name']}\n")  # Logging only the name for simplicity
             file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
-
-def log_updates(updated_entries, filename):
-    with open(filename, 'w', encoding='utf-8') as file:
-        for entry in updated_entries:
-            file.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
     # Step 1: Remove duplicates within new_entries
