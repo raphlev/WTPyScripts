@@ -23,6 +23,7 @@ options:
 2°) It also support management of duplicates and output additional log files
 - extracted_data.txt: logs input xml file content into csv and json
 - extracted_new_entries.txt: logs input csv file into csv
+- unique_new_entries.txt: logs input csv file entries which are not already set in input XML file into csv
 - duplicates_against_new_entries.txt: logs duplicates (name as key) found within csv input file
 - duplicates_against_existing.txt: logs duplicates (name as key) found in xml input file against csv input file
 
@@ -115,14 +116,16 @@ def read_new_entries(csv_file_path):
     except UnicodeDecodeError:
         raise UnicodeDecodeError("Failed to decode the CSV file. Please check the file encoding. UTF-16 was attempted.")
 
-
-    with open('extracted_new_entries.txt', 'w', encoding='utf-8') as f:
-        f.write('name~displayName~csvlocale_fr\n')  # Write header
-        for entry in new_entries:
-            csvlocale_fr = entry.get('csvlocale_fr', '')
-            f.write(f"{entry['name']}~{entry['displayName']}~{csvlocale_fr}\n")
+    log_new_entries(new_entries, 'extracted_new_entries.txt')
 
     return new_entries
+
+def log_new_entries (entries, filename):
+    with open(filename, 'w', encoding='utf-8') as file:
+        file.write('name~displayName~csvlocale_fr\n')  # Write header
+        for entry in entries:
+            csvlocale_fr = entry.get('csvlocale_fr', '')
+            file.write(f"{entry['name']}~{entry['displayName']}~{csvlocale_fr}\n")
 
 def remove_duplicates_against_new_entries(entries):
     seen = set()
@@ -174,6 +177,7 @@ def generate_output(existing_entries, new_entries, output_file_path, sort_by, pr
     # Step 2: Remove duplicates against existing_entries and update existing_entries if needed
     unique_new_entries, duplicates_against_existing, updated_existing_entries = remove_duplicates_against_existing(existing_entries, new_entries)
     log_duplicates(duplicates_against_existing, 'duplicates_against_existing.txt')
+    log_new_entries(unique_new_entries, 'unique_new_entries.txt')
 
     # Use the updated_existing_entries list for further processing
     existing_entries = updated_existing_entries
