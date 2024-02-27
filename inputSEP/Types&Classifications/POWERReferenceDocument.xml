@@ -513,7 +513,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERReferenceDocument</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:744976926</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:738084929</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>

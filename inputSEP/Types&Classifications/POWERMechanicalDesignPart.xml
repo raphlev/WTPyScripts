@@ -150,15 +150,6 @@
       <csvvalue>singleLine</csvvalue>
    </csvPropertyValue>
    <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
-      <csvloadID>CONSTRAINT=201855861982000</csvloadID>
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvruleClassname>com.ptc.core.meta.container.common.impl.NoDuplicateValuesConstraint</csvruleClassname>
-      <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
-      <csvruleData/>
-      <csvdefQualifier/>
-   </csvBeginConstraintDefView>
-   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
-   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
       <csvloadID>CONSTRAINT=205638505736972</csvloadID>
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
       <csvruleClassname>com.ptc.core.meta.container.common.impl.DiscreteSetConstraint</csvruleClassname>
@@ -174,6 +165,15 @@
       <csvdomainRef>/System</csvdomainRef>
    </csvBeginEnumDefView>
    <csvEndEnumDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessEnumerationDefinition"/>
+   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
+   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
+      <csvloadID>CONSTRAINT=2579102906134229</csvloadID>
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvruleClassname>com.ptc.core.meta.container.common.impl.SingleValuedConstraint</csvruleClassname>
+      <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
+      <csvruleData/>
+      <csvdefQualifier/>
+   </csvBeginConstraintDefView>
    <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
    <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
       <csvloadID>CONSTRAINT=272984289318754</csvloadID>
@@ -469,6 +469,32 @@
       <csvisDefault>false</csvisDefault>
       <csvvalue>dropdown</csvvalue>
    </csvPropertyValue>
+   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
+      <csvloadID>CONSTRAINT=118060830821584</csvloadID>
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvruleClassname>com.ptc.core.meta.container.common.impl.ValueRequiredConstraint</csvruleClassname>
+      <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
+      <csvruleData/>
+      <csvdefQualifier/>
+   </csvBeginConstraintDefView>
+   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
+   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
+      <csvloadID>CONSTRAINT=205398584380766</csvloadID>
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvruleClassname>com.ptc.core.meta.container.common.impl.DiscreteSetConstraint</csvruleClassname>
+      <csvdefClassname>com.ptc.core.lwc.server.LWCEnumerationBasedConstraint</csvdefClassname>
+      <csvruleData/>
+   </csvBeginConstraintDefView>
+   <csvBeginEnumDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessEnumerationDefinition">
+      <csvname>POWERManufacturingSite</csvname>
+      <csvcontainerDomain/>
+      <csvmaster/>
+      <csvsystem>false</csvsystem>
+      <csvorganizer>POWER</csvorganizer>
+      <csvdomainRef>/System</csvdomainRef>
+   </csvBeginEnumDefView>
+   <csvEndEnumDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessEnumerationDefinition"/>
+   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessAttributeDefinition">
       <csvname>POWERMass</csvname>
@@ -645,45 +671,6 @@
       <csvdomainRef>/System</csvdomainRef>
    </csvBeginEnumDefView>
    <csvEndEnumDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessEnumerationDefinition"/>
-   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
-   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
-      <csvloadID>CONSTRAINT=421650924963787</csvloadID>
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvruleClassname>com.ptc.core.meta.container.common.impl.ValueRequiredConstraint</csvruleClassname>
-      <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
-      <csvruleData/>
-      <csvdefQualifier/>
-   </csvBeginConstraintDefView>
-   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
-   <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
-   <csvBeginAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessAttributeDefinition">
-      <csvname>POWERShelfLifemonths</csvname>
-      <csvattDefClass>com.ptc.core.lwc.server.LWCIBAAttDefinition</csvattDefClass>
-      <csvdatatype>com.ptc.core.meta.common.FloatingPoint</csvdatatype>
-      <csvIBA>POWERShelfLifemonths</csvIBA>
-      <csvQoM/>
-      <csvviewStyle/>
-      <csveditStyle/>
-      <csvdefaults/>
-   </csvBeginAttributeDefView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processAttributePropertyValue">
-      <csvname>displayName</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>Shelf Life (months)</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processAttributePropertyValue">
-      <csvname>structure_filterable</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>true</csvvalue>
-   </csvPropertyValue>
-   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
-      <csvloadID>CONSTRAINT=207093901981900</csvloadID>
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvruleClassname>com.ptc.core.meta.container.common.impl.SingleValuedConstraint</csvruleClassname>
-      <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
-      <csvruleData/>
-      <csvdefQualifier/>
-   </csvBeginConstraintDefView>
    <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessAttributeDefinition">
@@ -876,35 +863,6 @@
    </csvBeginConstraintDefView>
    <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
-   <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
-      <csvname>Attributes for Manufacturing Resource Structure Browser</csvname>
-      <csvtypeContext>wt.part.WTPart</csvtypeContext>
-      <csvdefaultGroup>Part_Attributes</csvdefaultGroup>
-      <csvprofiles/>
-      <csvscreens>MRB_INFO</csvscreens>
-   </csvBeginLayoutDefView>
-   <csvBeginGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupDefinition">
-      <csvname>Part_Attributes</csvname>
-      <csvisStatic>true</csvisStatic>
-      <csvstyle>Grid</csvstyle>
-   </csvBeginGroupDefView>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>9</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
-   <csvEndLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessLayoutDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Create New Layout</csvname>
       <csvtypeContext>wt.part.WTPart</csvtypeContext>
@@ -1144,21 +1102,6 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>12</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
       <csvname>POWERTypeArticle</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
@@ -1239,22 +1182,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910783</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>2</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>7</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910779</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690987</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -1269,7 +1197,22 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910774</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690983</csvname>
+   </csvBeginGroupMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>2</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>row_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>4</csvvalue>
+   </csvPropertyValue>
+   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
+   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690978</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -1289,7 +1232,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910770</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690974</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -1299,7 +1242,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4</csvvalue>
+      <csvvalue>7</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
@@ -2022,21 +1965,6 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>14</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
       <csvname>POWERTypeArticle</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
@@ -2197,7 +2125,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910765</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690969</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -2217,7 +2145,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910760</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690964</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -2501,21 +2429,6 @@
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>30</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>35</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
@@ -2967,64 +2880,6 @@
    <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
    <csvEndLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessLayoutDefinition"/>
    <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
-      <csvname>MAPSB Part Attributes</csvname>
-      <csvtypeContext>wt.part.WTPart</csvtypeContext>
-      <csvdefaultGroup>Part_Attributes</csvdefaultGroup>
-      <csvprofiles/>
-      <csvscreens>MAPSB_INFO</csvscreens>
-   </csvBeginLayoutDefView>
-   <csvBeginGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupDefinition">
-      <csvname>Part_Attributes</csvname>
-      <csvisStatic>true</csvisStatic>
-      <csvstyle>Grid</csvstyle>
-   </csvBeginGroupDefView>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>10</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
-   <csvEndLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessLayoutDefinition"/>
-   <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
-      <csvname>MAPSB Structure Transformation Layout</csvname>
-      <csvtypeContext>wt.part.WTPart</csvtypeContext>
-      <csvdefaultGroup>MAPSB_STA_Attributes</csvdefaultGroup>
-      <csvprofiles/>
-      <csvscreens>MAPSB_STA</csvscreens>
-   </csvBeginLayoutDefView>
-   <csvBeginGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupDefinition">
-      <csvname>MAPSB_STA_Attributes</csvname>
-      <csvisStatic>true</csvisStatic>
-      <csvstyle>Grid</csvstyle>
-   </csvBeginGroupDefView>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
-   <csvEndLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessLayoutDefinition"/>
-   <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
       <csvname>Model Structure Attributes</csvname>
       <csvtypeContext>wt.part.WTPart</csvtypeContext>
       <csvdefaultGroup>msrInfoScreenGroup1</csvdefaultGroup>
@@ -3229,21 +3084,6 @@
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>19</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>24</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
@@ -4033,21 +3873,6 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>10</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
       <csvname>POWERTypeArticle</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
@@ -4068,7 +3893,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910836</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691040</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -4083,12 +3908,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>7</csvvalue>
+      <csvvalue>0</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910831</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691035</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -4108,67 +3933,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910826</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_span</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910821</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_span</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>4</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910816</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_span</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910811</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691030</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -4188,7 +3953,27 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910806</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691025</csvname>
+   </csvBeginGroupMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_span</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>row_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>7</csvvalue>
+   </csvPropertyValue>
+   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
+   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691020</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -4204,6 +3989,46 @@
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>8</csvvalue>
+   </csvPropertyValue>
+   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
+   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691015</csvname>
+   </csvBeginGroupMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_span</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>row_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>4</csvvalue>
+   </csvPropertyValue>
+   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
+   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691010</csvname>
+   </csvBeginGroupMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>0</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_span</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>row_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>0</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
@@ -4507,7 +4332,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910801</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691005</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -4518,21 +4343,6 @@
       <csvname>col_span</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910797</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>2</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>row_coord</csvname>
@@ -4542,7 +4352,27 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910792</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691000</csvname>
+   </csvBeginGroupMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>col_span</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
+      <csvname>row_coord</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>1</csvvalue>
+   </csvPropertyValue>
+   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
+   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
+      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690995</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -4562,17 +4392,12 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910787</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764690991</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_span</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
+      <csvvalue>2</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>row_coord</csvname>
@@ -4839,35 +4664,6 @@
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>5</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
-   <csvEndLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessLayoutDefinition"/>
-   <csvBeginLayoutDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessLayoutDefinition">
-      <csvname>PPB Part Attributes</csvname>
-      <csvtypeContext>wt.part.WTPart</csvtypeContext>
-      <csvdefaultGroup>Part_Attributes</csvdefaultGroup>
-      <csvprofiles/>
-      <csvscreens>PPB_INFO</csvscreens>
-   </csvBeginLayoutDefView>
-   <csvBeginGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupDefinition">
-      <csvname>Part_Attributes</csvname>
-      <csvisStatic>true</csvisStatic>
-      <csvstyle>Grid</csvstyle>
-   </csvBeginGroupDefView>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>7</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>
@@ -5167,21 +4963,6 @@
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>20</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>25</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
@@ -5723,21 +5504,6 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>15</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
       <csvname>POWERTypeArticle</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
@@ -5935,7 +5701,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740910841</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:764691045</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -6140,21 +5906,6 @@
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>18</csvvalue>
-   </csvPropertyValue>
-   <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
-   <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
-      <csvtypeContext>ext.lps.power.POWERMechanicalDesignPart</csvtypeContext>
-      <csvname>POWERShelfLifemonths</csvname>
-   </csvBeginGroupMemberView>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>col_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
-   </csvPropertyValue>
-   <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
-      <csvname>row_coord</csvname>
-      <csvisDefault>false</csvisDefault>
-      <csvvalue>23</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">

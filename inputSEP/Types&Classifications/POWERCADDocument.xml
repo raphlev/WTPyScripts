@@ -443,12 +443,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>2</csvvalue>
+      <csvvalue>3</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERCADDocument</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:740905023</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:737981779</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
@@ -458,7 +458,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>row_coord</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>3</csvvalue>
+      <csvvalue>2</csvvalue>
    </csvPropertyValue>
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvEndGroupDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupDefinition"/>

@@ -323,26 +323,6 @@
    <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
    <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
    <csvBeginAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessAttributeDefinition">
-      <csvname>name</csvname>
-      <csvattDefClass>com.ptc.core.lwc.server.LWCHardAttDefinition</csvattDefClass>
-      <csvdatatype>java.lang.String</csvdatatype>
-      <csvIBA/>
-      <csvQoM/>
-      <csvviewStyle/>
-      <csveditStyle/>
-      <csvdefaults/>
-   </csvBeginAttributeDefView>
-   <csvBeginConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessConstraintDefinition">
-      <csvloadID>CONSTRAINT=2508368577403400</csvloadID>
-      <csvtypeContext>ext.lps.power.POWERDefinitionDocument</csvtypeContext>
-      <csvruleClassname>com.ptc.core.meta.container.common.impl.StringLengthConstraint</csvruleClassname>
-      <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
-      <csvruleData>DATA|com.ptc.core.meta.common.AnalogSet|[DATA|java.lang.Long|1 \, DATA|java.lang.Long|40]</csvruleData>
-      <csvdefQualifier/>
-   </csvBeginConstraintDefView>
-   <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
-   <csvEndAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessAttributeDefinition"/>
-   <csvBeginAttributeDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessAttributeDefinition">
       <csvname>number</csvname>
       <csvattDefClass>com.ptc.core.lwc.server.LWCHardAttDefinition</csvattDefClass>
       <csvdatatype>java.lang.String</csvdatatype>
@@ -357,7 +337,7 @@
       <csvtypeContext>ext.lps.power.POWERDefinitionDocument</csvtypeContext>
       <csvruleClassname>com.ptc.core.meta.container.common.impl.StringLengthConstraint</csvruleClassname>
       <csvdefClassname>com.ptc.core.lwc.server.LWCBasicConstraint</csvdefClassname>
-      <csvruleData>DATA|com.ptc.core.meta.common.AnalogSet|[DATA|java.lang.Long|0 \, DATA|java.lang.Long|25]</csvruleData>
+      <csvruleData>DATA|com.ptc.core.meta.common.AnalogSet|[DATA|java.lang.Long|0 \, DATA|java.lang.Long|18]</csvruleData>
       <csvdefQualifier/>
    </csvBeginConstraintDefView>
    <csvEndConstraintDefView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessConstraintDefinition"/>
@@ -601,7 +581,7 @@
    <csvEndGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.endProcessGroupMembership"/>
    <csvBeginGroupMemberView handler="com.ptc.core.lwc.server.TypeDefinitionLoader.beginProcessGroupMembership">
       <csvtypeContext>ext.lps.power.POWERDefinitionDocument</csvtypeContext>
-      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:744966414</csvname>
+      <csvname>SEPARATOR=com.ptc.core.lwc.server.LWCSeparator:738083953</csvname>
    </csvBeginGroupMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.TypeDefinitionLoader.processGroupMembershipPropertyValue">
       <csvname>col_coord</csvname>
