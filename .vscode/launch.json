@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // only one launch.json can be used but it can contain several configurations in array to debug different scripts
+        // open current workspace root folder, ctrl+shift+D, select one of these 2 config below in dropdown list and hit green icon "start debugging (F5)"
+        {
+            "name": "Debug merge_xml_enumerated_values_with_new_entries.py",
+            // execute test_merge_xml.bat before to generate csvInput.csv below
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/windchill/enums/merge_xml_enumerated_values_with_new_entries.py",
+            "args": [
+                "-i", "${workspaceFolder}/inputSEP/Enums/POWERAircraft.xml",
+                "-n", "${workspaceFolder}/windchill/enums/test/csvInput.csv",
+                "-o", "${workspaceFolder}/windchill/enums/test/output_merged_name_p.txt",
+                "-p"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Export Distinct Values",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/csv_utilities/export_distinct_values.py",
+            "args": [
+                "-i", "${workspaceFolder}/csv_utilities/input_customers-500.csv",
+                "-o", "${workspaceFolder}/csv_utilities/output2.csv",
+                "-n", "Country"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
