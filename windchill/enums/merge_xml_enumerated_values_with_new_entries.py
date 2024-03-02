@@ -21,7 +21,7 @@ options:
 - Input CSV file: csv file with header row [name~displayName~csvlocale_fr] of new enumeration members to insert into xml file
 - Output file: list of merged EnumMemberView members in a text file which can be used to replace original XML Enumerated Values
 2°) It also support management of duplicates and output additional log files
-- extracted_data.txt: logs input xml file content into csv and json
+- extracted_xml.txt: logs input xml file content into csv and json
 - extracted_new_entries.txt: logs input csv file into csv
 - unique_new_entries.txt: logs input csv file entries which are not already set in input XML file into csv
 - duplicates_against_new_entries.txt: logs duplicates (name as key) found within csv input file
@@ -48,6 +48,7 @@ import csv
 import argparse
 from lxml import etree
 import json
+import os
 
 def normalize_xml(xml_content):
     replacements = [
@@ -62,7 +63,7 @@ def normalize_xml(xml_content):
         xml_content = xml_content.replace(old, new)
     return xml_content
 
-def parse_xml(file_path):
+def parse_xml(file_path, extracted_file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         xml_content = file.read()
 
@@ -90,7 +91,7 @@ def parse_xml(file_path):
             'csvlocale_fr': locale_fr
         })
 
-    with open('extracted_data.txt', 'w', encoding='utf-8') as f:
+    with open(extracted_file_path, 'w', encoding='utf-8') as f:
             f.write('name~displayName~selectable~sort_order~csvlocale_fr\n')  # Write header
             for entry in extracted_data:
                 f.write(f"{entry['name']}~{entry['displayName']}~{entry['selectable']}~{entry['sort_order']}~{entry['csvlocale_fr']}\n")
@@ -98,7 +99,7 @@ def parse_xml(file_path):
 
     return extracted_data
 
-def read_new_entries(csv_file_path):
+def read_new_entries(csv_file_path, extracted_new_entries_file_path):
     expected_columns = ['name', 'displayName', 'csvlocale_fr']
     new_entries = []
     try:
@@ -116,7 +117,7 @@ def read_new_entries(csv_file_path):
     except UnicodeDecodeError:
         raise UnicodeDecodeError("Failed to decode the CSV file. Please check the file encoding. UTF-16 was attempted.")
 
-    log_new_entries(new_entries, 'extracted_new_entries.txt')
+    log_new_entries(new_entries, extracted_new_entries_file_path)
 
     return new_entries
 
@@ -139,7 +140,7 @@ def remove_duplicates_against_new_entries(entries):
             unique_entries.append(entry)
     return unique_entries, duplicates
 
-def remove_duplicates_against_existing(existing_entries, new_entries):
+def remove_duplicates_against_existing(existing_entries, new_entries, updated_selectable_entries_file_path):
     existing_names = {entry['name']: entry for entry in existing_entries}
     unique_new_entries = []
     duplicates = []
@@ -157,7 +158,7 @@ def remove_duplicates_against_existing(existing_entries, new_entries):
 
     # Optionally, log the updated entries
     if updated_entries:
-        with open('updated_selectable_entries.txt', 'w', encoding='utf-8') as file:
+        with open(updated_selectable_entries_file_path, 'w', encoding='utf-8') as file:
             for updated_entry in updated_entries:
                 file.write(f"{updated_entry['name']}: selectable updated to True\n")
 
@@ -169,15 +170,19 @@ def log_duplicates(duplicates, filename):
             file.write(f"{duplicate['name']}\n")  # Logging only the name for simplicity
             file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
 
-def generate_output(existing_entries, new_entries, output_file_path, sort_by, preserve_order):
+def generate_output(existing_entries, new_entries, output_folder, sort_by, preserve_order):
     # Step 1: Remove duplicates within new_entries
     new_entries, duplicates_against_new_entries = remove_duplicates_against_new_entries(new_entries)
-    log_duplicates(duplicates_against_new_entries, 'duplicates_against_new_entries.txt')
+    duplicates_against_new_entries_file = os.path.join(output_folder, 'duplicates_against_new_entries.txt')
+    log_duplicates(duplicates_against_new_entries, duplicates_against_new_entries_file)
 
     # Step 2: Remove duplicates against existing_entries and update existing_entries if needed
-    unique_new_entries, duplicates_against_existing, updated_existing_entries = remove_duplicates_against_existing(existing_entries, new_entries)
-    log_duplicates(duplicates_against_existing, 'duplicates_against_existing.txt')
-    log_new_entries(unique_new_entries, 'unique_new_entries.txt')
+    updated_selectable_entries_file_path = os.path.join(output_folder, 'updated_selectable_entries.txt')
+    unique_new_entries, duplicates_against_existing, updated_existing_entries = remove_duplicates_against_existing(existing_entries, new_entries, updated_selectable_entries_file_path)
+    duplicates_against_existing_file = os.path.join(output_folder, 'duplicates_against_existing.txt')
+    log_duplicates(duplicates_against_existing, duplicates_against_existing_file)
+    unique_new_entries_file = os.path.join(output_folder, 'unique_new_entries.txt')
+    log_new_entries(unique_new_entries, unique_new_entries_file)
 
     # Use the updated_existing_entries list for further processing
     existing_entries = updated_existing_entries
@@ -205,6 +210,7 @@ def generate_output(existing_entries, new_entries, output_file_path, sort_by, pr
         combined_entries = sorted(combined_entries, key=lambda x: x['name'].lower())
 
     # Writing to file
+    output_file_path = os.path.join(output_folder, 'output_merged_file.txt')
     with open(output_file_path, 'w', encoding='utf-8') as file:
         for entry in combined_entries:
             file.write(format_entry_block(entry) + "\n")
@@ -248,15 +254,21 @@ def main():
     parser = argparse.ArgumentParser(description='Merge XML and CSV enumeration definitions.')
     parser.add_argument('-i', '--input_xml_file', type=str, required=True, help='Path to the input XML file.')
     parser.add_argument('-n', '--new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
-    parser.add_argument('-o', '--output_xml_file', type=str, required=True, help='Path for the output XML file.')
+    parser.add_argument('-o', '--output_folder', type=str, required=True, help='Path for the output folder.')
     parser.add_argument('-s', '--sort_by', type=str, choices=['name', 'displayName'], default='name', help="OPTIONAL (default is 'name') Sort entries by 'name' or 'displayName'.")
     parser.add_argument('-p', '--preserve_original_order', action='store_true', help="OPTIONAL (if -p not used, reorder all entries per name) Preserve the original order of entries & appending new ones at the end")
     
     args = parser.parse_args()
+    # Ensure the output folder exists
+    output_folder = args.output_folder
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
-    existing_entries = parse_xml(args.input_xml_file)
-    new_entries = read_new_entries(args.new_entries_csv_file)
-    generate_output(existing_entries, new_entries, args.output_xml_file, args.sort_by, args.preserve_original_order)
+    extracted_xml_file = os.path.join(args.output_folder, 'extracted_xml.txt')
+    existing_entries = parse_xml(args.input_xml_file,extracted_xml_file)
+    extracted_new_entries_file_path = os.path.join(args.output_folder, 'extracted_new_entries.txt')
+    new_entries = read_new_entries(args.new_entries_csv_file,extracted_new_entries_file_path)
+    generate_output(existing_entries, new_entries, args.output_folder, args.sort_by, args.preserve_original_order)
 
 if __name__ == "__main__":
     main()
