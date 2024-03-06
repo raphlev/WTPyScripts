@@ -13,7 +13,7 @@ options:
                         Path for the output XML file.
   -s {name,displayName}, --sort_by {name,displayName}
                         OPTIONAL (default is 'name') Sort entries by 'name' or 'displayName'.
-  -p, --preserve_original_order
+  -po, --preserve_original_order
                         OPTIONAL (if -p not used, reorder all entries per name) Preserve the original order of entries & appending    
                         new ones at the end
 1°) This script merges enumeration definitions from an XML file with new entries from a CSV file, then outputs the updated enumeration to a new file. It supports sorting by name or displayName, and optionally preserves the original order of existing entries.
@@ -141,6 +141,8 @@ def remove_duplicates_against_new_entries(entries):
     return unique_entries, duplicates
 
 def remove_duplicates_against_existing(existing_entries, new_entries, updated_selectable_entries_file_path):
+    # Convert existing entries to a dictionary for faster lookup
+    #  dictionary where each key is the unique 'name' of an entry, and each value is the corresponding entry dictionary
     existing_names = {entry['name']: entry for entry in existing_entries}
     unique_new_entries = []
     duplicates = []
@@ -162,6 +164,7 @@ def remove_duplicates_against_existing(existing_entries, new_entries, updated_se
             for updated_entry in updated_entries:
                 file.write(f"{updated_entry['name']}: selectable updated to True\n")
 
+    # Return list of new entries not found in existing entries, list of duplicated entries between existing and new, list of existing entries with eventually existing selectable updated to true
     return unique_new_entries, duplicates, list(existing_names.values())
 
 def log_duplicates(duplicates, filename):
@@ -256,7 +259,12 @@ def main():
     parser.add_argument('-n', '--new_entries_csv_file', type=str, required=True, help='Path to the CSV file with new entries.')
     parser.add_argument('-o', '--output_folder', type=str, required=True, help='Path for the output folder.')
     parser.add_argument('-s', '--sort_by', type=str, choices=['name', 'displayName'], default='name', help="OPTIONAL (default is 'name') Sort entries by 'name' or 'displayName'.")
-    parser.add_argument('-p', '--preserve_original_order', action='store_true', help="OPTIONAL (if -p not used, reorder all entries per name) Preserve the original order of entries & appending new ones at the end")
+    parser.add_argument('-po', '--preserve_original_order', action='store_true', help="OPTIONAL (if -po not used, reorder all entries per name) Preserve the original order of entries & appending new ones at the end")
+    parser.add_argument('-pes', '--preserve_existing_selectable_value', action='store_true', help="OPTIONAL (if -ps not used, selectable value updated to true on existing entries matching new entries) Preserve the original selectable value of existing entries matching new entries")
+    parser.add_argument('-f', '--force_new_selectable_false', action='store_true', help="OPTIONAL (if -f not used, selectable value set to true on new entries added to existing) Force selectable value at false for the new entries added to existing entries")
+
+
+    add new value with selectable at false
     
     args = parser.parse_args()
     # Ensure the output folder exists

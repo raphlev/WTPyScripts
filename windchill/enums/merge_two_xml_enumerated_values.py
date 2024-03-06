@@ -88,6 +88,7 @@ from lxml import etree
 
 def merge_existing_new_entries_to_existing_entries(existing_entries, new_entries):
     # Convert existing entries to a dictionary for faster lookup
+    #  dictionary where each key is the unique 'name' of an entry, and each value is the corresponding entry dictionary
     existing_dict = {entry['name']: entry for entry in existing_entries}
 
     for new_entry in new_entries:
