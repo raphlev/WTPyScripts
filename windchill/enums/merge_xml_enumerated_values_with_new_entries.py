@@ -128,44 +128,66 @@ def log_new_entries (entries, filename):
             csvlocale_fr = entry.get('csvlocale_fr', '')
             file.write(f"{entry['name']}~{entry['displayName']}~{csvlocale_fr}\n")
 
-def remove_duplicates_against_new_entries(entries):
+def remove_duplicates_against_new_entries(output_folder, entries, force_new_selectable_false):
     seen = set()
     unique_entries = []
-    duplicates = []
+    duplicates = [] # List of duplicates from new entries against new entries
     for entry in entries:
         if entry['name'] in seen:
             duplicates.append(entry)
         else:
             seen.add(entry['name'])
+            if force_new_selectable_false:
+                entry['selectable'] = 'false' 
             unique_entries.append(entry)
-    return unique_entries, duplicates
 
-def remove_duplicates_against_existing(existing_entries, new_entries, updated_selectable_entries_file_path):
+    # Optionally, log the duplicated entries found in inout csv file
+    if duplicates:
+        duplicates_against_new_entries_file = os.path.join(output_folder, 'duplicated_values_in_new_entries_csv_file.txt')
+        log_duplicates(duplicates, duplicates_against_new_entries_file)
+
+    return unique_entries
+
+def remove_duplicates_against_existing(output_folder, existing_entries, new_entries, preserve_selectable_value):
     # Convert existing entries to a dictionary for faster lookup
     #  dictionary where each key is the unique 'name' of an entry, and each value is the corresponding entry dictionary
     existing_names = {entry['name']: entry for entry in existing_entries}
-    unique_new_entries = []
-    duplicates = []
-    updated_entries = []  # To keep track of entries updated from selectable: False to True
+    unique_new_entries = [] # List of new entries not in existing entries
+    duplicates = [] # List of duplicates from new entries against existing entries
+    updated_entries = []  # To keep track of entries updated from selectable: False to True - for log
+    keep_entries = []  # To keep track of entries with selectable: False - for log
 
     for entry in new_entries:
         if entry['name'] in existing_names:
             duplicates.append(entry)
             # Check if we need to update the 'selectable' field to true
-            if existing_names[entry['name']].get('selectable') == 'false':
+            if existing_names[entry['name']].get('selectable') == 'false' and not preserve_selectable_value:
                 existing_names[entry['name']]['selectable'] = 'true'
                 updated_entries.append(existing_names[entry['name']])
+            # Check if we need to keep the 'selectable' field to false
+            if existing_names[entry['name']].get('selectable') == 'false' and preserve_selectable_value:
+                keep_entries.append(existing_names[entry['name']])
         else:
             unique_new_entries.append(entry)
 
     # Optionally, log the updated entries
     if updated_entries:
+        updated_selectable_entries_file_path = os.path.join(output_folder, 'updated_selectable_entries.txt')
         with open(updated_selectable_entries_file_path, 'w', encoding='utf-8') as file:
             for updated_entry in updated_entries:
                 file.write(f"{updated_entry['name']}: selectable updated to True\n")
 
+    # Log the brand new entries
+    unique_new_entries_file = os.path.join(output_folder, 'unique_new_entries.txt')
+    log_new_entries(unique_new_entries, unique_new_entries_file)
+
+    # Optionally, log the duplicated entries
+    if duplicates:
+        duplicates_against_existing_file = os.path.join(output_folder, 'duplicated_values_new_entries_against_existing.txt')
+        log_duplicates(duplicates, duplicates_against_existing_file)
+
     # Return list of new entries not found in existing entries, list of duplicated entries between existing and new, list of existing entries with eventually existing selectable updated to true
-    return unique_new_entries, duplicates, list(existing_names.values())
+    return unique_new_entries, list(existing_names.values())
 
 def log_duplicates(duplicates, filename):
     with open(filename, 'w', encoding='utf-8') as file:
@@ -173,20 +195,13 @@ def log_duplicates(duplicates, filename):
             file.write(f"{duplicate['name']}\n")  # Logging only the name for simplicity
             file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
 
-def generate_output(existing_entries, new_entries, output_folder, sort_by, preserve_order):
+def generate_output(existing_entries, new_entries, output_folder, sort_by, preserve_order,  preserve_selectable_value, force_new_selectable_false):
     # Step 1: Remove duplicates within new_entries
-    new_entries, duplicates_against_new_entries = remove_duplicates_against_new_entries(new_entries)
-    duplicates_against_new_entries_file = os.path.join(output_folder, 'duplicates_against_new_entries.txt')
-    log_duplicates(duplicates_against_new_entries, duplicates_against_new_entries_file)
+    new_entries = remove_duplicates_against_new_entries(output_folder, new_entries, force_new_selectable_false)
 
     # Step 2: Remove duplicates against existing_entries and update existing_entries if needed
-    updated_selectable_entries_file_path = os.path.join(output_folder, 'updated_selectable_entries.txt')
-    unique_new_entries, duplicates_against_existing, updated_existing_entries = remove_duplicates_against_existing(existing_entries, new_entries, updated_selectable_entries_file_path)
-    duplicates_against_existing_file = os.path.join(output_folder, 'duplicates_against_existing.txt')
-    log_duplicates(duplicates_against_existing, duplicates_against_existing_file)
-    unique_new_entries_file = os.path.join(output_folder, 'unique_new_entries.txt')
-    log_new_entries(unique_new_entries, unique_new_entries_file)
-
+    unique_new_entries, updated_existing_entries = remove_duplicates_against_existing(output_folder, existing_entries, new_entries, preserve_selectable_value)
+ 
     # Use the updated_existing_entries list for further processing
     existing_entries = updated_existing_entries
 
@@ -263,9 +278,6 @@ def main():
     parser.add_argument('-pes', '--preserve_existing_selectable_value', action='store_true', help="OPTIONAL (if -ps not used, selectable value updated to true on existing entries matching new entries) Preserve the original selectable value of existing entries matching new entries")
     parser.add_argument('-f', '--force_new_selectable_false', action='store_true', help="OPTIONAL (if -f not used, selectable value set to true on new entries added to existing) Force selectable value at false for the new entries added to existing entries")
 
-
-    add new value with selectable at false
-    
     args = parser.parse_args()
     # Ensure the output folder exists
     output_folder = args.output_folder
@@ -276,7 +288,7 @@ def main():
     existing_entries = parse_xml(args.input_xml_file,extracted_xml_file)
     extracted_new_entries_file_path = os.path.join(args.output_folder, 'extracted_new_entries.txt')
     new_entries = read_new_entries(args.new_entries_csv_file,extracted_new_entries_file_path)
-    generate_output(existing_entries, new_entries, args.output_folder, args.sort_by, args.preserve_original_order)
+    generate_output(existing_entries, new_entries, args.output_folder, args.sort_by, args.preserve_original_order, args.preserve_existing_selectable_value, args.force_new_selectable_false)
 
 if __name__ == "__main__":
     main()
