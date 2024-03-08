@@ -24,8 +24,10 @@ options:
 - extracted_xml.txt: logs input xml file content into csv and json
 - extracted_new_entries.txt: logs input csv file into csv
 - unique_new_entries.txt: logs input csv file entries which are not already set in input XML file into csv
-- duplicates_against_new_entries.txt: logs duplicates (name as key) found within csv input file
-- duplicates_against_existing.txt: logs duplicates (name as key) found in xml input file against csv input file
+- duplicated_values_in_new_entries_csv_file.txt: logs duplicates (name as key) found within csv input file
+- duplicated_values_new_entries_against_existing.txt: logs duplicates (name as key) found in xml input file against csv input file
+- updated_selectable_entries.txt: logs the existing entries updated from selectable: False to True
+- preserve_selectable_values.txt: logs the existing entries with preserved selectable: False
 
 List ([]):
 Ordered: Maintains the order in which elements are added.
@@ -155,7 +157,7 @@ def remove_duplicates_against_existing(output_folder, existing_entries, new_entr
     unique_new_entries = [] # List of new entries not in existing entries
     duplicates = [] # List of duplicates from new entries against existing entries
     updated_entries = []  # To keep track of entries updated from selectable: False to True - for log
-    keep_entries = []  # To keep track of entries with selectable: False - for log
+    keep_selectable_values = []  # To keep track of entries with selectable: False - for log
 
     for entry in new_entries:
         if entry['name'] in existing_names:
@@ -166,7 +168,7 @@ def remove_duplicates_against_existing(output_folder, existing_entries, new_entr
                 updated_entries.append(existing_names[entry['name']])
             # Check if we need to keep the 'selectable' field to false
             if existing_names[entry['name']].get('selectable') == 'false' and preserve_selectable_value:
-                keep_entries.append(existing_names[entry['name']])
+                keep_selectable_values.append(existing_names[entry['name']])
         else:
             unique_new_entries.append(entry)
 
@@ -176,6 +178,13 @@ def remove_duplicates_against_existing(output_folder, existing_entries, new_entr
         with open(updated_selectable_entries_file_path, 'w', encoding='utf-8') as file:
             for updated_entry in updated_entries:
                 file.write(f"{updated_entry['name']}: selectable updated to True\n")
+
+    # Optionally, log the kept entries
+    if keep_selectable_values:
+        preserve_selectable_values_file_path = os.path.join(output_folder, 'preserve_selectable_values.txt')
+        with open(preserve_selectable_values_file_path, 'w', encoding='utf-8') as file:
+            for keep_entry in keep_selectable_values:
+                file.write(f"{keep_entry['name']}: selectable value is kept to False\n")
 
     # Log the brand new entries
     unique_new_entries_file = os.path.join(output_folder, 'unique_new_entries.txt')
