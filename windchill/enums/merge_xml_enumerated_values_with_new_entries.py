@@ -16,6 +16,12 @@ options:
   -po, --preserve_original_order
                         OPTIONAL (if -p not used, reorder all entries per name) Preserve the original order of entries & appending    
                         new ones at the end
+  -pes, --preserve_existing_selectable_value
+                        OPTIONAL (if -pes not used, selectable value updated to true on existing entries matching new entries) Preserve the original selectable value of existing entries matching new entries    
+                        new ones at the end
+  -f, --force_new_selectable_false
+                        OPTIONAL (if -f not used, selectable value set to true on new entries added to existing) Force selectable value at false for the new entries added to existing entries
+
 1°) This script merges enumeration definitions from an XML file with new entries from a CSV file, then outputs the updated enumeration to a new file. It supports sorting by name or displayName, and optionally preserves the original order of existing entries.
 - Input XML Enumerated Values: contains one EnumDefView entry with occurrences of EnumMemberView members (export file of enumerated values from Windchill)
 - Input CSV file: csv file with header row [name~displayName~csvlocale_fr] of new enumeration members to insert into xml file
