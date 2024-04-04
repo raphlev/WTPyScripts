@@ -21,6 +21,8 @@ options:
                         new ones at the end
   -f, --force_new_selectable_false
                         OPTIONAL (if -f not used, selectable value set to true on new entries added to existing) Force selectable value at false for the new entries added to existing entries
+  -sso, --same_sort_order_value
+                        OPTIONAL (if -sso not used, sort order is recalculated) Force sort order value to be equal to same value hard-coded to 0
 
 1°) This script merges enumeration definitions from an XML file with new entries from a CSV file, then outputs the updated enumeration to a new file. It supports sorting by name or displayName, and optionally preserves the original order of existing entries.
 - Input XML Enumerated Values: contains one EnumDefView entry with occurrences of EnumMemberView members (export file of enumerated values from Windchill)
@@ -210,7 +212,7 @@ def log_duplicates(duplicates, filename):
             file.write(f"{duplicate['name']}\n")  # Logging only the name for simplicity
             file.write(json.dumps(duplicate, ensure_ascii=False) + "\n")
 
-def generate_output(existing_entries, new_entries, output_folder, sort_by, preserve_order,  preserve_selectable_value, force_new_selectable_false):
+def generate_output(existing_entries, new_entries, output_folder, sort_by, preserve_order,  preserve_selectable_value, force_new_selectable_false, same_sort_order_value):
     # Step 1: Remove duplicates within new_entries
     new_entries = remove_duplicates_against_new_entries(output_folder, new_entries, force_new_selectable_false)
 
@@ -231,6 +233,9 @@ def generate_output(existing_entries, new_entries, output_folder, sort_by, prese
     # Update sort_order based on sorted position
     for index, entry in enumerate(sorted_combined_entries):
         entry['sort_order'] = str(index)
+        if same_sort_order_value:
+            entry['sort_order'] = str("0")
+
 
     # Map to quickly find updated sort_order
     #map_sort_order = {entry['name']: entry['sort_order'] for entry in sorted_combined_entries}
@@ -292,6 +297,7 @@ def main():
     parser.add_argument('-po', '--preserve_original_order', action='store_true', help="OPTIONAL (if -po not used, reorder all entries per name) Preserve the original order of entries & appending new ones at the end")
     parser.add_argument('-pes', '--preserve_existing_selectable_value', action='store_true', help="OPTIONAL (if -ps not used, selectable value updated to true on existing entries matching new entries) Preserve the original selectable value of existing entries matching new entries")
     parser.add_argument('-f', '--force_new_selectable_false', action='store_true', help="OPTIONAL (if -f not used, selectable value set to true on new entries added to existing) Force selectable value at false for the new entries added to existing entries")
+    parser.add_argument('-sso', '--same_sort_order_value', action='store_true', help="OPTIONAL (if -sso not used, sort order is recalculated) Force sort order value to be equal to same value hard-coded to 0")
 
     args = parser.parse_args()
     # Ensure the output folder exists
@@ -303,7 +309,7 @@ def main():
     existing_entries = parse_xml(args.input_xml_file,extracted_xml_file)
     extracted_new_entries_file_path = os.path.join(args.output_folder, 'extracted_new_entries.txt')
     new_entries = read_new_entries(args.new_entries_csv_file,extracted_new_entries_file_path)
-    generate_output(existing_entries, new_entries, args.output_folder, args.sort_by, args.preserve_original_order, args.preserve_existing_selectable_value, args.force_new_selectable_false)
+    generate_output(existing_entries, new_entries, args.output_folder, args.sort_by, args.preserve_original_order, args.preserve_existing_selectable_value, args.force_new_selectable_false, args.same_sort_order_value)
 
 if __name__ == "__main__":
     main()
