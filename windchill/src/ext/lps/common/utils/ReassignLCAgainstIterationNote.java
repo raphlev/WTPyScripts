@@ -84,6 +84,10 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 	/** Part - Manufacturer - Types **/
 	private static final String TYPE_MANUFACTURER_PART_MANUFACTURER_PART = "ext.lps.power.POWERManufacturerPart";
 	private static final String TYPE_MANUFACTURER_PART_STD_REF_PART = "ext.lps.power.POWERStandardReferencePart";
+	
+	/** DEBUG ONLY - WTPart or WTDocument **/
+	private static final String TYPE_PART = "wt.part.WTPart";
+	private static final String TYPE_DOCUMENT = "wt.doc.WTDocument";
 
     // Mapping of types to life cycle templates
 	private static final Map<String, String> lifecycleTemplatesMap = new HashMap<>();
@@ -109,6 +113,9 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
         lifecycleTemplatesMap.put(TYPE_PART_TEST_BENCH, "POWER Design Part LifeCycle"); // Not used Mig1
         lifecycleTemplatesMap.put(TYPE_MANUFACTURER_PART_MANUFACTURER_PART, "POWER Manufacturer Part Life Cycle");
         lifecycleTemplatesMap.put(TYPE_MANUFACTURER_PART_STD_REF_PART, "POWER Standard Reference Part Life Cycle");
+		/** DEBUG ONLY - WTPart or WTDocument **/
+        lifecycleTemplatesMap.put(TYPE_PART, "BasicForReassign");
+        lifecycleTemplatesMap.put(TYPE_DOCUMENT, "BasicForReassign");
         // Populate the map with class-specific information
         classToTypeMapping.put(WTDocument.class, new TypeMappingInfo(WTDocument.TYPE_DEFINITION_REFERENCE + "." + WTAttributeNameIfc.REF_OBJECT_ID, WTDocument.ITERATION_NOTE));
         classToTypeMapping.put(WTPart.class, new TypeMappingInfo(WTPart.TYPE_DEFINITION_REFERENCE + "." + WTAttributeNameIfc.REF_OBJECT_ID, WTPart.ITERATION_NOTE));
@@ -237,73 +244,7 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 		
 		return number;
 	}
-		
 
-
-
-	/**
-	 * Reassign LC of a specific object
-	 * 
-	 * @param isSimulation
-	 * @param object
-	 * @param targetLCTemplateName
-	 */
-	private static void reassignLC2(Boolean isSimulation, Boolean isBulk, RevisionControlled object, String targetLCTemplateName) {
-        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Execute reassignLC with <SIMULATE(TRUE) or RUN(FALSE)> "+ isSimulation.toString()+" with <BULK(TRUE) or SIMPLE(FALSE)> "+ isBulk.toString()+" and <targetLCTemplateName> "+targetLCTemplateName);
-        WTContainerRef containerRef = null;
-		WTArrayList wtList = null;
-		String currentState = "";
-		String currentLCTemplateName = "";
-		String iterationInfo = "";
-		String objectNumber = "";
-		String localizedTypeName = "";
-		String classType = "";
-		try {		
-			if (object!=null) {
-				iterationInfo = object.getIterationDisplayIdentifier().toString();
-				currentState = object.getLifeCycleState().toString();	
-				currentLCTemplateName = object.getLifeCycleTemplate().getName();
-				containerRef = getContainerRef(object);
-				objectNumber = getNumber(object);
-				wtList = new WTArrayList();
-				wtList.add(object);
-				localizedTypeName = TypedUtilityServiceHelper.service.getLocalizedTypeName(TypeIdentifierHelper.getType(object), null);
-	            classType = object.getClass().getSimpleName();
-				if (targetLCTemplateName==null || targetLCTemplateName.equals(currentLCTemplateName) ) {
-			        System.out.println("ReassignLCAgainstIterationNote -- INFO -- SKIPPED - LC Template ("+targetLCTemplateName+") already set for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; " + currentLCTemplateName + " ; " + currentState);
-				} else if (WorkInProgressHelper.isCheckedOut(object)) {
-			        System.out.println("ReassignLCAgainstIterationNote -- ERROR -- CHECKED-OUT for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; " + currentLCTemplateName + " ; " + currentState);
-				} else if (isSimulation==null || isSimulation.booleanValue()) {
-			        System.out.println("ReassignLCAgainstIterationNote -- INFO -- LC Template has been SIMULATED  for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; " + currentLCTemplateName + " ; " + currentState + " -- Relaunch for RUN option to process Re-assign");
-				} else {										
-					// Reassign				
-					LifeCycleHelper.service.reassign(wtList, object.getLifeCycleTemplate(), containerRef, object.getLifeCycleState());
-					object = (RevisionControlled) PersistenceHelper.manager.refresh(object);
-			        System.out.println("ReassignLCAgainstIterationNote -- INFO -- LC Template has been RE-ASSSIGNED for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; " + currentLCTemplateName + " ; " + currentState);				
-				} 				
-			}										
-		} catch (Throwable th) {
-	        System.out.println("ReassignLCAgainstIterationNote -- ERROR : " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; " + currentLCTemplateName + " ; " + currentState);
-	        System.out.println("ReassignLCAgainstIterationNote -- ERROR : " + th.getMessage());
-	        th.printStackTrace();
-		}
-
-	}
-	
-	/**
-	 * reassign LC on a specific list of objects
-	 * @param listOfObjectsToReassign
-	 * @param isSimulation
-	 * @param targetLCTemplateName
-	 */
-	private static void reassignLC1 (List<? extends RevisionControlled> listOfObjectsToReassign, Boolean isSimulation, Boolean isBulk, String targetLCTemplateName) {
-		if (listOfObjectsToReassign!=null) {
-			for (RevisionControlled currentObject : listOfObjectsToReassign) {
-				reassignLC2(isSimulation, isBulk, currentObject, targetLCTemplateName);
-			}
-		}
-	}
-	
     /**
      * Reassigns lifecycle state of provided WTObjects based on the simulation mode and bulk operation mode.
      *
@@ -334,7 +275,7 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 				continue;
             }
             if (isSimulation != null && isSimulation) {
-                System.out.println("ReassignLCAgainstIterationNote -- INFO -- Simulation mode: Re-assign would be processed here for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; State: " + currentState + " ; Current template: " + currentLCTemplateName + " ; New template: " + targetLCTemplateName + " -- Relaunch for RUN option to process Re-assign");
+                System.out.println("ReassignLCAgainstIterationNote -- INFO -- Simulation mode: Re-assign would be processed here for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; State: " + currentState + " ; Current template: " + currentLCTemplateName + " ; New template: " + targetLCTemplateName + " -- Relaunch with \"RUN\" option to process Re-assign");
 				
             } else {
                 wtListBulk.add(object); // Add eligible objects to the list for reassignment in case of bulk
@@ -357,7 +298,7 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
             		LifeCycleHelper.service.getLifeCycleTemplateReference(targetLCTemplateName) /* target lifecycle template */, 
             		null /* container ref */, 
             		null /* target state */);
-            System.out.println("Bulk reassignment completed for " + wtListBulk.size() + " objects.");
+            System.out.println("ReassignLCAgainstIterationNote -- INFO -- Bulk reassignment completed for " + wtListBulk.size() + " objects.");
         }
     }
 
@@ -376,7 +317,7 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 				TYPE_DOC_DEF, TYPE_DOC_MANUF, TYPE_DOC_REF, TYPE_DOC_STD,
 				TYPE_PART_STD_CONSUMABLE, TYPE_PART_STD_ELECTRONIC, TYPE_PART_STD_MECHANICAL, TYPE_PART_STD_GENERIC_MATERIAL,
 				TYPE_PART_ELECTRONIC, TYPE_PART_MECHANICAL, TYPE_PART_EQUIPMENT, TYPE_PART_SOFTWARE, TYPE_PART_TOOL, TYPE_PART_TEST_BENCH,
-				TYPE_MANUFACTURER_PART_MANUFACTURER_PART, TYPE_MANUFACTURER_PART_STD_REF_PART
+				TYPE_MANUFACTURER_PART_MANUFACTURER_PART, TYPE_MANUFACTURER_PART_STD_REF_PART , TYPE_PART , TYPE_DOCUMENT
 			);
 			if (!validTypes.contains(softType)) {
 				System.out.println("ReassignLCAgainstIterationNote -- ERROR -- main_reassignLC: Unknown softType: " + softType);
@@ -425,7 +366,7 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 		try {
 			
 			// Arguments
-			if (args == null || (args.length!=5)) {
+			if (args == null || (args.length!=6)) {
 				printUsage();
 	            System.exit(1);           	  
 			} else {
@@ -442,10 +383,10 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 					isSimulation = Boolean.FALSE;
 				}	
 				// Bulk/Simple mode
-				Boolean isBulk = Boolean.TRUE;
+				Boolean isBulk = Boolean.FALSE;
 				if ("BULK".equals(args[3])) {
 
-					isBulk = Boolean.FALSE;
+					isBulk = Boolean.TRUE;
 				}	
 				// Soft Type filtering
 				String softType = args[4];			
@@ -455,7 +396,8 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 				Class<?> aClass[] = { Boolean.class, Boolean.class, String.class, String.class};
 				Object argsObj[] = { isSimulation, isBulk, softType, iterationNote };
 				SessionMgr.getPrincipal();
-		        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Launch ReassignLCAgainstIterationNote with <admin_login> "+args[0]+" <SIMULATE or RUN> "+isBulk.toString()+" <BULK or SIMPLE> "+isBulk.toString()+" <soft_type> "+softType+" <iteration_note> "+iterationNote);
+		        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Execution of ReassignLCAgainstIterationNote with <admin_login> "+args[0]+" <SIMULATE (true) or RUN (false)> "+isBulk.toString()+" <BULK (true) or SIMPLE (false)> "+isBulk.toString()+" <soft_type> "+softType+" <iteration_note> "+iterationNote);
+				System.out.println("ReassignLCAgainstIterationNote -- INFO -- See MethodServer log");
 				rms.invoke("processReassign", ReassignLCAgainstIterationNote.class.getName(), null, aClass, argsObj);
 				System.exit(0);
 			}
@@ -472,12 +414,12 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
      * 
      **/
     private static void printUsage() {
-        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Usage: ReassignLCAgainstIterationNote <admin_login> <password> <simulate_or_run> <soft_type> <iteration_note>");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Usage: ReassignLCAgainstIterationNote <admin_login> <password> <simulate_or_run> <bulk_or_simple> <soft_type> <iteration_note>");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Designed to reassign lifecycle templates for various WTDocuments, WTParts, and ManufacturerParts. It handles objects filtered by their soft type and an iteration note");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 1 = login with admin rights");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 2 = password");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 3 = Can be SIMULATE or RUN");
-        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 4 = Can be BULK or NONE");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 4 = Can be BULK or SIMPLE");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 5 = soft type criteria (ex: ext.lps.power.POWERElectronicDesignPart)");	         
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 6 = iterationNote criteria (ex: %Migration-Zeus% or %Migration-Agile%");	 
     }
