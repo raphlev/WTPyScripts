@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!DOCTYPE NmLoader SYSTEM "standard12_1.dtd">
+<NmLoader>
+	<csvCreateWTOrganization handler="wt.org.LoadPrincipal.createWTOrganization">
+		<csvname>CENELEC Electronic Components Committee</csvname>
+		<csvcodingSystem>0141</csvcodingSystem>
+		<csvorganizationId>CECC</csvorganizationId>
+		<csvdescription/>
+		<csvaddress></csvaddress>
+		<csvconferencingURL/>
+		<csvconferencingId/>
+		<csvdomain/>
+		<csvinternetDomain/>
+		<csvclassification/>
+		<csvdirectoryService/>
+	</csvCreateWTOrganization>
+	<csvCreateWTOrganization handler="wt.org.LoadPrincipal.createWTOrganization">
+		<csvname>The American Society of Mechanical Engineers</csvname>
+		<csvcodingSystem>0141</csvcodingSystem>
+		<csvorganizationId>ASME</csvorganizationId>
+		<csvdescription/>
+		<csvaddress></csvaddress>
+		<csvconferencingURL/>
+		<csvconferencingId/>
+		<csvdomain/>
+		<csvinternetDomain/>
+		<csvclassification/>
+		<csvdirectoryService/>
+	</csvCreateWTOrganization>
+	<csvCreateWTOrganization handler="wt.org.LoadPrincipal.createWTOrganization">
+		<csvname>Государственный стандарт (GOST)</csvname>
+		<csvcodingSystem>0141</csvcodingSystem>
+		<csvorganizationId>GOST</csvorganizationId>
+		<csvdescription/>
+		<csvaddress></csvaddress>
+		<csvconferencingURL/>
+		<csvconferencingId/>
+		<csvdomain/>
+		<csvinternetDomain/>
+		<csvclassification/>
+		<csvdirectoryService/>
+	</csvCreateWTOrganization>
+</NmLoader>

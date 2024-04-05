@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE NmLoader SYSTEM "standard12_1.dtd">
+<NmLoader>
+  <csvReportTemplate handler="wt.query.template.LoadReportTemplate.createReportTemplate">
+    <csvfolder>/System</csvfolder>
+    <csvname>POWER Mechanical Design Parts With Manufacturer Parts For Migration</csvname>
+    <csvdescription></csvdescription>
+    <csvxml>ext/migration/reports_for_agile_zeus/POWER_Mechanical_Design_Parts_With_Manufacturer_Parts_For_Migration.qml</csvxml>
+    <csvurl1></csvurl1>
+    <csvurl2></csvurl2>
+    <csvxslType>DEL</csvxslType>
+    <csvservice>HTMLWithSorting</csvservice>
+    <csvcontainerPath>/</csvcontainerPath>
+    <csvresourceBundle></csvresourceBundle>
+    <csvinputPage></csvinputPage>
+    <csvcustomActionModel></csvcustomActionModel>
+    <csvexposeasreport>true</csvexposeasreport>
+    <csvupdate>true</csvupdate>
+  </csvReportTemplate>
+  <csvCreateReport handler="com.ptc.windchill.enterprise.report.LoadReport.createReport">
+    <csvname>POWER Mechanical Design Parts With Manufacturer Parts For Migration</csvname>
+    <csvcontainerPath>/</csvcontainerPath>
+    <csvdescription></csvdescription>
+    <csvinputPage></csvinputPage>
+    <csvresourceBundle></csvresourceBundle>
+    <csvuiContext>4</csvuiContext>
+    <csvfolderPath></csvfolderPath>
+    <csvthirdPartyReport>0</csvthirdPartyReport>
+    <csvreadyForUse>true</csvreadyForUse>
+    <csvsoapClass></csvsoapClass>
+    <csvsoapMethod></csvsoapMethod>
+    <csvreportTemplateName>POWER Mechanical Design Parts With Manufacturer Parts For Migration</csvreportTemplateName>
+    <csvreportTemplateContainerPath>/</csvreportTemplateContainerPath>
+    <csvupdate>true</csvupdate>
+  </csvCreateReport>
+</NmLoader>

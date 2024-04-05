@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE loadFileList SYSTEM "/wt/load/windchillLoad.dtd">
+
+<!-- List of files to load for Agile or Zeus Migration -->
+<loadFileList containerPath="/">		
+		
+		<!-- Agile - New Products -->
+		<loadFile filename="ext/migration/products_for_agile/POWERNewAgileProductLoader.xml" containerPath="/wt.inf.container.OrgContainer=sep"/>
+		<loadFile filename="ext/migration/products_for_agile/POWERNewAgileProductAssignViewerRole.xml"/>
+	
+
+		<!-- Suppliers -->
+		<loadFile filename="ext/migration/suppliers_for_zeus/LoadOrganizations_For_Migration_Manufacturers.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/suppliers_for_zeus/LoadManufacturers_For_Migration_Manufacturers.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/suppliers_for_zeus/LoadOrganizations_For_Migration_StandardAuthority.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/suppliers_for_zeus/LoadManufacturers_For_Migration_StandardAuthority.xml"/><!-- Zeus -->		
+	
+		<!-- Agile & Zeus - New Legacy values for NumericStateBased : "-" and "A" - Test Migration Run 1 -->
+		<loadFile filename="ext/lps/LoadSeries.xml"/>
+		
+		<!-- Enumerations -->
+		<loadFile filename="ext/lps/power/globalenumerations/POWERDesignSites.xml"/><!-- Agile & Zeus : add Chatou and update Reau display name to Créteil-->
+		<loadFile filename="ext/lps/power/globalenumerations/POWERProductLines.xml"/><!-- Agile : add missing Agile values as Selectable = False (Mapping_SEP_V11_Agile_TestMig1)-->
+		<loadFile filename="ext/lps/power/globalenumerations/POWERTypeArticleMechanical.xml"/><!-- Agile : add missing Agile values as Selectable = False (Mapping_SEP_V11_Agile_TestMig1)-->
+		<loadFile filename="ext/lps/power/globalenumerations/POWERTypeArticleTool.xml"/><!-- Agile : add missing Agile values as Selectable = False (Mapping_SEP_V11_Agile_TestMig1)-->
+
+		<!-- Lifecycles -->
+		<loadFile filename="ext/migration/lifecycles_for_agile_zeus/POWERStandardComponentDocumentForMigrationLifeCycle.xml"/><!-- Zeus -->
+
+		<!-- Reports -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Electronic_Standard_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Mechanical_Standard_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Consumable_Standard_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Generic_Material_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Electronic_Standard_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Mechanical_Standard_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Consumable_Standard_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Generic_Material_Parts_For_Migration_Reports.xml"/><!-- Zeus -->
+
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Electronic_Standard_Parts_With_Documents_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Mechanical_Standard_Parts_With_Documents_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Consumable_Standard_Parts_With_Documents_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Generic_Material_Parts_With_Documents_For_Migration_Reports.xml"/><!-- Zeus -->
+
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Standard_Component_Documents_For_Migration_Reports.xml"/><!-- Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Reference_Document_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Manufacturing_Document_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Definition_Document_For_Migration_Reports.xml"/><!-- Agile -->
+
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Manufacturer_Part_With_Documents_For_Migration_Reports.xml"/><!-- Agile & Zeus -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Standard_Reference_Part_With_Documents_For_Migration_Reports.xml"/><!-- Agile & Zeus -->
+
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Electronic_Design_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Mechanical_Design_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Software_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Tool_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Equipment_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Electronic_Design_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Mechanical_Design_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Software_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Tool_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Agile -->
+		<loadFile filename="ext/migration/reports_for_agile_zeus/POWER_Equipment_Parts_With_Manufacturer_Parts_For_Migration_Reports.xml"/><!-- Agile -->		
+		<!-- Reports - Remaining for Agile -->
+		<!-- DesignParts with Docs (1 link Part to DocMaster PartDocLink + 1 link Part to DocMaster PartRefLink ) -->
+		
+	
+</loadFileList>

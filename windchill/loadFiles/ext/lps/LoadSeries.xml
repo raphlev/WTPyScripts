@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE NmLoader SYSTEM "standard12_1.dtd">
+<NmLoader>
+	<csvCreateFileBasedBegin handler="wt.series.LoadFileBasedSeries.createFileBasedBegin">
+		<csvfileName>ext/lps/StateBasedVersioning.xml</csvfileName>
+	</csvCreateFileBasedBegin>
+</NmLoader>

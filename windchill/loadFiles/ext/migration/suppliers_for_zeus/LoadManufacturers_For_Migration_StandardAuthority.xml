@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE NmLoader SYSTEM "standard12_1.dtd">
+<NmLoader>
+	<csvCreateSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.createSupplier">
+		<csvSupplierType>MANUFACTURER</csvSupplierType>
+		<csvorganization>CENELEC Electronic Components Committee</csvorganization>
+		<csvdomain/>
+		<csvlifecycletemplate>POWER Standard Authority Life Cycle</csvlifecycletemplate>
+		<csvlifecyclestate>APPROVED</csvlifecyclestate>
+		<csvteamTemplate/>
+		<csvtype>com.ptc.windchill.suma.supplier.Manufacturer|ext.lps.LPSManufacturer|ext.lps.power.POWERStandardAuthority</csvtype>
+	</csvCreateSupplier>
+	<csvAddContactToSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.addContactToSupplier">
+		<csvSupplierType>MANUFACTURER</csvSupplierType>
+		<csvorganization>CENELEC Electronic Components Committee</csvorganization>
+		<csvuser/>
+		<csvname>Contact</csvname>
+		<csvdescription/>
+		<csvEmail/>
+		<csvphone></csvphone>
+	</csvAddContactToSupplier>
+	<csvEndSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.endCreateSupplier"/>
+	<csvCreateSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.createSupplier">
+		<csvSupplierType>MANUFACTURER</csvSupplierType>
+		<csvorganization>The American Society of Mechanical Engineers</csvorganization>
+		<csvdomain/>
+		<csvlifecycletemplate>POWER Standard Authority Life Cycle</csvlifecycletemplate>
+		<csvlifecyclestate>APPROVED</csvlifecyclestate>
+		<csvteamTemplate/>
+		<csvtype>com.ptc.windchill.suma.supplier.Manufacturer|ext.lps.LPSManufacturer|ext.lps.power.POWERStandardAuthority</csvtype>
+	</csvCreateSupplier>
+	<csvAddContactToSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.addContactToSupplier">
+		<csvSupplierType>MANUFACTURER</csvSupplierType>
+		<csvorganization>The American Society of Mechanical Engineers</csvorganization>
+		<csvuser/>
+		<csvname>Contact</csvname>
+		<csvdescription/>
+		<csvEmail/>
+		<csvphone></csvphone>
+	</csvAddContactToSupplier>
+	<csvEndSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.endCreateSupplier"/>
+	<csvCreateSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.createSupplier">
+		<csvSupplierType>MANUFACTURER</csvSupplierType>
+		<csvorganization>Государственный стандарт (GOST)</csvorganization>
+		<csvdomain/>
+		<csvlifecycletemplate>POWER Standard Authority Life Cycle</csvlifecycletemplate>
+		<csvlifecyclestate>APPROVED</csvlifecyclestate>
+		<csvteamTemplate/>
+		<csvtype>com.ptc.windchill.suma.supplier.Manufacturer|ext.lps.LPSManufacturer|ext.lps.power.POWERStandardAuthority</csvtype>
+	</csvCreateSupplier>
+	<csvAddContactToSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.addContactToSupplier">
+		<csvSupplierType>MANUFACTURER</csvSupplierType>
+		<csvorganization>Государственный стандарт (GOST)</csvorganization>
+		<csvuser/>
+		<csvname>Contact</csvname>
+		<csvdescription/>
+		<csvEmail/>
+		<csvphone></csvphone>
+	</csvAddContactToSupplier>
+	<csvEndSupplier handler="com.ptc.windchill.suma.supplier.LoadSupplier.endCreateSupplier"/>
+</NmLoader>

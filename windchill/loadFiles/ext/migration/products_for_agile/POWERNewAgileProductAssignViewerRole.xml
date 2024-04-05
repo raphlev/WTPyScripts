@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!DOCTYPE NmLoader SYSTEM "standard12_1.dtd">
+<NmLoader>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>AGUSTA Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>AGUSTA Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>AIRBUS Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>AIRBUS HELICOPTERS Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>AIRBUS HELICOPTERS Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>AIRBUS Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>BELL Dual Use</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>BOEING Dual Use</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>BOEING ITAR</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>BOMBARDIER Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>COMAC Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DASSAULT Dual Use</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<!-- DASSAULT Military already exists-->
+	<!--
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DASSAULT Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	-->
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DIVERS Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DIVERS Dual Use</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DIVERS ITAR</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DIVERS Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>DORNIER Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>EMBRAER Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>EMBRAER EAR 600</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>EMBRAER Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>ENGINEUS Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>GULFSTREAM Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>HAL Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>SAAB Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>SAAB Military</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>SIKORSKY Dual Use</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>SIKORSKY ITAR</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
+		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
+		<csvcontainerName>SUKHOI Civil</csvcontainerName>
+		<csvrole>VIEWER</csvrole>
+		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
+		<csvserviceName></csvserviceName>
+	</csvAddPrincipalToRole>
+</NmLoader>
