@@ -85,16 +85,13 @@
 		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
 		<csvserviceName></csvserviceName>
 	</csvAddPrincipalToRole>
-	<!-- DASSAULT Military already exists-->
-	<!--
 	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
 		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
-		<csvcontainerName>DASSAULT Military</csvcontainerName>
+		<csvcontainerName>DASSAULT Military POWER</csvcontainerName>
 		<csvrole>VIEWER</csvrole>
 		<csvprincipalNameOrDN>POWER_Users</csvprincipalNameOrDN>
 		<csvserviceName></csvserviceName>
 	</csvAddPrincipalToRole>
-	-->
 	<csvAddPrincipalToRole handler="wt.inf.team.LoadContainerTeam.addPrincipalToRole">
 		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
 		<csvcontainerName>DIVERS Civil</csvcontainerName>

@@ -16998,10 +16998,10 @@ To load this file, the following command can be launched in a Windchill shell:
 	</series>
 	<series name="NumericStateBased">
 		<seed name="NUMERIC">
+			<value legacy="true">-</value><!-- Zeus Agile Migration -->
 			<value legacy="true">0</value>
 			<value legacy="true">00</value>
 			<value legacy="true">/</value>
-			<value legacy="true">-</value><!-- Zeus Agile Migration -->
 			<value>1</value>
 			<value legacy="true">01</value>
 			<value legacy="true">1A</value>

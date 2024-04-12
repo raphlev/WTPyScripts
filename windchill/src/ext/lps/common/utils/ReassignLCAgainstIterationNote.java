@@ -12,7 +12,6 @@ import com.ptc.windchill.suma.part.ManufacturerPart;
 
 import wt.doc.WTDocument;
 import wt.enterprise.RevisionControlled;
-import wt.enterprise._RevisionControlled;
 import wt.epm.EPMDocument;
 import wt.fc.Persistable;
 import wt.fc.PersistenceHelper;
@@ -46,12 +45,12 @@ import wt.vc.wip.WorkInProgressHelper;
  * The lifecycle reassignment process is conditional upon the type of object (document, part, manufacturer part)
  * and ensures that the correct lifecycle template is applied based on the object's soft type. 
  * The class allows for both simulation and execution modes.
- * The class allows for using bulk API or simple API from Windchill.
+ * The class allows for using bulk API (List of objects) or simple API (object level) from Windchill.
  * * 
  * Compile in Windchill Shell:
  * D:\ptc\Windchill_12.1\Windchill> ant -f bin/tools.xml class -Dclass.source=D:\\ptc\\Windchill_12.1\\Windchill\\src\\ext\\lps\\common\\utils -Dclass.includes=ReassignLCAgainstIterationNote.java
- * D:\ptc\Windchill_12.1\Windchill> windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** SIMULATE SIMPLE ext.lps.power.POWERMechanicalStandardPart "%Migration-Zeus%"
- * D:\ptc\Windchill_12.1\Windchill> windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERMechanicalStandardPart "%Migration-Zeus%"
+ * D:\ptc\Windchill_12.1\Windchill> windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** SIMULATE SIMPLE ext.lps.power.POWERMechanicalStandardPart "Migration-Zeus"
+ * D:\ptc\Windchill_12.1\Windchill> windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERMechanicalStandardPart "Migration-Zeus"
  * 
  * Authored by Raphael Leveque
  *
@@ -164,7 +163,8 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 
         // select by given iteration note
         query.appendAnd();
-        query.appendWhere(new SearchCondition(clazz, mappingInfo.iterationNoteField, SearchCondition.LIKE, iterationNote), new int[]{idxObject});
+        //query.appendWhere(new SearchCondition(clazz, mappingInfo.iterationNoteField, SearchCondition.LIKE, iterationNote), new int[]{idxObject});
+        query.appendWhere(new SearchCondition(clazz, mappingInfo.iterationNoteField, SearchCondition.LIKE, "%" + iterationNote + "%"), new int[]{idxObject});
 
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Query for " + clazz.getSimpleName() + ": " + query.toString());
 
@@ -283,9 +283,9 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
     				// Reassign	unique object in case of not bulk
                 	WTArrayList uniqueObjectList = new WTArrayList();
                 	uniqueObjectList.add(object);
-					LifeCycleHelper.service.reassign(uniqueObjectList, object.getLifeCycleTemplate(), containerRef, object.getLifeCycleState());
+					LifeCycleHelper.service.reassign(uniqueObjectList, LifeCycleHelper.service.getLifeCycleTemplateReference(targetLCTemplateName), containerRef, object.getLifeCycleState());
 					object = (RevisionControlled) PersistenceHelper.manager.refresh(object);
-			        System.out.println("ReassignLCAgainstIterationNote -- INFO -- LC Template has been RE-ASSSIGNED for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; " + currentLCTemplateName + " ; " + currentState);
+			        System.out.println("ReassignLCAgainstIterationNote -- INFO -- LC Template has been RE-ASSSIGNED for " + classType + " ; " + localizedTypeName + " ; " + objectNumber + " ; " + iterationInfo + " ; State: " + currentState + " ; Current template: " + currentLCTemplateName + " to new template " + targetLCTemplateName);
 			        //// object.getIdentifier()
                 }
             }
@@ -396,7 +396,7 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
 				Class<?> aClass[] = { Boolean.class, Boolean.class, String.class, String.class};
 				Object argsObj[] = { isSimulation, isBulk, softType, iterationNote };
 				SessionMgr.getPrincipal();
-		        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Execution of ReassignLCAgainstIterationNote with <admin_login> "+args[0]+" <SIMULATE (true) or RUN (false)> "+isBulk.toString()+" <BULK (true) or SIMPLE (false)> "+isBulk.toString()+" <soft_type> "+softType+" <iteration_note> "+iterationNote);
+		        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Execution of ReassignLCAgainstIterationNote with <admin_login> "+args[0]+" <SIMULATE (true) or RUN (false)> "+isSimulation.toString()+" <BULK (true) or SIMPLE (false)> "+isBulk.toString()+" <soft_type> "+softType+" <iteration_note> "+iterationNote);
 				System.out.println("ReassignLCAgainstIterationNote -- INFO -- See MethodServer log");
 				rms.invoke("processReassign", ReassignLCAgainstIterationNote.class.getName(), null, aClass, argsObj);
 				System.exit(0);
@@ -415,13 +415,35 @@ public class ReassignLCAgainstIterationNote implements RemoteAccess {
      **/
     private static void printUsage() {
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Usage: ReassignLCAgainstIterationNote <admin_login> <password> <simulate_or_run> <bulk_or_simple> <soft_type> <iteration_note>");
-        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Designed to reassign lifecycle templates for various WTDocuments, WTParts, and ManufacturerParts. It handles objects filtered by their soft type and an iteration note");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Designed to reassign lifecycle templates for various WTDocuments, WTParts, and ManufacturerParts. It handles objects filtered by their soft type and an iteration note.");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- It ensures that the correct lifecycle template is applied based on the object's soft type.");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- It allows for both simulation and execution modes.");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- It allows for using bulk API (List of objects) or simple API (object level) from Windchill.");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 1 = login with admin rights");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 2 = password");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 3 = Can be SIMULATE or RUN");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 4 = Can be BULK or SIMPLE");
         System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 5 = soft type criteria (ex: ext.lps.power.POWERElectronicDesignPart)");	         
-        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 6 = iterationNote criteria (ex: %Migration-Zeus% or %Migration-Agile%");	 
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Arg 6 = iterationNote criteria (ex: Migration-Zeus or Migration-Agile");	 
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Examples of command (SIMULATE mode):");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** SIMULATE BULK ext.lps.power.POWERMechanicalStandardPart \"Migration-Zeus");	
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- Examples of command (RUN modes)");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERDefinitionDocument \"Migration-Agile");	
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERManufacturingDocument \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERReferenceDocument \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERStandardComponentDocument \"Migration-Zeus");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERConsumableStandardPart \"Migration-Zeus");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERElectronicStandardPart \"Migration-Zeus");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERMechanicalStandardPart \"Migration-Zeus");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERGenericMaterialPart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERElectronicDesignPart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERMechanicalDesignPart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWEREquipmentPart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERSoftwarePart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERToolPart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERTestBenchPart \"Migration-Agile");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERManufacturerPart \"Migration-Zeus");
+        System.out.println("ReassignLCAgainstIterationNote -- INFO -- windchill ext.lps.common.utils.ReassignLCAgainstIterationNote wcadmin ***** RUN BULK ext.lps.power.POWERStandardReferencePart \"Migration-Zeus");
     }
 
 }
