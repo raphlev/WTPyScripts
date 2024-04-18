@@ -3,9 +3,9 @@
 <NmLoader>
   <csvReportTemplate handler="wt.query.template.LoadReportTemplate.createReportTemplate">
     <csvfolder>/System</csvfolder>
-    <csvname>POWER Generic Material Parts For Migration</csvname>
+    <csvname>POWER Standard Reference Part For Migration</csvname>
     <csvdescription></csvdescription>
-    <csvxml>ext/migration/reports_for_agile_zeus/POWER_Generic_Material_Parts_For_Migration.qml</csvxml>
+    <csvxml>ext/migration/reports_for_agile_zeus/POWER_Standard_Reference_Part_For_Migration.qml</csvxml>
     <csvxslType>DEL</csvxslType>
     <csvservice>HTMLWithSorting</csvservice>
     <csvcontainerPath>/</csvcontainerPath>
@@ -18,7 +18,7 @@
     <csvcustomActionModel></csvcustomActionModel>
   </csvReportTemplate>
   <csvCreateReport handler="com.ptc.windchill.enterprise.report.LoadReport.createReport">
-    <csvname>POWER Generic Material Parts For Migration</csvname>
+    <csvname>POWER Standard Reference Part For Migration</csvname>
     <csvcontainerPath>/</csvcontainerPath>
     <csvdescription></csvdescription>
     <csvinputPage></csvinputPage>
@@ -29,7 +29,7 @@
     <csvreadyForUse>true</csvreadyForUse>
     <csvsoapClass></csvsoapClass>
     <csvsoapMethod></csvsoapMethod>
-    <csvreportTemplateName>POWER Generic Material Parts For Migration</csvreportTemplateName>
+    <csvreportTemplateName>POWER Standard Reference Part For Migration</csvreportTemplateName>
     <csvreportTemplateContainerPath>/</csvreportTemplateContainerPath>
     <csvupdate>true</csvupdate>
     <csvreportingSystem></csvreportingSystem>

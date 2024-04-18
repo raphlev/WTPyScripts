@@ -205,11 +205,9 @@
 		<csvorganization/>
 		<csvcreatorSelector/>
 	</csvContainer>
-	<!-- DASSAULT Military already exists-->
-	<!--
 	<csvContainer handler="wt.inf.container.LoadContainer.createContainer">
 		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
-		<csvcontainerName>DASSAULT Military</csvcontainerName>
+		<csvcontainerName>DASSAULT Military POWER</csvcontainerName>
 		<csvsharedTeamName/>
 		<csvcontainerExtendable>true</csvcontainerExtendable>
 		<csvparentContainerPath/>
@@ -224,7 +222,6 @@
 		<csvorganization/>
 		<csvcreatorSelector/>
 	</csvContainer>
-	-->
 	<csvContainer handler="wt.inf.container.LoadContainer.createContainer">
 		<csvcontainerClass>wt.pdmlink.PDMLinkProduct</csvcontainerClass>
 		<csvcontainerName>DIVERS Civil</csvcontainerName>

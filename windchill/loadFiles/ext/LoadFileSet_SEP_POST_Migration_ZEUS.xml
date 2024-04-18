@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE loadFileList SYSTEM "/wt/load/windchillLoad.dtd">
+
+<!-- List of files to load for Agile or Zeus Migration -->
+<loadFileList containerPath="/">		
+		
+		<!-- OIRs set SEP default -->
+		<loadFile filename="ext/lps/power/document/oirs/POWERStandardComponentDocumentOIR.xml"/><!-- Zeus -->
+
+	
+</loadFileList>

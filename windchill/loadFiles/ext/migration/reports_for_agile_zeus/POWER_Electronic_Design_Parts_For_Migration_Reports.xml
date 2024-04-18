@@ -6,16 +6,16 @@
     <csvname>POWER Electronic Design Parts For Migration</csvname>
     <csvdescription></csvdescription>
     <csvxml>ext/migration/reports_for_agile_zeus/POWER_Electronic_Design_Parts_For_Migration.qml</csvxml>
-    <csvurl1></csvurl1>
-    <csvurl2></csvurl2>
     <csvxslType>DEL</csvxslType>
     <csvservice>HTMLWithSorting</csvservice>
     <csvcontainerPath>/</csvcontainerPath>
-    <csvresourceBundle></csvresourceBundle>
+    <csvurl1></csvurl1>
+    <csvurl2></csvurl2>
     <csvinputPage></csvinputPage>
-    <csvcustomActionModel></csvcustomActionModel>
+    <csvresourceBundle></csvresourceBundle>
     <csvexposeasreport>true</csvexposeasreport>
     <csvupdate>true</csvupdate>
+    <csvcustomActionModel></csvcustomActionModel>
   </csvReportTemplate>
   <csvCreateReport handler="com.ptc.windchill.enterprise.report.LoadReport.createReport">
     <csvname>POWER Electronic Design Parts For Migration</csvname>
@@ -23,8 +23,8 @@
     <csvdescription></csvdescription>
     <csvinputPage></csvinputPage>
     <csvresourceBundle></csvresourceBundle>
-    <csvuiContext>4</csvuiContext>
-    <csvfolderPath></csvfolderPath>
+    <csvuiContext>5</csvuiContext>
+    <csvfolderPath> ((null))</csvfolderPath>
     <csvthirdPartyReport>0</csvthirdPartyReport>
     <csvreadyForUse>true</csvreadyForUse>
     <csvsoapClass></csvsoapClass>
@@ -32,5 +32,7 @@
     <csvreportTemplateName>POWER Electronic Design Parts For Migration</csvreportTemplateName>
     <csvreportTemplateContainerPath>/</csvreportTemplateContainerPath>
     <csvupdate>true</csvupdate>
+    <csvreportingSystem></csvreportingSystem>
+    <csvcriteriaPage></csvcriteriaPage>
   </csvCreateReport>
 </NmLoader>
