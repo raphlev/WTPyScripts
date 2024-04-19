@@ -378,7 +378,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -397,7 +397,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -416,7 +416,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -435,7 +435,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -454,7 +454,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -473,7 +473,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -511,7 +511,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -663,7 +663,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -948,7 +948,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1043,7 +1043,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1062,7 +1062,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>

@@ -1,6 +1,12 @@
 import re
 from difflib import SequenceMatcher
 
+# Author Raphael Leveque
+# Using a reference file containing list of values to compare with,
+#  from lookup file containing list of values to look for,
+#  find the best matching value with highest sequence matcher score
+#  report results with score indice
+
 # Normalize a string for comparison
 def normalize_string(s):
     # Replace hyphens, slashes, and spaces with a single hyphen and convert to lowercase

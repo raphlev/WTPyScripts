@@ -26,12 +26,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40000</csvvalue>
+      <csvvalue>40000-PIECES SUR PLAN RUNGIS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -45,12 +45,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40B0</csvvalue>
+      <csvvalue>40B0-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -83,12 +83,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40B0</csvvalue>
+      <csvvalue>4AB0-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -140,12 +140,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4AB0</csvvalue>
+      <csvvalue>4AY0-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -406,12 +406,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4EE0</csvvalue>
+      <csvvalue>4EE0-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -482,12 +482,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4F00</csvvalue>
+      <csvvalue>4F00-TETES DE VOYANTS F</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -615,12 +615,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4H00</csvvalue>
+      <csvvalue>4H00-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -634,12 +634,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4HR0</csvvalue>
+      <csvvalue>4HR0-DIVERS ELECTRO-MECANIQUE</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -691,12 +691,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4IR0</csvvalue>
+      <csvvalue>4IR0-INTERDITS DE RELEVAGE</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -805,12 +805,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4MC0</csvvalue>
+      <csvvalue>4MC0-MODULES</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -843,12 +843,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4NA0</csvvalue>
+      <csvvalue>4NA0-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -900,12 +900,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4NM0</csvvalue>
+      <csvvalue>4NM0-PIECES COMMUNES</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -938,12 +938,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4NV0</csvvalue>
+      <csvvalue>4NV0-FEU DE NAV ET FORMATION</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1128,12 +1128,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4R00</csvvalue>
+      <csvvalue>4R00-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1204,12 +1204,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4RE0</csvvalue>
+      <csvvalue>4RE0-TETES DE VOYANTS (TYPE 100R)</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1394,12 +1394,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4TE0</csvvalue>
+      <csvvalue>4TE0-TETES DE VOYANTS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1527,12 +1527,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4VF0</csvvalue>
+      <csvvalue>4VF0-CORPS INDICATEURS LUMINEUX (TYPE 100VF)</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -1698,12 +1698,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4Z00</csvvalue>
+      <csvvalue>4Z00-TETES DE VOYANTS (TYPE 300Z ET DERIVES)</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>

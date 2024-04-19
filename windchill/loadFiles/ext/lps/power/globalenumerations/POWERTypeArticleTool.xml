@@ -26,12 +26,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40000</csvvalue>
+      <csvvalue>40UB-OUTILLAGE CLS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
@@ -64,12 +64,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4AY0</csvvalue>
+      <csvvalue>4BE0-BANCS D'ESSAIS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
