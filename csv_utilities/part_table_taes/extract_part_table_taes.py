@@ -5,7 +5,7 @@ def process_file(input_file, output_file):
     """
     Process the input file to extract electronic part information,
     ensuring no duplicate taes_numbers and that entries are sorted by taes_number.
-    Author: xxx
+    Author: Raphael Leveque
 
     Args:
     input_file (str): Path to the input file.
@@ -43,11 +43,18 @@ def process_file(input_file, output_file):
 
                    # Correcting the specific handling of the ACCESSOIRE field
                     acc_index = headers.index("ACCESSOIRE (OPT='-')=PART_NUMBER")
-                    # Regex to extract everything after the last single quote in the specific field
-                    # TBD: solution1, solution2, or which solution?
-                    # solution1: keep full value to avoid duplicates with ACCESSOIRE SOCKET, SUPCCJ32_SANS_PIONS,  etc..
+                    # Check if the value does not contains -'=' substring
+                    # in this case additional number is inserted and PN number is a duplicate value from another part name
+                    # such value must be skipped : TBC !!!
+                    accessory_value = values[acc_index]
+                    if not"-'='" in accessory_value:
+                        print(f"Skipping entry with disallowed ACCESSOIRE PN - {accessory_value} - in {part_name} part name - to avoid PN duplicate from other part name")
+                        continue  # Skip this entry completely to avoid duplicates with ACCESSOIRE SOCKET, SUPCCJ32_SANS_PIONS,  etc..
+
+                    # Regex to extract only PN value
+                    # solution1: keep PN value and remove -'=' substring - any value not containing -'=' is skipped by previous rule
                     values[acc_index] = re.sub("-'='", "", values[acc_index])
-                    # solution2: keep only last PART_NUMBER but contains duplicates, see log
+                    # solution2: keep value after last ' char
                     #values[acc_index] = re.search(r"'.*?'([^']*)$", values[acc_index]).group(1)
                     
                     if len(values) != len(headers):
