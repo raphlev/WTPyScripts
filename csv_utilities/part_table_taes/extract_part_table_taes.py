@@ -48,7 +48,7 @@ def process_file(input_file, output_file):
                     # such value must be skipped : TBC !!!
                     accessory_value = values[acc_index]
                     if not"-'='" in accessory_value:
-                        print(f"Skipping entry with disallowed ACCESSOIRE PN - {accessory_value} - in {part_name} part name - to avoid PN duplicate from other part name")
+                        print(f"Warning: part_number with ACCESSOIRE < {accessory_value} > found in < {part_name} > part name. Not added to output.")
                         continue  # Skip this entry completely to avoid duplicates with ACCESSOIRE SOCKET, SUPCCJ32_SANS_PIONS,  etc..
 
                     # Regex to extract only PN value
@@ -67,7 +67,7 @@ def process_file(input_file, output_file):
                     try:
                         taes_number = data['ACCESSOIRE (OPT=\'-\')=PART_NUMBER']
                         if taes_number in entries:
-                            print(f"Warning: Duplicate taes_number '{taes_number}' found. Not added to output.")
+                            print(f"Warning: DUPLICATE taes_number < {taes_number} > found in < {part_name} > part name. Not added to output.")
                         else:
                             entry = f"{taes_number}{sep_output_file}{part_name}{sep_output_file}{data['JEDEC_TYPE']}{sep_output_file}{data['ALT_SYMBOLS'].strip('()')}\n"
                             entries[taes_number] = entry
@@ -85,6 +85,7 @@ def process_file(input_file, output_file):
         #    outfile.write(entry)
         for taes_number in sorted(entries):#by default sorts the dictionary by its keys
             outfile.write(entries[taes_number])
+            #print(f"Entry: {entries[taes_number].strip()}")
 
         print("Processing complete.")
 
