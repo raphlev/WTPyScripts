@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE NmLoader
-  SYSTEM "standard12_1.dtd">
+  SYSTEM "standardX24.dtd">
 <NmLoader>
    <csvTypeNodeIconRoot handler="com.ptc.core.lwc.server.TypeDefinitionLoader.getIconRoot">
       <csviconRoot></csviconRoot>

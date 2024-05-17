@@ -19,7 +19,7 @@ def process_file(input_file, output_file):
         sep_input_file = '|'
         sep_output_file = ';'
         # write header output file
-        outfile.write('taes_number'+sep_output_file+'HDLSChematicSymbol'+sep_output_file+'AllegroFootprint'+'AltSymbols\n')
+        outfile.write('taes_number'+sep_output_file+'HDLSChematicSymbol'+sep_output_file+'AllegroFootprint'+sep_output_file+'AltSymbols\n')
 
         for line in infile:
             if 'PART ' in line:

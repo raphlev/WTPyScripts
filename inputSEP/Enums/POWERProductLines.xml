@@ -24,7 +24,7 @@
       <csvname>autoSort</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>true</csvvalue>
-   </csvPropertyValue>
+   </csvPropertyValue>				  
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
       <csvname>A11</csvname>
    </csvBeginEnumMemberView>
@@ -247,6 +247,11 @@
       <csvisDefault>false</csvisDefault>
       <csvvalue>true</csvvalue>
    </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>11</csvvalue>
+   </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
       <csvname>B2X</csvname>
@@ -373,12 +378,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>0</csvvalue>
+      <csvvalue>18</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -392,12 +397,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>1</csvvalue>
+      <csvvalue>19</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -411,12 +416,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>2</csvvalue>
+      <csvvalue>20</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -430,12 +435,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>3</csvvalue>
+      <csvvalue>21</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -449,12 +454,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>4</csvvalue>
+      <csvvalue>22</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -468,12 +473,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>5</csvvalue>
+      <csvvalue>23</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -492,7 +497,26 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>6</csvvalue>
+      <csvvalue>24</csvvalue>
+   </csvPropertyValue>
+   <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
+   <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
+      <csvname>C4X-</csvname>
+   </csvBeginEnumMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>displayName</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>C4X-DEVPT ESE COCKPIT</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>selectable</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>25</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -511,7 +535,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>18</csvvalue>
+      <csvvalue>26</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -530,7 +554,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>19</csvvalue>
+      <csvvalue>27</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -549,7 +573,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>20</csvvalue>
+      <csvvalue>28</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -568,7 +592,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>21</csvvalue>
+      <csvvalue>29</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -587,7 +611,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>22</csvvalue>
+      <csvvalue>30</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -606,7 +630,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>23</csvvalue>
+      <csvvalue>31</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -625,7 +649,26 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>24</csvvalue>
+      <csvvalue>32</csvvalue>
+   </csvPropertyValue>
+   <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
+   <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
+      <csvname>HDI</csvname>
+   </csvBeginEnumMemberView>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>displayName</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>HDI-DIVERS</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
+      <csvname>selectable</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>33</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -644,7 +687,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>25</csvvalue>
+      <csvvalue>34</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -663,7 +706,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>26</csvvalue>
+      <csvvalue>35</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -682,7 +725,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>27</csvvalue>
+      <csvvalue>36</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -701,7 +744,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>28</csvvalue>
+      <csvvalue>37</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -720,7 +763,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>29</csvvalue>
+      <csvvalue>38</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -739,7 +782,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>30</csvvalue>
+      <csvvalue>39</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -758,7 +801,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>31</csvvalue>
+      <csvvalue>40</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -777,7 +820,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>32</csvvalue>
+      <csvvalue>41</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -793,6 +836,11 @@
       <csvisDefault>false</csvisDefault>
       <csvvalue>true</csvvalue>
    </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>42</csvvalue>
+   </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
       <csvname>MTX</csvname>
@@ -806,6 +854,11 @@
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
       <csvvalue>true</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
+      <csvname>sort_order</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>43</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -824,7 +877,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>7</csvvalue>
+      <csvvalue>44</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -843,7 +896,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>35</csvvalue>
+      <csvvalue>45</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -862,7 +915,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>36</csvvalue>
+      <csvvalue>46</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -881,7 +934,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>37</csvvalue>
+      <csvvalue>47</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -895,12 +948,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>8</csvvalue>
+      <csvvalue>48</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -919,7 +972,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>38</csvvalue>
+      <csvvalue>49</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -938,7 +991,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>39</csvvalue>
+      <csvvalue>50</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -957,7 +1010,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40</csvvalue>
+      <csvvalue>51</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -976,7 +1029,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>41</csvvalue>
+      <csvvalue>52</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -990,12 +1043,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>9</csvvalue>
+      <csvvalue>53</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -1009,12 +1062,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>false</csvvalue>
+      <csvvalue>true</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>10</csvvalue>
+      <csvvalue>54</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -1033,7 +1086,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>42</csvvalue>
+      <csvvalue>55</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
@@ -1052,7 +1105,7 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumMembershipPropertyValue">
       <csvname>sort_order</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>43</csvvalue>
+      <csvvalue>56</csvvalue>
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvEndEnumDefView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumerationDefinition"/>

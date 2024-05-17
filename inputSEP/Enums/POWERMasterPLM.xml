@@ -3,7 +3,7 @@
   SYSTEM "standard12_1.dtd">
 <NmLoader>
    <csvBeginEnumDefView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumerationDefinition">
-      <csvname>POWERTypeArticleTool</csvname>
+      <csvname>POWERMasterPLM</csvname>
       <csvcontainerDomain/>
       <csvmaster/>
       <csvsystem>false</csvsystem>
@@ -13,7 +13,12 @@
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumerationPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>Type Article Tool</csvvalue>
+      <csvvalue>Master PLM</csvvalue>
+   </csvPropertyValue>
+   <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumerationPropertyValue">
+      <csvname>description</csvname>
+      <csvisDefault>false</csvisDefault>
+      <csvvalue>Agile attribute</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumerationPropertyValue">
       <csvname>autoSort</csvname>
@@ -21,12 +26,12 @@
       <csvvalue>false</csvvalue>
    </csvPropertyValue>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
-      <csvname>40UB</csvname>
+      <csvname>EDMS</csvname>
    </csvBeginEnumMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40UB-OUTILLAGE CLS</csvvalue>
+      <csvvalue>EDMS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
@@ -40,12 +45,12 @@
    </csvPropertyValue>
    <csvEndEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.endProcessEnumMembership"/>
    <csvBeginEnumMemberView handler="com.ptc.core.lwc.server.BaseDefinitionLoader.beginProcessEnumMembership">
-      <csvname>40UT</csvname>
+      <csvname>PLMSEDCS</csvname>
    </csvBeginEnumMemberView>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>displayName</csvname>
       <csvisDefault>false</csvisDefault>
-      <csvvalue>40UT-OUTILLAGE EPS</csvvalue>
+      <csvvalue>PLM SEDCS</csvvalue>
    </csvPropertyValue>
    <csvPropertyValue handler="com.ptc.core.lwc.server.BaseDefinitionLoader.processEnumEntryPropertyValue">
       <csvname>selectable</csvname>
