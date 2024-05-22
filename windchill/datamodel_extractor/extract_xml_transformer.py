@@ -321,7 +321,7 @@ class XMLTransformer:
         attribute_groups = {}
         for attribute in unique_attributes:
             attr_parts = attribute.split("~")
-            key = tuple(attr_parts[:9])  # Key based on first 8 fields Family,depth,classifType,parentClassifType,instantiable,displayClassifType,displayClassifTypeFR,description,attributeName
+            key = tuple(attr_parts[:9])  # Key based on first 9 fields Family,depth,classifType,parentClassifType,instantiable,displayClassifType,displayClassifTypeFR,description,attributeName
             if key not in attribute_groups:
                 attribute_groups[key] = []
             attribute_groups[key].append(attr_parts)
@@ -331,7 +331,7 @@ class XMLTransformer:
             merged_row = group[0]  # Start with the first row in the group
             for attr_parts in group[1:]:
                 for i, value in enumerate(attr_parts):
-                    if i >= 8:  # Only merge attributes after the 8th column
+                    if i >= 9:  # Only merge attributes after the 9th column
                         if i in boolean_columns:
                             # Apply Merge Rule for boolean values: if any "Yes" value exists among duplicates, the merged result will also be "Yes"
                             if value == "Yes" or merged_row[i] == "Yes":
