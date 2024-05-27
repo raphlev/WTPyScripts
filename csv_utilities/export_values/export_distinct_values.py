@@ -2,7 +2,7 @@
 Export Unique Values from CSV Based on Column Position or Name with Custom Separator
 
 This script reads from a specified input CSV file, extracts unique values from a specified column
-(by position or name), and outputs these unique values along with their occurrence counts to a new CSV file.
+(by position or name), and outputs total count of distinct values, and outputs these unique values along with their occurrence counts to a new CSV file.
 Users can specify the column either by its position in the header row (starting by 1) or by its name. 
 Empty values in the specified column are replaced with "NULL" in the output. Additionally, the script 
 supports specifying a custom field delimiter for both reading the input file and writing to the output file, 
@@ -67,10 +67,15 @@ def export_distinct_values(input_csv, output_csv, position=None, column_name=Non
                         value_counts[value] = 1
 
         sorted_values_counts = sorted(value_counts.items())
+        total_unique_values = len(value_counts)
+        total_occurrences = sum(value_counts.values())
 
         with open(output_csv, mode='w', encoding='utf-8', newline='') as outfile:
             print(f"Writing to {output_csv}")
             writer = csv.writer(outfile, delimiter=separator)
+            writer.writerow(['Total Unique Values', total_unique_values])
+            writer.writerow(['Total Occurrences', total_occurrences])
+            writer.writerow([])  # Blank row
             writer.writerow(['Value', 'Count'])
             for value, count in sorted_values_counts:
                 writer.writerow([value, count])
