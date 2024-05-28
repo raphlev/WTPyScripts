@@ -1,3 +1,38 @@
+"""
+Export Unique Values from CSV Based on Column Position or Name with Custom Separator
+
+This script reads from a specified input CSV file, extracts unique values from a specified column
+(by position or name), and outputs these unique values.
+Users can specify the column either by its position in the header row (starting by 1) or by its name. 
+Empty values in the specified column are replaced with "NULL" in the output. Additionally, the script 
+supports specifying a custom field delimiter for both reading the input file and writing to the output file, 
+with a default delimiter of ';'.
+
+Usage:
+- To specify a column by position and use the default delimiter:
+    python script.py -i <input_csv_file_path> -o <output_csv_file_path> -p <column_position>
+- To specify a column by name and use a custom delimiter:
+    python script.py -i <input_csv_file_path> -o <output_csv_file_path> -n <column_name> -s <delimiter>
+
+Where:
+- <input_csv_file_path> is the path to the CSV file from which to read data.
+- <output_csv_file_path> is the path where the CSV file with unique values and their counts will be saved.
+- <column_position> is the index of the column starting by 1 from which to extract unique values.
+- <column_name> is the name of the column from which to extract unique values, as it appears in the header row.
+- <delimiter> is the field delimiter to be used for reading the input and writing the output CSV file (optional, default ';').
+
+Examples:
+- Using column position with default delimiter:
+    python script.py -i "data/input_data.csv" -o "results/unique_values.csv" -p 8
+- Using column name with a custom delimiter (e.g., ','):
+    python script.py -i "data/input_data.csv" -o "results/unique_values.csv" -n "ColumnName" -s ","
+
+This script provides flexibility in handling CSV files with different structures and delimiters, making it
+suitable for a wide range of data extraction tasks.
+
+Author: Raphael Leveque
+"""
+
 import csv
 import argparse
 
