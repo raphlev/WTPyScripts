@@ -2,7 +2,7 @@
 Export Unique Values from CSV Based on Column Position or Name with Custom Separator
 
 This script reads from a specified input CSV file, extracts unique values from a specified column
-(by position or name), and outputs these unique values.
+(by position or name), and outputs these unique values to a new CSV file.
 Users can specify the column either by its position in the header row (starting by 1) or by its name. 
 Empty values in the specified column are replaced with "NULL" in the output. Additionally, the script 
 supports specifying a custom field delimiter for both reading the input file and writing to the output file, 
