@@ -1,3 +1,4 @@
+
 import re
 from difflib import SequenceMatcher
 
@@ -41,26 +42,26 @@ with open("Reference_File.txt", "r", encoding='utf-8') as file:
 with open("Lookup_File.txt", "r", encoding='utf-8') as file:
     lookup_values = file.read().splitlines()
 
-# Dictionary to store each lookup value's best match
-matches = {}
+# List to store each lookup value's best match
+matches = []
 for lookup_value in lookup_values:
     best_match, score = find_best_match(lookup_value, reference_values)
-    matches[lookup_value] = (best_match, score)
+    matches.append((lookup_value, best_match, score))
 
-# Write the matches and their scores to a file named 'matched_results.txt'
+# Write the matches and their scores to a file named 'matched_results.txt' sorted by score in descending order
 with open("matched_results.txt", "w") as file:
-    for lookup, match in matches.items():
-        file.write(f"{lookup} => {match[0]} (Score: {match[1]:.4f})\n")
+    for lookup, match, score in sorted(matches, key=lambda x: x[2], reverse=True):
+        file.write(f"{lookup} => {match} (Score: {score:.4f})\n")
 
 print("Matches have been saved to matched_results.txt.")
 
-# Write the matches to a CSV file named 'matched_results.csv'
+# Write the matches to a CSV file named 'matched_results.csv' without sorting
 with open("matched_results.csv", "w", encoding='utf-8') as file:
     # Write the header
     file.write("Lookup;Reference\n")
     # Write each match
-    for lookup, match in matches.items():
-        file.write(f"{lookup};{match[0]}\n")
+    for lookup, match, score in matches:
+        file.write(f"{lookup};{match}\n")
 
 print("Matches have been saved to matched_results.csv.")
 
