@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 scan_files_pattern.py
 
 This script scans files with a specified extension in a given directory (including subdirectories)
@@ -39,13 +39,16 @@ Features:
 - To run the script, use the following command:
 
   ```bash
-  python scan_files_pattern.py inputDir outputFile.txt --pattern "your_pattern_here" --file-extension "java"
+  python scan_files_pattern.py --inputDir/-i inputDir --outputFile/-o outputFile.txt --pattern "your_pattern_here" --file-extension "file_extension_here" --log-level "log_level_here"
+
+  python.exe .\scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *s1000D*" --file-extension "java" --log-level INFO 
   ```
 
 ### Examples:
 
 Find all lines starting with import and containing s1000D:
-python scan_files_pattern.py ./MyJavaProject matches.txt --pattern "import *s1000D*" --file-extension "java"
+
+python.exe .\scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *s1000D*" --file-extension "java" --log-level INFO 
 
 Find all lines containing TODO comments in Python files:
 python scan_files_pattern.py ./MyPythonProject todos_output.txt --pattern "*TODO*" --file-extension "py"
