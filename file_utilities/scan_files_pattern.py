@@ -22,15 +22,21 @@ Features:
 - If the encoding cannot be determined, the file is skipped.
 
 ### Pattern Matching: 
-- The pattern is structured as: include_pattern!exclude_pattern
+- The pattern is structured as: include_pattern!exclude_pattern1|exclude_pattern2|...
 - The search pattern can include:
   - **Wildcards `*`**: Converted to `.*` in the regular expression to match any sequence of characters.
   - **Negation `!`**: Splits the pattern into an include pattern and an exclude pattern.
-    - The part before '!' is the **include pattern**.
-    - The part after '!' is the **exclude pattern**.
-    - Lines matching the include pattern but **not** matching the exclude pattern will be included.
+    - The part before '!' is the **include pattern** include_pattern
+    - The part after '!' split by | is the list of **exclude patterns** exclude_pattern1|exclude_pattern2|...
+    - Lines matching the include pattern but **not** matching any of the exclude patterns will be included.
 - All other characters in the pattern are escaped to prevent unintended regex behavior.
 - The search is case-insensitive.
+
+### Case sensitivity of the inclusion and exclusion patterns:
+    --include-ignore-case: Makes the inclusion pattern case-insensitive.
+    --exclude-ignore-case: Makes the exclusion pattern case-insensitive.
+    Default Behavior: if flags not provided, both inclusion and exclusion patterns are case-sensitive unless the respective flag is provided.
+    Usage: Use the flags to control the case sensitivity according to your needs.
 
 ### Dependencies:
   - Python 3.x
@@ -42,7 +48,13 @@ Features:
   ```bash
   python scan_files_pattern.py --inputDir/-i inputDir --outputFile/-o outputFile.txt --pattern "your_pattern_here" --file-extension "file_extension_here" --log-level "log_level_here"
 
-  python.exe .\scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *s1000D*" --file-extension "java" --log-level INFO 
+  python scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *s1000D*" --file-extension "java" --log-level INFO 
+
+  python scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *!S1000D|com.indigo|com.ptc.wvs" --file-extension "java" --log-level INFO --include-ignore-case --exclude-ignore-case
+    INFO: Successfully wrote 1032 lines to 'C:\Users\levequer\Downloads\outputFileScan.txt'.
+  python scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *!S1000D|com.indigo|com.ptc.wvs" --file-extension "java" --log-level INFO                                            
+    INFO: Successfully wrote 1048 lines to 'C:\Users\levequer\Downloads\outputFileScan.txt'.
+
   ```
 
 ### Examples:
@@ -54,6 +66,9 @@ Find all lines starting with import and containing s1000D but excluding those co
 python scan_files_pattern.py --inputDir "." --outputFile "output.txt" --pattern "import *S1000d*!*come.indigo*" --file-extension "java" --log-level INFO
 Equivalent to:
 python scan_files_pattern.py --inputDir "." --outputFile "output.txt" --pattern "import *S1000d*!com.indigo" --file-extension "java" --log-level INFO
+
+Find all lines starting with import and containing s1000D but excluding those containing com.indigo: and those containing com.ptc.wvs
+python scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *!s1000D|com.indigo|com.ptc.wvs" --file-extension "java" --log-level INFO
 
 Find all lines containing TODO comments in Python files:
 python scan_files_pattern.py ./MyPythonProject todos_output.txt --pattern "*TODO*" --file-extension "py"
@@ -126,20 +141,35 @@ def wildcard_to_regex(pattern):
             escaped_pattern += re.escape(char)
     return escaped_pattern
 
-def find_pattern_in_files(directory, search_pattern, file_extension):
+def find_pattern_in_files(directory, search_pattern, file_extension, include_ignore_case, exclude_ignore_case):
     """
     Recursively searches for lines matching the search pattern in files with the specified extension.
     """
     if '!' in search_pattern:
         include_part, exclude_part = search_pattern.split('!', 1)
         include_regex_pattern = wildcard_to_regex(include_part)
-        include_regex = re.compile(include_regex_pattern, re.IGNORECASE)
-
         exclude_regex_pattern = wildcard_to_regex(exclude_part)
-        exclude_regex = re.compile(exclude_regex_pattern, re.IGNORECASE)
+
+        # Compile inclusion regex with or without IGNORECASE
+        if include_ignore_case:
+            include_regex = re.compile(include_regex_pattern, re.IGNORECASE)
+        else:
+            include_regex = re.compile(include_regex_pattern)
+
+        # Compile exclusion regex with or without IGNORECASE
+        if exclude_ignore_case:
+            exclude_regex = re.compile(exclude_regex_pattern, re.IGNORECASE)
+        else:
+            exclude_regex = re.compile(exclude_regex_pattern)
     else:
         include_regex_pattern = wildcard_to_regex(search_pattern)
-        include_regex = re.compile(include_regex_pattern, re.IGNORECASE)
+
+        # Compile inclusion regex with or without IGNORECASE
+        if include_ignore_case:
+            include_regex = re.compile(include_regex_pattern, re.IGNORECASE)
+        else:
+            include_regex = re.compile(include_regex_pattern)
+
         exclude_regex = None
 
     unique_lines = set()
@@ -155,9 +185,9 @@ def find_pattern_in_files(directory, search_pattern, file_extension):
                 try:
                     with open(file_path, 'r', encoding=encoding) as file:
                         for line in file:
-                            if include_regex.search(line):
+                            if include_regex.match(line):
                                 if exclude_regex is None or not exclude_regex.search(line):
-                                    matching_line = line.strip()
+                                    matching_line = line.rstrip('\n')
                                     unique_lines.add(matching_line)
                 except Exception as e:
                     logging.error(f"Error reading file {file_path}: {e}")
@@ -198,13 +228,22 @@ def parse_arguments():
     parser.add_argument(
         '--pattern',
         default='import *s1000D*',
-        help='The pattern to look for in the lines. Wildcards (*) and negation (!) are supported. '
-             'Default is "import *s1000D*".'
+        help='The pattern to look for in the lines. Wildcards (*) and negation (!) are supported.'
     )
     parser.add_argument(
         '--file-extension',
         default='java',
         help='The file extension to scan for. Default is "java".'
+    )
+    parser.add_argument(
+        '--include-ignore-case',
+        action='store_true',
+        help='Make the inclusion pattern case-insensitive.'
+    )
+    parser.add_argument(
+        '--exclude-ignore-case',
+        action='store_true',
+        help='Make the exclusion pattern case-insensitive.'
     )
     parser.add_argument(
         '--log-level',
@@ -227,7 +266,13 @@ def main():
     if numeric_level > logging.DEBUG:
         logging.getLogger('chardet').setLevel(logging.WARNING)
 
-    lines_list = find_pattern_in_files(args.inputDir, args.pattern, args.file_extension)
+    lines_list = find_pattern_in_files(
+        args.inputDir,
+        args.pattern,
+        args.file_extension,
+        args.include_ignore_case,
+        args.exclude_ignore_case
+    )
     write_lines_to_file(lines_list, args.outputFile)
 
 if __name__ == '__main__':
