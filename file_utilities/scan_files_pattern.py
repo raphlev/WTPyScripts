@@ -52,6 +52,8 @@ python.exe .\scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "
 
 Find all lines starting with import and containing s1000D but excluding those containing com.indigo:
 python scan_files_pattern.py --inputDir "." --outputFile "output.txt" --pattern "import *S1000d*!*come.indigo*" --file-extension "java" --log-level INFO
+Equivalent to:
+python scan_files_pattern.py --inputDir "." --outputFile "output.txt" --pattern "import *S1000d*!com.indigo" --file-extension "java" --log-level INFO
 
 Find all lines containing TODO comments in Python files:
 python scan_files_pattern.py ./MyPythonProject todos_output.txt --pattern "*TODO*" --file-extension "py"
@@ -118,6 +120,8 @@ def wildcard_to_regex(pattern):
     for char in pattern:
         if char == '*':
             escaped_pattern += '.*'
+        elif char == '|':
+            escaped_pattern += '|'
         else:
             escaped_pattern += re.escape(char)
     return escaped_pattern
