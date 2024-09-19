@@ -173,11 +173,15 @@ def parse_arguments():
         description='Scan files for lines containing a specific pattern.'
     )
     parser.add_argument(
-        'inputDir',
+        '--inputDir',
+        '-i',
+        required=True,
         help='The input directory to scan for files.'
     )
     parser.add_argument(
-        'outputFile',
+        '--outputFile',
+        '-o',
+        required=True,
         help='The output file to write the lines containing the pattern.'
     )
     parser.add_argument(
@@ -207,6 +211,10 @@ def main():
     if not isinstance(numeric_level, int):
         numeric_level = logging.INFO
     logging.basicConfig(level=numeric_level, format='%(levelname)s: %(message)s')
+
+    # Suppress chardet debug messages unless log level is DEBUG
+    if numeric_level > logging.DEBUG:
+        logging.getLogger('chardet').setLevel(logging.WARNING)
 
     lines_list = find_pattern_in_files(args.inputDir, args.pattern, args.file_extension)
     write_lines_to_file(lines_list, args.outputFile)
