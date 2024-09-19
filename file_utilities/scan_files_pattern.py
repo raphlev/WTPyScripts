@@ -21,7 +21,8 @@ Features:
 - If `chardet` is not available or fails to detect the encoding, it tries common encodings like `utf-8`, `latin-1`, and `cp1252`.
 - If the encoding cannot be determined, the file is skipped.
 
-### Pattern Matching:
+### Pattern Matching: 
+- The pattern is structured as: include_pattern!exclude_pattern
 - The search pattern can include:
   - **Wildcards `*`**: Converted to `.*` in the regular expression to match any sequence of characters.
   - **Negation `!`**: Splits the pattern into an include pattern and an exclude pattern.
@@ -47,8 +48,10 @@ Features:
 ### Examples:
 
 Find all lines starting with import and containing s1000D:
-
 python.exe .\scan_files_pattern.py -i "D:\EclipseWorkspace\Indigo3210.3302" -o "C:\Users\levequer\Downloads\outputFileScan.txt" --pattern "import *s1000D*" --file-extension "java" --log-level INFO 
+
+Find all lines starting with import and containing s1000D but excluding those containing com.indigo:
+python scan_files_pattern.py --inputDir "." --outputFile "output.txt" --pattern "import *S1000d*!*come.indigo*" --file-extension "java" --log-level INFO
 
 Find all lines containing TODO comments in Python files:
 python scan_files_pattern.py ./MyPythonProject todos_output.txt --pattern "*TODO*" --file-extension "py"
