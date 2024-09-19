@@ -133,8 +133,9 @@ def find_pattern_in_files(directory, search_pattern, file_extension):
     if '!' in search_pattern:
         include_part, exclude_part = search_pattern.split('!', 1)
         include_regex_pattern = wildcard_to_regex(include_part)
-        exclude_regex_pattern = wildcard_to_regex(exclude_part)
         include_regex = re.compile(include_regex_pattern, re.IGNORECASE)
+
+        exclude_regex_pattern = wildcard_to_regex(exclude_part)
         exclude_regex = re.compile(exclude_regex_pattern, re.IGNORECASE)
     else:
         include_regex_pattern = wildcard_to_regex(search_pattern)
