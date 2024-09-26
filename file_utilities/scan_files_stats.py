@@ -2,7 +2,7 @@ import os
 import csv
 from openpyxl import Workbook
 
-# File types to track
+# File types to track (including both text and binary files)
 file_types = [
     'acl', 'alias', 'amo', 'asv', 'bcf', 'ccf', 'cgm', 'class', 'csv', 'db', 'dcf', 'dcl',
     'disabledfordeployment', 'dll', 'docx', 'dtd', 'ent', 'exe', 'fos', 'genfos', 'gif', 'h',
@@ -18,12 +18,12 @@ file_stats = {file_type: {'count': 0, 'lines': 0, 'size': 0} for file_type in fi
 processed_files = []
 
 def get_line_count(file_path):
-    """Returns the number of lines in a file. Skips if there is an error."""
+    """Attempts to count the lines in a file. Skips if the file is binary or an error occurs."""
     try:
         with open(file_path, 'r', encoding="utf-8", errors="ignore") as file:
             return sum(1 for line in file)
     except Exception:
-        # Skip the file if an error occurs
+        # Skip the file if it's binary or unreadable
         return 0
 
 def process_directory(root_dir):
@@ -44,7 +44,7 @@ def process_directory(root_dir):
                 except Exception:
                     file_size = 0
                 
-                # Attempt to count the number of lines for all file types
+                # Attempt to count the number of lines for all files
                 line_count = get_line_count(file_path)
                 file_stats[file_ext]['lines'] += line_count
 
