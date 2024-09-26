@@ -18,12 +18,12 @@ file_stats = {file_type: {'count': 0, 'lines': 0, 'size': 0} for file_type in fi
 processed_files = []
 
 def get_line_count(file_path):
-    """Returns the number of lines in a text-readable file"""
+    """Returns the number of lines in a file. Skips if there is an error."""
     try:
         with open(file_path, 'r', encoding="utf-8", errors="ignore") as file:
             return sum(1 for line in file)
-    except Exception as e:
-        print(f"Error reading file {file_path}: {e}")
+    except Exception:
+        # Skip the file if an error occurs
         return 0
 
 def process_directory(root_dir):
@@ -41,18 +41,12 @@ def process_directory(root_dir):
                 try:
                     file_size = os.path.getsize(file_path)
                     file_stats[file_ext]['size'] += file_size
-                except Exception as e:
-                    print(f"Error getting size of {file_path}: {e}")
+                except Exception:
                     file_size = 0
                 
-                # For readable text files, count the number of lines
-                if file_ext in ['acl', 'alias', 'amo', 'asv', 'bcf', 'ccf', 'cgm', 'class', 'csv', 'db', 'dcf', 'dcl',
-                    'disabledfordeployment', 'dll',  'dtd', 'ent', 'exe', 'fos', 'genfos', 'h',
-                    'htm', 'ism', 'java', 'js', 'jsfrag', 'jsp', 'jspf', 'lst', 'old', 'oncheckin_corrected',
-                    'pcf', 'properties', 'rbinfo', 'sch', 'sql', 'style', 'tld', 'tpl', 'txt',
-                    'unused', 'xconf', 'xlf', 'xml', 'xsd', 'xsl', 'xslt']:
-                    line_count = get_line_count(file_path)
-                    file_stats[file_ext]['lines'] += line_count
+                # Attempt to count the number of lines for all file types
+                line_count = get_line_count(file_path)
+                file_stats[file_ext]['lines'] += line_count
 
                 # Add file to the processed files list
                 processed_files.append(file_path)
