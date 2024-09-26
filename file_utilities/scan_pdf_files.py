@@ -9,7 +9,7 @@ ws = wb.active
 ws.title = "PDF Document Data"
 
 # Write the header row
-header = ['Document FileName', 'Document FilePath', 'Total number of pages', 'Size of document']
+header = ['Document', 'Directory', 'N# Pages', 'Size']
 ws.append(header)
 
 # Adjust column widths (optional)
@@ -39,6 +39,7 @@ for root, dirs, files in os.walk(root_dir):
 
             # Initialize variables with default empty values
             file_name = os.path.basename(file_path)
+            directory_path = os.path.dirname(file_path)
             size = ''
             pages = ''
 
@@ -71,7 +72,7 @@ for root, dirs, files in os.walk(root_dir):
                 # Write the data to Excel
                 ws.append([
                     file_name,
-                    file_path,
+                    directory_path,
                     pages,
                     size
                 ])
