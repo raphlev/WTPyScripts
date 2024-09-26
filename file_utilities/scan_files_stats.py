@@ -63,7 +63,8 @@ def save_to_excel(output_file):
 
     # Write the statistics for each file type
     for file_type, stats in file_stats.items():
-        ws.append([file_type, stats['count'], stats['lines'], stats['size']])
+        if stats['count'] > 0:  # Only include file types with non-zero counts
+            ws.append([file_type, stats['count'], stats['lines'], stats['size']])
 
     # Save the Excel file
     try:
@@ -84,6 +85,15 @@ def save_processed_files_list(csv_file):
     except Exception as e:
         print(f"Error saving processed files list: {e}")
 
+def remove_csv_file(csv_file):
+    """Removes the CSV file after processing is complete."""
+    try:
+        if os.path.exists(csv_file):
+            os.remove(csv_file)
+            print(f"CSV file '{csv_file}' removed successfully.")
+    except Exception as e:
+        print(f"Error removing CSV file: {e}")
+
 if __name__ == "__main__":
     # Define the root directory to scan and output files
     root_dir = r'C:\Users\levequer\Downloads'  # Replace with your folder path
@@ -96,3 +106,6 @@ if __name__ == "__main__":
     # Save the results to Excel and CSV
     save_to_excel(excel_output_file)
     save_processed_files_list(csv_output_file)
+
+    # Remove the CSV file after processing
+    remove_csv_file(csv_output_file)
