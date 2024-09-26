@@ -16,7 +16,7 @@ def get_unique_extensions(directory):
 
 if __name__ == "__main__":
     # Define the root directory to scan
-    directory_to_scan = "C:\\Users\\levequer\\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\\Documents\\Backup"  # Replace with the path you want to scan
+    directory_to_scan = r'C:\Users\levequer\Downloads'  # Replace with the path you want to scan
 
     unique_extensions = get_unique_extensions(directory_to_scan)
     
