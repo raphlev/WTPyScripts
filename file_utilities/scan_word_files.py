@@ -47,7 +47,7 @@ def retry_on_COM_error(max_retries=3, delay=1):
 def initialize_word():
     try:
         word_app = win32com.client.Dispatch('Word.Application')
-        word_app.Visible = True  # Set to True to make Word visible for debugging
+        word_app.Visible = False  # Set to True to make Word visible for debugging
         word_app.DisplayAlerts = False
         word_app.AutomationSecurity = 3  # msoAutomationSecurityForceDisable
         return word_app
@@ -91,79 +91,106 @@ def get_page_count(doc):
 def get_paragraph_count(doc):
     return doc.Paragraphs.Count
 
-@retry_on_COM_error(max_retries=5, delay=2)
-def get_document_content(doc):
-    return doc.Content
-
-def extract_section_content(doc, heading_texts, found_headings, file_path):
+def get_toc_end_position(doc):
     """
-    Extracts content under one or more headings until the next heading of the same style.
+    Returns the end position of the table of contents if it exists, otherwise returns 0.
+    """
+    try:
+        if doc.TablesOfContents.Count > 0:
+            toc = doc.TablesOfContents(1)
+            toc_range = toc.Range
+            print(f"Table of contents found in '{doc.Name}'")
+            return toc_range.End
+    except Exception as e:
+        print(f"Error identifying TOC in '{doc.Name}': {e}")
+    return 0  # If no TOC is found, start from the beginning
+
+def extract_section_content(doc, heading_texts, heading_styles_ordered, file_path):
+    """
+    Extracts content under headings that exactly match the specified texts in heading_texts,
+    ignoring numbering and additional text, searching within the first 20 pages of the document.
     """
     content = ''
     try:
         print(f"Entering 'extract_section_content' for file '{file_path}', headings '{heading_texts}'")
-        rng = get_document_content(doc)
-        for heading_text in heading_texts:
-            if heading_text.lower() in found_headings:
-                print(f"Heading '{heading_text}' already found, skipping.")
-                continue  # Skip if this heading has already been processed
 
-            # Prepare the Find object
-            rng.Find.ClearFormatting()
-            rng.Find.Text = heading_text
-            rng.Find.MatchCase = False
-            rng.Find.MatchWholeWord = True
-            rng.Find.Forward = True
-            rng.Find.Format = False  # Set to False since we're not using formatting here
+        # Get the end position of the TOC
+        toc_end = get_toc_end_position(doc)
 
-            print(f"Searching for heading '{heading_text}' in '{file_path}'")
-            found = rng.Find.Execute()
-            if found:
-                print(f"Found heading '{heading_text}' in '{file_path}'")
-                found_headings.add(heading_text.lower())
+        # Get the end position of page 20 or the end of the document if less than 20 pages
+        try:
+            page_20_range = doc.GoTo(What=1, Which=1, Count=20)  # wdGoToPage, wdGoToAbsolute
+            end_page_20 = page_20_range.End
+            print(f"End position of page 20 in '{file_path}': {end_page_20}")
+        except Exception as e:
+            print(f"Error getting end position of page 20 in '{file_path}': {e}")
+            end_page_20 = doc.Content.End
 
-                start_range = rng.Duplicate
-                start_range.Collapse(0)  # Move after the heading
+        # Ensure the end position is after the TOC end
+        if end_page_20 < toc_end:
+            end_page_20 = doc.Content.End
 
-                end_range = get_document_content(doc)
-                end_range.Start = start_range.Start
+        # Set the search range
+        search_range = doc.Range(Start=toc_end, End=end_page_20)
+        current_pos = search_range.Start
 
-                heading_found = False
+        # Normalize the heading texts for comparison
+        normalized_heading_texts = [ht.lower() for ht in heading_texts]
 
-                # Find the next heading of the same style
-                for style_name in heading_style_names:
-                    try:
-                        end_range.Find.ClearFormatting()
-                        end_range.Find.Style = doc.Styles(style_name)
-                    except Exception as e:
-                        print(f"Style '{style_name}' not found in '{file_path}': {e}")
-                        continue  # Skip if the style is not found
+        while current_pos < end_page_20:
+            para_range = doc.Range(Start=current_pos, End=end_page_20)
+            if para_range.Start >= para_range.End:
+                break  # No more content
+            para = para_range.Paragraphs(1)
+            para_text = para.Range.Text.strip()
+            para_style_name = para.Style.NameLocal
 
-                    end_range.Find.Text = ""
-                    end_range.Find.MatchWildcards = True
-                    end_range.Find.MatchCase = False
-                    end_range.Find.MatchWholeWord = False
-                    end_range.Find.Forward = True
-                    end_range.Find.Format = True
+            # Check if paragraph is a heading
+            if para_style_name in heading_styles_ordered:
+                # Remove numbering from the heading text
+                heading_text_no_number = re.sub(r'^\d+(\.\d+)*\s*', '', para_text).strip()
+                heading_text_no_number_lower = heading_text_no_number.lower()
 
-                    print(f"Searching for next heading of style '{style_name}' in '{file_path}'")
-                    end_found = end_range.Find.Execute(FindText="*")
-                    if end_found:
-                        print(f"Found next heading of style '{style_name}' in '{file_path}'")
-                        end_range.Collapse(1)  # Collapse to start
-                        start_range.End = end_range.Start
-                        heading_found = True
-                        break
+                if heading_text_no_number_lower in normalized_heading_texts:
+                    print(f"Found heading '{para_text}' matching '{heading_texts}' in '{file_path}'")
+                    # Get the starting position after the found heading
+                    start_pos = para.Range.End
+                    content_paras = []
+                    current_content_pos = start_pos
 
-                if not heading_found:
-                    print(f"No next heading found in '{file_path}'")
-                    start_range.End = doc.Content.End
+                    while current_content_pos < end_page_20:
+                        content_para_range = doc.Range(Start=current_content_pos, End=end_page_20)
+                        if content_para_range.Start >= content_para_range.End:
+                            break  # No more content
+                        content_para = content_para_range.Paragraphs(1)
+                        content_para_text = content_para.Range.Text.strip()
+                        content_para_style_name = content_para.Style.NameLocal
 
-                content = start_range.Text.strip()
-                print(f"Extracted content for heading '{heading_text}' in '{file_path}'.")
-                break  # Exit after finding the first matching heading
-            else:
-                print(f"Heading '{heading_text}' not found in '{file_path}'")
+                        # Check if paragraph is a heading
+                        if content_para_style_name in heading_styles_ordered:
+                            current_style_index = heading_styles_ordered.index(para_style_name)
+                            next_style_index = heading_styles_ordered.index(content_para_style_name)
+                            if next_style_index <= current_style_index:
+                                # Reached a heading of same or higher level
+                                print(f"Reached heading '{content_para_text}' with style '{content_para_style_name}' in '{file_path}', stopping content extraction.")
+                                break
+
+                        # Add paragraph to content
+                        content_paras.append(content_para.Range.Text)
+                        # Move to next paragraph
+                        current_content_pos = content_para.Range.End
+
+                    content = ''.join(content_paras).strip()
+                    break  # Exit after finding the content
+
+            # Move to next paragraph
+            current_pos = para.Range.End
+
+        if content:
+            print(f"Extracted content for heading '{heading_texts}' in '{file_path}'")
+        else:
+            print(f"No content found for headings '{heading_texts}' in '{file_path}'")
+
     except pywintypes.com_error as e:
         print(f"COM error in 'extract_section_content' for '{file_path}': {e}")
     except Exception as e:
@@ -172,8 +199,8 @@ def extract_section_content(doc, heading_texts, found_headings, file_path):
         print(f"Exiting 'extract_section_content' for file '{file_path}', headings '{heading_texts}'")
     return content
 
-# Define the heading styles to look for
-heading_style_names = ["Heading 1", "Heading 2", "Titre 1", "Titre 2"]
+# Define the heading styles to look for, ordered from highest to lowest level
+heading_styles_ordered = ["Heading 1", "Heading 2", "Heading 3", "Titre 1", "Titre 2", "Titre 3"]
 
 for root, dirs, files in os.walk(root_dir):
     for file in files:
@@ -234,9 +261,6 @@ for root, dirs, files in os.walk(root_dir):
                     print(f"Error getting paragraph count for '{file_path}': {e}")
                     num_paragraphs = ''
 
-                # Set to keep track of already found headings
-                found_headings = set()
-
                 # Define the headings to search for each section
                 headings_dict = {
                     'objective': ['Objectif', 'But du document', 'Purpose', 'OBJECTIF ET CONTEXTE'],
@@ -247,7 +271,7 @@ for root, dirs, files in os.walk(root_dir):
                 # Extract content for each section
                 for section, heading_texts in headings_dict.items():
                     print(f"Extracting section '{section}' for '{file_path}'")
-                    content = extract_section_content(doc, heading_texts, found_headings, file_path)
+                    content = extract_section_content(doc, heading_texts, heading_styles_ordered, file_path)
                     if section == 'objective':
                         objective_content = content
                     elif section == 'scope':
