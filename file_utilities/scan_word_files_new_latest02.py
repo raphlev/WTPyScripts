@@ -10,7 +10,6 @@ from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 import logging
 import pythoncom
-from win32com.client import constants  # Importing constants for better readability
 import atexit  # For cleanup upon exit
 
 # ============================
@@ -115,7 +114,7 @@ def retry_on_COM_error(max_retries=3, delay=1):
 
 def initialize_word():
     """
-    Initializes and returns the Word application object using early binding.
+    Initializes and returns the Word application object.
     
     Returns:
         win32com.client.CDispatch: The Word application object.
@@ -123,11 +122,11 @@ def initialize_word():
     global word  # Declare 'word' as global to modify the global variable
     try:
         pythoncom.CoInitialize()
-        word_app = win32com.client.gencache.EnsureDispatch('Word.Application')
+        word_app = win32com.client.Dispatch('Word.Application')
         word_app.Visible = False  # Set to True to make Word visible for debugging
         word_app.DisplayAlerts = False
-        word_app.AutomationSecurity = constants.msoAutomationSecurityForceDisable  # Disable macros
-        word_app.AutoUpdateLinks = constants.wdUpdateLinksNever  # Prevent updating links
+        word_app.AutomationSecurity = msoAutomationSecurityForceDisable  # Disable macros
+        word_app.AutoUpdateLinks = wdUpdateLinksNever  # Prevent updating links
         word = word_app  # Assign to the global 'word' variable
         logging.info("Word application initialized successfully.")
         return word_app
@@ -139,8 +138,12 @@ def initialize_word():
 # 5. Constants Definition
 # ============================
 
-# Constants for Word statistics
-wdStatisticPages = constants.wdStatisticPages  # Equivalent to 2
+# Manually define necessary Word constants
+msoAutomationSecurityForceDisable = 3  # Disables all macros
+wdUpdateLinksNever = 0  # Never update links
+wdStatisticPages = 2  # ComputeStatistics for pages
+wdGoToPage = 1  # What parameter for GoTo method to go to a page
+wdGoToAbsolute = 1  # Which parameter for GoTo method to specify absolute positioning
 
 # ============================
 # 6. Excel Workbook Setup
@@ -344,7 +347,7 @@ def extract_section_content(doc, headings_dict, heading_styles_set, heading_numb
 
         # Get the end position of page MAX_PAGE or the end of the document if less than MAX_PAGE pages
         try:
-            page_max_page_range = doc.GoTo(What=constants.wdGoToPage, Which=constants.wdGoToAbsolute, Count=MAX_PAGE)
+            page_max_page_range = doc.GoTo(What=wdGoToPage, Which=wdGoToAbsolute, Count=MAX_PAGE)
             end_page_max_page = page_max_page_range.End
             logging.info(f"End position of page {MAX_PAGE}: {end_page_max_page}")
         except Exception as e:
@@ -412,7 +415,7 @@ def process_document(file_path, headings_dict, heading_styles_set, heading_numbe
             ReadOnly=True,
             AddToRecentFiles=False,
             PasswordDocument=None,
-            UpdateLinks=constants.wdUpdateLinksNever  # Prevent updating links
+            UpdateLinks=wdUpdateLinksNever  # Prevent updating links
         )
         logging.info(f"Successfully opened document '{file_name}'.")
     except pywintypes.com_error as e:
@@ -594,3 +597,6 @@ if __name__ == '__main__':
     except Exception as e:
         logging.critical(f"Unhandled exception in main: {e}")
         # The cleanup_word() function will be called automatically by atexit
+    finally:
+        # Ensure Word is closed
+        cleanup_word()
