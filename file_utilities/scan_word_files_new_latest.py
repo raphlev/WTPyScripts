@@ -11,6 +11,7 @@ from openpyxl.utils import get_column_letter
 import logging
 import pythoncom
 from multiprocessing import Pool, cpu_count
+import atexit  # Added import
 
 # Configure logging
 logging.basicConfig(
@@ -19,6 +20,26 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
+
+# Initialize the global 'word' variable
+word = None
+
+def cleanup_word():
+    """
+    Cleans up the Word application by quitting it if it's still running.
+    """
+    global word
+    if word is not None:
+        try:
+            logging.info("Attempting to quit Word application during cleanup.")
+            word.Quit()
+            word = None
+            logging.info("Word application closed successfully during cleanup.")
+        except Exception as e:
+            logging.error(f"Error quitting Word application during cleanup: {e}")
+
+# Register the cleanup function to be called upon script exit
+atexit.register(cleanup_word)
 
 def remove_illegal_characters(value):
     """
@@ -84,6 +105,7 @@ def initialize_word():
     Returns:
         win32com.client.CDispatch: The Word application object.
     """
+    global word  # Declare 'word' as global to modify the global variable
     try:
         pythoncom.CoInitialize()
         word_app = win32com.client.gencache.EnsureDispatch('Word.Application')
@@ -91,12 +113,13 @@ def initialize_word():
         word_app.DisplayAlerts = False
         word_app.AutomationSecurity = 3  # msoAutomationSecurityForceDisable
         word_app.AutoUpdateLinks = 0    # wdUpdateLinksNever to prevent updating links
+        word = word_app  # Assign to the global 'word' variable
         return word_app
     except Exception as e:
         logging.critical(f"Error initializing Word application: {e}")
-        exit(1)
+        exit(1)  # Exit the script if Word cannot be initialized
 
-word = initialize_word()
+word = initialize_word()  # Initialize Word at the start
 
 # Constants for Word
 wdStatisticPages = 2
@@ -476,44 +499,10 @@ def main():
                         # Re-initialize Word to recover from errors
                         word = initialize_word()  # No need for 'global word' here since it's already declared
 
-    # Start the main processing
-    main()
-
-    logging.info(f"\nTotal files processed: {file_count}")
-
-    # Write all accumulated data to Excel at once
-    try:
-        logging.info("Starting to write accumulated data to Excel.")
-        for data in extracted_data_list:
-            ws.append(data)
-        logging.info("All accumulated data has been written to Excel.")
-    except Exception as e:
-        logging.error(f"Error writing data to Excel: {e}")
-
-    # Close the Word application
-    try:
-        word.Quit()
-        word = None  # Release the COM object
-        gc.collect()
-        logging.info("Word application closed.")
-    except Exception as e:
-        logging.error(f"Error quitting Word application: {e}")
-
-    # Save the Excel workbook
-    try:
-        wb.save('doc_output.xlsx')
-        logging.info("Excel workbook 'doc_output.xlsx' saved successfully.")
-    except Exception as e:
-        logging.error(f"Error saving Excel workbook: {e}")
-
-    # Display the skipped files
-    if skipped_files:
-        logging.warning("\nThe following files were skipped due to errors:")
-        for f in skipped_files:
-            logging.warning(f)
-    else:
-        logging.info("\nAll files were processed successfully.")
-
-# Execute the script
-if __name__ == '__main__':
-    main()
+    # Execute the script
+    if __name__ == '__main__':
+        try:
+            main()
+        except Exception as e:
+            logging.critical(f"Unhandled exception in main: {e}")
+            # The cleanup_word() function will be called automatically by atexit
