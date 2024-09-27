@@ -21,7 +21,7 @@ logging.basicConfig(
     filename='doc_processing.log',
     filemode='a',
     format='%(asctime)s - %(levelname)s - %(message)s',
-    level=logging.DEBUG  # Set to DEBUG for detailed logs
+    level=logging.INFO  # Set to DEBUG for detailed logs
 )
 
 # Initialize global variables
@@ -56,10 +56,10 @@ atexit.register(cleanup_word)
 def remove_illegal_characters(value):
     """
     Removes illegal control characters from a string, except for allowed ones.
-    
+
     Args:
         value (str): The string to sanitize.
-    
+
     Returns:
         str: The sanitized string.
     """
@@ -77,11 +77,11 @@ heading_number_pattern = re.compile(r'^\d+(\.\d+)*\s*')
 def retry_on_COM_error(max_retries=3, delay=1):
     """
     Decorator to retry a function upon encountering a COM error.
-    
+
     Args:
         max_retries (int): Maximum number of retries.
         delay (int): Delay in seconds between retries.
-    
+
     Returns:
         function: The decorated function with retry logic.
     """
@@ -115,7 +115,7 @@ def retry_on_COM_error(max_retries=3, delay=1):
 def initialize_word():
     """
     Initializes and returns the Word application object.
-    
+
     Returns:
         win32com.client.CDispatch: The Word application object.
     """
@@ -140,7 +140,6 @@ def initialize_word():
 
 # Manually define necessary Word constants
 msoAutomationSecurityForceDisable = 3  # Disables all macros
-wdUpdateLinksNever = 0  # Never update links (Removed usage below)
 wdStatisticPages = 2  # ComputeStatistics for pages
 wdGoToPage = 1  # What parameter for GoTo method to go to a page
 wdGoToAbsolute = 1  # Which parameter for GoTo method to specify absolute positioning
@@ -152,7 +151,7 @@ wdGoToAbsolute = 1  # Which parameter for GoTo method to specify absolute positi
 def setup_excel_workbook():
     """
     Creates and configures a new Excel workbook with the appropriate headers and column widths.
-    
+
     Returns:
         Workbook: The configured Excel workbook object.
     """
@@ -180,10 +179,10 @@ def setup_excel_workbook():
 def get_page_count(doc):
     """
     Retrieves the number of pages in the Word document.
-    
+
     Args:
         doc (win32com.client.CDispatch): The Word document object.
-    
+
     Returns:
         int: The number of pages.
     """
@@ -199,10 +198,10 @@ def get_page_count(doc):
 def get_paragraph_count(doc):
     """
     Retrieves the number of paragraphs in the Word document.
-    
+
     Args:
         doc (win32com.client.CDispatch): The Word document object.
-    
+
     Returns:
         int: The number of paragraphs.
     """
@@ -217,10 +216,10 @@ def get_paragraph_count(doc):
 def get_toc_end_position(doc):
     """
     Returns the end position of the table of contents if it exists, otherwise returns 0.
-    
+
     Args:
         doc (win32com.client.CDispatch): The Word document object.
-    
+
     Returns:
         int: The end position of the TOC or 0 if no TOC is found.
     """
@@ -349,7 +348,7 @@ def extract_section_content(doc, headings_dict, heading_styles_set, heading_numb
     """
     extracted_sections = {}
     MAX_PAGE = 13
-    print(f"Searching limit is set to {MAX_PAGE} pages")
+    logging.info(f"Searching limit is set to {MAX_PAGE} pages")
     try:
         logging.info(f"Entering 'extract_section_content' for sections: {list(headings_dict.keys())}")
 
@@ -425,8 +424,7 @@ def process_document(file_path, headings_dict, heading_styles_set, heading_numbe
             FileName=file_path,
             ConfirmConversions=False,
             ReadOnly=True,
-            AddToRecentFiles=False,
-            PasswordDocument=None
+            AddToRecentFiles=False
             # Removed UpdateLinks parameter as it's not supported in Word
             # UpdateLinks=wdUpdateLinksNever
         )
