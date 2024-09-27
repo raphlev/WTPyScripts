@@ -101,7 +101,7 @@ for i, column_width in enumerate(column_widths, 1):
     ws.column_dimensions[get_column_letter(i)].width = column_width
 
 # Root directory to scan
-root_dir = r'C:\Users\levequer\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\Documents\Backup\Projects\Safran\SAE Indigo\Technical Space\DOCUMENTATION_APPLICATIONS'  # Replace with your folder path
+root_dir = r'C:\Users\levequer\Downloads'  # Replace with your folder path
 
 # List to keep track of skipped files
 skipped_files = []
@@ -155,14 +155,14 @@ def get_toc_end_position(doc):
         print(f"Error identifying TOC in '{doc.Name}': {e}")
     return 0  # If no TOC is found, start from the beginning
 
-def find_heading_position(doc, heading, heading_styles_ordered, start_pos, end_pos):
+def find_heading_position(doc, heading, heading_styles_set, start_pos, end_pos):
     """
     Searches for the specified heading within the document range and returns the end position of the heading if found.
 
     Args:
         doc (win32com.client.CDispatch): The Word document object.
         heading (str): The heading text to search for (case-insensitive).
-        heading_styles_ordered (list): List of heading styles ordered by hierarchy.
+        heading_styles_set (set): Set of normalized heading styles.
         start_pos (int): The starting position for the search.
         end_pos (int): The ending position for the search.
 
@@ -170,42 +170,48 @@ def find_heading_position(doc, heading, heading_styles_ordered, start_pos, end_p
         int or None: The end position of the found heading. Returns None if not found.
     """
     current_pos = start_pos
+    heading_lower = heading.lower()
+
     while current_pos < end_pos:
         para_range = doc.Range(Start=current_pos, End=end_pos)
         if para_range.Start >= para_range.End:
             break  # No more content
         para = para_range.Paragraphs(1)
         para_text = para.Range.Text.strip()
-        para_style_name = para.Style.NameLocal
+        para_style_name = para.Style.NameLocal.lower()
+
+        # Split the style name by commas to handle composite styles
+        style_variants = [s.strip() for s in para_style_name.split(',')]
 
         # Debug
-        # print(f"Searching for heading '{heading}': Found paragraph '{para_text}' with style '{para_style_name}'")
+        # print(f"Searching for heading '{heading}': Found paragraph '{para_text}' with style variants {style_variants}")
 
-        # Check if paragraph is a heading
-        if para_style_name in heading_styles_ordered:
+        # Check if any variant of the style matches the heading styles
+        is_heading = any(variant in heading_styles_set for variant in style_variants)
+
+        if is_heading:
             # Remove numbering from the heading text
             heading_text_no_number = re.sub(r'^\d+(\.\d+)*\s*', '', para_text).strip()
             heading_text_no_number_lower = heading_text_no_number.lower()
 
             # Compare with the target heading
-            if heading.lower() == heading_text_no_number_lower:
+            if heading_lower == heading_text_no_number_lower:
                 print(f"Matched heading '{heading_text_no_number}' at position {para.Range.End}")
                 return para.Range.End  # Return the end position of the heading
 
         # Move to the next paragraph
         current_pos = para.Range.End
 
-    print(f"Heading '{heading}' not found between positions {start_pos} and {end_pos}.")
     return None  # Heading not found
 
-def extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, end_pos):
+def extract_content_under_heading(doc, heading_end_pos, heading_styles_set, end_pos):
     """
     Extracts content under a specific heading until any new heading is encountered.
 
     Args:
         doc (win32com.client.CDispatch): The Word document object.
         heading_end_pos (int): The position right after the heading.
-        heading_styles_ordered (list): List of heading styles ordered by hierarchy.
+        heading_styles_set (set): Set of normalized heading styles.
         end_pos (int): The end position of the search range.
 
     Returns:
@@ -214,10 +220,6 @@ def extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, 
     content_paras = []
     current_content_pos = heading_end_pos
 
-    # Get the style of the current heading to determine its level (optional)
-    # heading_para = doc.Range(Start=heading_end_pos, End=heading_end_pos).Paragraphs(1)
-    # heading_style_name = heading_para.Style.NameLocal
-
     while current_content_pos < end_pos:
         content_para_range = doc.Range(Start=current_content_pos, End=end_pos)
         if content_para_range.Start >= content_para_range.End:
@@ -225,16 +227,20 @@ def extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, 
 
         content_para = content_para_range.Paragraphs(1)
         content_para_text = content_para.Range.Text.strip()
-        content_para_style_name = content_para.Style.NameLocal
+        content_para_style_name = content_para.Style.NameLocal.lower()
+
+        # Split the style name by commas to handle composite styles
+        style_variants = [s.strip() for s in content_para_style_name.split(',')]
 
         # Debug
-        print(f"Extracting content: '{content_para_text}' with style '{content_para_style_name}'")
+        print(f"Extracting content: '{content_para_text}' with style variants {style_variants}")
 
-        # Check if the paragraph is a heading
-        if content_para_style_name in heading_styles_ordered:
-        # if content_para_style_name.lower() in [style.lower() for style in heading_styles_ordered]:
+        # Check if any variant of the style matches the heading styles
+        is_heading = any(variant in heading_styles_set for variant in style_variants)
+
+        if is_heading:
             # Reached any new heading, stop extraction
-            print(f"Reached a new heading '{content_para_text}' with style '{content_para_style_name}'. Stopping content extraction.")
+            print(f"Reached a new heading '{content_para_text}' with style variants {style_variants}. Stopping content extraction.")
             break
 
         # Add paragraph text to content if it's not empty
@@ -248,14 +254,14 @@ def extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, 
     print(f"Extracted content under heading ending at position {heading_end_pos}: {extracted_content[:60]}...")  # Show first 60 chars for brevity
     return extracted_content
 
-def extract_section_content(doc, heading_texts, heading_styles_ordered, file_path):
+def extract_section_content(doc, heading_texts, heading_styles_set, file_path):
     """
     Extracts and concatenates content under all specified headings within heading_texts, in the order they are listed.
 
     Args:
         doc (win32com.client.CDispatch): The Word document object.
         heading_texts (list): List of heading texts to search for.
-        heading_styles_ordered (list): List of heading styles ordered by hierarchy.
+        heading_styles_set (set): Set of normalized heading styles.
         file_path (str): Path to the Word document (used for debugging).
 
     Returns:
@@ -263,6 +269,7 @@ def extract_section_content(doc, heading_texts, heading_styles_ordered, file_pat
     """
     content = ''
     MAX_PAGE = 13
+    print(f"Searching limit is set to {MAX_PAGE} pages")
     try:
         print(f"Entering 'extract_section_content' for headings: {heading_texts}")
 
@@ -286,11 +293,12 @@ def extract_section_content(doc, heading_texts, heading_styles_ordered, file_pat
 
         # Iterate through each heading in the specified order
         for heading in heading_texts:
-            print(f"Searching for heading '{heading}'")
-            heading_end_pos = find_heading_position(doc, heading, heading_styles_ordered, toc_end, end_page_max_page)
+            # Debug
+            # print(f"Searching for heading '{heading}'")
+            heading_end_pos = find_heading_position(doc, heading, heading_styles_set, toc_end, end_page_max_page)
             if heading_end_pos:
                 # Extract content under this heading
-                extracted_content = extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, end_page_max_page)
+                extracted_content = extract_content_under_heading(doc, heading_end_pos, heading_styles_set, end_page_max_page)
                 if extracted_content:
                     print(f"Appending extracted content for heading '{heading}'")
                     content += extracted_content + "\n\n"  # Add double newline for separation
@@ -312,7 +320,14 @@ def extract_section_content(doc, heading_texts, heading_styles_ordered, file_pat
     return content.strip()
 
 # Define the heading styles to look for, ordered from highest to lowest level
-heading_styles_ordered = ["Heading 1", "Heading 2", "Heading 3", "Heading 4", "Heading 5",  "Heading 6", "Heading 7", "Heading 8", "Titre 1", "Titre 2", "Titre 3", "Titre 4", "Titre 5", "Titre 6", "Titre 7", "Titre 8"]
+heading_styles_ordered = [
+    "Heading 1", "Heading 2", "Heading 3", "Heading 4", "Heading 5", 
+    "Heading 6", "Heading 7", "Heading 8", "Titre 1", "Titre 2", 
+    "Titre 3", "Titre 4", "Titre 5", "Titre 6", "Titre 7", "Titre 8"
+]
+
+# Convert heading styles to lowercase and create a set for faster lookup
+heading_styles_set = set(style.lower() for style in heading_styles_ordered)
 
 # Define the headings to search for each section
 headings_dict = OrderedDict([
@@ -386,7 +401,7 @@ for root, dirs, files in os.walk(root_dir):
                 # Extract content for each section
                 for section, heading_texts in headings_dict.items():
                     print(f"Extracting section '{section}' with headings: {heading_texts}")
-                    content = extract_section_content(doc, heading_texts, heading_styles_ordered, file_path)
+                    content = extract_section_content(doc, heading_texts, heading_styles_set, file_path)
                     if section == 'objective':
                         objective_content = content
                     elif section == 'scope':
