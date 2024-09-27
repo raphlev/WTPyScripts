@@ -90,7 +90,7 @@ def initialize_word():
         word_app.Visible = False  # Set to True to make Word visible for debugging
         word_app.DisplayAlerts = False
         word_app.AutomationSecurity = 3  # msoAutomationSecurityForceDisable
-        word_app.AskToUpdateLinks = False  # Prevent prompts to update links
+        word_app.AutoUpdateLinks = 0    # wdUpdateLinksNever to prevent updating links
         return word_app
     except Exception as e:
         logging.critical(f"Error initializing Word application: {e}")
@@ -359,6 +359,7 @@ headings_dict = OrderedDict([
 
 # Main extraction loop
 def main():
+    global word  # Declare 'word' as global at the beginning
     global file_count  # To modify the global file_count variable
     for root, dirs, files in os.walk(root_dir):
         for file in files:
@@ -473,8 +474,7 @@ def main():
                     except Exception as e:
                         logging.error(f"Error closing document '{file_name}': {e}")
                         # Re-initialize Word to recover from errors
-                        global word
-                        word = initialize_word()
+                        word = initialize_word()  # No need for 'global word' here since it's already declared
 
     # Start the main processing
     main()
