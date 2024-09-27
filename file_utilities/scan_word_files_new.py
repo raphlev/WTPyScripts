@@ -5,6 +5,7 @@ import gc
 import functools
 import pywintypes
 import win32com.client
+from collections import OrderedDict
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 
@@ -199,7 +200,7 @@ def find_heading_position(doc, heading, heading_styles_ordered, start_pos, end_p
 
 def extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, end_pos):
     """
-    Extracts content under a specific heading until the next heading of the same or higher level.
+    Extracts content under a specific heading until any new heading is encountered.
 
     Args:
         doc (win32com.client.CDispatch): The Word document object.
@@ -213,36 +214,28 @@ def extract_content_under_heading(doc, heading_end_pos, heading_styles_ordered, 
     content_paras = []
     current_content_pos = heading_end_pos
 
-    # Get the style of the current heading to determine its level
-    heading_para = doc.Range(Start=heading_end_pos, End=heading_end_pos).Paragraphs(1)
-    heading_style_name = heading_para.Style.NameLocal
-    try:
-        current_style_index = heading_styles_ordered.index(heading_style_name)
-    except ValueError:
-        current_style_index = len(heading_styles_ordered)  # Lowest priority if style not found
+    # Get the style of the current heading to determine its level (optional)
+    # heading_para = doc.Range(Start=heading_end_pos, End=heading_end_pos).Paragraphs(1)
+    # heading_style_name = heading_para.Style.NameLocal
 
     while current_content_pos < end_pos:
         content_para_range = doc.Range(Start=current_content_pos, End=end_pos)
         if content_para_range.Start >= content_para_range.End:
             break  # No more content
+
         content_para = content_para_range.Paragraphs(1)
         content_para_text = content_para.Range.Text.strip()
         content_para_style_name = content_para.Style.NameLocal
 
         # Debug
-        # print(f"Extracting content: '{content_para_text}' with style '{content_para_style_name}'")
+        print(f"Extracting content: '{content_para_text}' with style '{content_para_style_name}'")
 
         # Check if the paragraph is a heading
         if content_para_style_name in heading_styles_ordered:
-            try:
-                next_style_index = heading_styles_ordered.index(content_para_style_name)
-            except ValueError:
-                next_style_index = len(heading_styles_ordered)  # Lowest priority if style not found
-
-            if next_style_index <= current_style_index:
-                # Reached a heading of the same or higher level
-                print(f"Reached a new heading '{content_para_text}' with style '{content_para_style_name}'. Stopping content extraction.")
-                break
+        # if content_para_style_name.lower() in [style.lower() for style in heading_styles_ordered]:
+            # Reached any new heading, stop extraction
+            print(f"Reached a new heading '{content_para_text}' with style '{content_para_style_name}'. Stopping content extraction.")
+            break
 
         # Add paragraph text to content if it's not empty
         if content_para_text:
@@ -319,14 +312,14 @@ def extract_section_content(doc, heading_texts, heading_styles_ordered, file_pat
     return content.strip()
 
 # Define the heading styles to look for, ordered from highest to lowest level
-heading_styles_ordered = ["Heading 1", "Heading 2", "Heading 3", "Titre 1", "Titre 2", "Titre 3"]
+heading_styles_ordered = ["Heading 1", "Heading 2", "Heading 3", "Heading 4", "Heading 5",  "Heading 6", "Heading 7", "Heading 8", "Titre 1", "Titre 2", "Titre 3", "Titre 4", "Titre 5", "Titre 6", "Titre 7", "Titre 8"]
 
 # Define the headings to search for each section
-headings_dict = {
-    'objective': ['Objectif', 'But du document', 'Purpose', 'OBJECTIF ET CONTEXTE', 'Objet du document', "OBJET", "INTRODUCTION"],
-    'scope': ['Périmètre', 'Périmètre fonctionnel'],
-    'content': ['Contenu', 'Content']
-}
+headings_dict = OrderedDict([
+    ('objective', ['Objectif', 'But du document', 'Purpose', 'OBJECTIF ET CONTEXTE', 'Objet du document', "OBJET", "INTRODUCTION"]),
+    ('scope', ['Périmètre', 'Périmètre fonctionnel']),
+    ('content', ['Contenu', 'Content'])
+])
 
 # Main extraction loop
 for root, dirs, files in os.walk(root_dir):
