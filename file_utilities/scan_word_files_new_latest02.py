@@ -140,7 +140,7 @@ def initialize_word():
 
 # Manually define necessary Word constants
 msoAutomationSecurityForceDisable = 3  # Disables all macros
-wdUpdateLinksNever = 0  # Never update links
+wdUpdateLinksNever = 0  # Never update links (Removed usage below)
 wdStatisticPages = 2  # ComputeStatistics for pages
 wdGoToPage = 1  # What parameter for GoTo method to go to a page
 wdGoToAbsolute = 1  # Which parameter for GoTo method to specify absolute positioning
@@ -426,8 +426,9 @@ def process_document(file_path, headings_dict, heading_styles_set, heading_numbe
             ConfirmConversions=False,
             ReadOnly=True,
             AddToRecentFiles=False,
-            PasswordDocument=None,
-            UpdateLinks=wdUpdateLinksNever  # Prevent updating links
+            PasswordDocument=None
+            # Removed UpdateLinks parameter as it's not supported in Word
+            # UpdateLinks=wdUpdateLinksNever
         )
         logging.info(f"Successfully opened document '{file_name}'.")
     except pywintypes.com_error as e:
