@@ -16,12 +16,12 @@ import atexit  # For cleanup upon exit
 # 1. Configuration and Setup
 # ============================
 
-# Configure logging
+# Configure logging with enhanced details
 logging.basicConfig(
     filename='doc_processing.log',
     filemode='a',
     format='%(asctime)s - %(levelname)s - %(message)s',
-    level=logging.INFO
+    level=logging.DEBUG  # Set to DEBUG for detailed logs
 )
 
 # Initialize global variables
@@ -126,7 +126,7 @@ def initialize_word():
         word_app.Visible = False  # Set to True to make Word visible for debugging
         word_app.DisplayAlerts = False
         word_app.AutomationSecurity = msoAutomationSecurityForceDisable  # Disable macros
-        word_app.AutoUpdateLinks = wdUpdateLinksNever  # Prevent updating links
+        # Removed the AutoUpdateLinks line as it's causing AttributeError
         word = word_app  # Assign to the global 'word' variable
         logging.info("Word application initialized successfully.")
         return word_app
@@ -187,7 +187,13 @@ def get_page_count(doc):
     Returns:
         int: The number of pages.
     """
-    return doc.ComputeStatistics(wdStatisticPages)
+    try:
+        page_count = doc.ComputeStatistics(wdStatisticPages)
+        logging.debug(f"Computed page count: {page_count}")
+        return page_count
+    except Exception as e:
+        logging.error(f"Error computing page count: {e}")
+        raise
 
 @retry_on_COM_error(max_retries=5, delay=2)
 def get_paragraph_count(doc):
@@ -200,7 +206,13 @@ def get_paragraph_count(doc):
     Returns:
         int: The number of paragraphs.
     """
-    return doc.Paragraphs.Count
+    try:
+        paragraph_count = doc.Paragraphs.Count
+        logging.debug(f"Computed paragraph count: {paragraph_count}")
+        return paragraph_count
+    except Exception as e:
+        logging.error(f"Error computing paragraph count: {e}")
+        raise
 
 def get_toc_end_position(doc):
     """
