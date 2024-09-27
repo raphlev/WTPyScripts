@@ -202,6 +202,8 @@ def find_heading_position(doc, heading, heading_styles_set, start_pos, end_pos):
         # Move to the next paragraph
         current_pos = para.Range.End
 
+    # Debug
+    # print(f"Heading '{heading}' not found between positions {start_pos} and {end_pos}.")
     return None  # Heading not found
 
 def extract_content_under_heading(doc, heading_end_pos, heading_styles_set, end_pos):
