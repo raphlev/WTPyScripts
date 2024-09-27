@@ -1,4 +1,4 @@
-"""
+r"""
 ===============================================================================
 Document Processing and Data Extraction Script
 ===============================================================================
@@ -651,7 +651,7 @@ def main():
     ])
 
     # Root directory to scan
-    root_dir = r'C:\Users\levequer\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\Documents\Backup\Projects\Safran\SAE Indigo\Technical Space\DOCUMENTATION_APPLICATIONS'  # Replace with your folder path
+    root_dir = r'C:\Users\levequer\Downloads'  # Replace with your folder path
 
     # List to keep track of skipped files
     skipped_files = []
