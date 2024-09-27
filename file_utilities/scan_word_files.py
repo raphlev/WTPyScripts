@@ -146,11 +146,19 @@ def extract_section_content(doc, heading_texts, heading_styles_ordered, file_pat
             para_text = para.Range.Text.strip()
             para_style_name = para.Style.NameLocal
 
+            # debug
+            print(f"para_text: {para_text}")
+            print(f"para_style_name: {para_style_name}")
+
             # Check if paragraph is a heading
             if para_style_name in heading_styles_ordered:
                 # Remove numbering from the heading text
                 heading_text_no_number = re.sub(r'^\d+(\.\d+)*\s*', '', para_text).strip()
                 heading_text_no_number_lower = heading_text_no_number.lower()
+
+                # debug
+                print(f"heading_text_no_number_lower: {heading_text_no_number_lower}")
+                
                 for heading in normalized_heading_texts:
                     if heading_text_no_number_lower == heading:
                         print(f"Found heading '{para_text}' matching '{heading_texts}'")
