@@ -75,7 +75,9 @@ for i, column_width in enumerate(column_widths, 1):
     ws.column_dimensions[get_column_letter(i)].width = column_width
 
 # Root directory to scan
-root_dir = r'C:\Users\levequer\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\Documents\Backup\Projects\Safran\SAE Indigo\Technical Space\DOCUMENTATION_APPLICATIONS'  # Replace with your folder path
+# root_dir = r'C:\Users\levequer\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\Documents\Backup\Projects\Safran\SAE Indigo\Technical Space\DOCUMENTATION_APPLICATIONS'
+root_dir = r'C:\Users\levequer\Downloads'
+  # Replace with your folder path
 
 # List to keep track of skipped files
 skipped_files = []
@@ -127,9 +129,14 @@ def extract_section_content(doc, heading_texts, heading_styles_ordered, file_pat
             print(f"Error getting end position of max_page {MAX_PAGE}: {e}")
             end_page_max_page = doc.Content.End
 
-        # Ensure the end position is after the TOC end
-        if end_page_max_page < toc_end:
-            end_page_max_page = doc.Content.End
+        # Check if end_page_max_page is already after or at the TOC end
+        if end_page_max_page >= toc_end:
+            print(f"End position of page max_page {MAX_PAGE} is already after or at the TOC end: {end_page_max_page}")
+            print(f"Exit the function")
+            return  content# This will exit the function immediately
+
+        # If we're here, it means end_page_max_page < toc_end
+        end_page_max_page = doc.Content.End
 
         # Set the search range
         search_range = doc.Range(Start=toc_end, End=end_page_max_page)
@@ -219,27 +226,27 @@ for root, dirs, files in os.walk(root_dir):
         if file.lower().endswith(('.doc', '.docx')):
             file_path = os.path.join(root, file)
             # Initialize variables with default empty values
-            #file_name = os.path.basename(file_path)
+            file_name = os.path.basename(file_path)
             directory_path = os.path.dirname(file_path)
 
             # Increment the file counter before processing
             file_count += 1
             print(f"\n--------------------------------------------------------------------------------")
-            print(f"\Processing file {file_count}: {file_path}")
-            print(f"File name: {file}")
-            print(f"\--------------------------------------------------------------------------------")
+            print(f"Processing file {file_count}: {file_path}")
+            print(f"File name: {file_name}")
+            print(f"--------------------------------------------------------------------------------")
 
             try:
-                print(f"Attempting to open document '{file}'")
+                print(f"Attempting to open document '{file_name}'")
                 # Open the document in read-only mode
                 doc = word.Documents.Open(file_path, ReadOnly=True)
-                print(f"Successfully opened document '{file}'")
+                print(f"Successfully opened document '{file_name}'")
             except pywintypes.com_error as e:
-                print(f"Error opening '{file}': {e}")
+                print(f"Error opening '{file_name}': {e}")
                 skipped_files.append(file_path)
                 continue
             except Exception as e:
-                print(f"Unexpected error opening '{file}': {e}")
+                print(f"Unexpected error opening '{file_name}': {e}")
                 skipped_files.append(file_path)
                 continue
 
@@ -314,19 +321,19 @@ for root, dirs, files in os.walk(root_dir):
                 ])
                 print(f"Data written to Excel for '{file_name}'.")
             except Exception as e:
-                print(f"Error processing '{file}': {e}")
+                print(f"Error processing '{file_name}': {e}")
                 skipped_files.append(file_path)
             finally:
                 # Ensure the document is closed
                 try:
                     if doc is not None:
-                        print(f"Attempting to close document '{file}'")
+                        print(f"Attempting to close document '{file_name}'")
                         doc.Close(False)  # Close without saving
                         del doc
                         gc.collect()
-                        print(f"Successfully closed document '{file}'")
+                        print(f"Successfully closed document '{file_name}'")
                 except Exception as e:
-                    print(f"Error closing document '{file}': {e}")
+                    print(f"Error closing document '{file_name}': {e}")
                     word = initialize_word()
 
 print(f"\nTotal files processed: {file_count}")
