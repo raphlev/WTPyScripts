@@ -90,6 +90,7 @@ def initialize_word():
         word_app.Visible = False  # Set to True to make Word visible for debugging
         word_app.DisplayAlerts = False
         word_app.AutomationSecurity = 3  # msoAutomationSecurityForceDisable
+        word_app.AskToUpdateLinks = False  # Prevent prompts to update links
         return word_app
     except Exception as e:
         logging.critical(f"Error initializing Word application: {e}")
@@ -115,7 +116,7 @@ for i, column_width in enumerate(column_widths, 1):
     ws.column_dimensions[get_column_letter(i)].width = column_width
 
 # Root directory to scan
-root_dir = r'C:\Users\levequer\Downloads'  # Replace with your folder path
+root_dir = r'C:\Users\levequer\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\Documents\Backup\Projects\Safran\SAE Indigo\Technical Space\DOCUMENTATION_APPLICATIONS'  # Replace with your folder path
 
 # List to keep track of skipped files
 skipped_files = []
@@ -314,7 +315,7 @@ def extract_section_content(doc, heading_texts, heading_styles_set, file_path, h
 
         # Iterate through each heading in the specified order
         for heading in heading_texts:
-            logging.debug(f"Searching for heading '{heading}'")
+            logging.info(f"Searching for heading '{heading}'")
             heading_end_pos = find_heading_position(doc, heading, heading_styles_set, toc_end, end_page_max_page, heading_number_pattern)
             if heading_end_pos:
                 # Extract content under this heading
@@ -376,8 +377,15 @@ def main():
 
                 try:
                     logging.info(f"Attempting to open document '{file_name}'")
-                    # Open the document in read-only mode
-                    doc = word.Documents.Open(file_path, ReadOnly=True)
+                    # Open the document in read-only mode without updating links
+                    doc = word.Documents.Open(
+                        FileName=file_path,
+                        ConfirmConversions=False,
+                        ReadOnly=True,
+                        AddToRecentFiles=False,
+                        PasswordDocument=None,
+                        UpdateLinks=0  # 0 = wdUpdateLinksNever
+                    )
                     logging.info(f"Successfully opened document '{file_name}'")
                 except pywintypes.com_error as e:
                     logging.error(f"Error opening '{file_name}': {e}")
