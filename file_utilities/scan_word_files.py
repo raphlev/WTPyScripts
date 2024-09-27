@@ -1,3 +1,113 @@
+"""
+===============================================================================
+Document Processing and Data Extraction Script
+===============================================================================
+
+**Author:** Your Name  
+**Date:** 2024-09-27  
+**Version:** 1.0.0
+
+-----------------------------------------------------------------------------
+**Description:**
+-----------------------------------------------------------------------------
+This Python script automates the process of scanning through a specified 
+directory (and its subdirectories) to locate Microsoft Word documents 
+(`.doc` and `.docx` files). For each document found, the script performs the 
+following actions:
+
+1. **Initialization:**
+   - Launches a hidden instance of Microsoft Word using COM automation.
+   - Configures Word application settings to disable macros for security.
+
+2. **Data Extraction:**
+   - Opens each Word document in read-only mode.
+   - Computes the number of pages and paragraphs in the document.
+   - Identifies the end position of the Table of Contents (TOC) if it exists.
+   - Searches for specific headings (e.g., "Objective," "Scope," "Content") 
+     within the document.
+   - Extracts and sanitizes content under these headings, removing any 
+     illegal control characters.
+
+3. **Data Compilation:**
+   - Aggregates the extracted information, including document name, directory path, 
+     page count, paragraph count, file size, and the content under each specified section.
+
+4. **Output Generation:**
+   - Writes the compiled data into an Excel workbook (`doc_output.xlsx`) with 
+     predefined headers and column widths for readability.
+   - Maintains a log file (`doc_processing.log`) to record the script's activities, 
+     warnings, and errors for debugging and auditing purposes.
+
+5. **Cleanup:**
+   - Ensures that the Word application is properly closed after processing to 
+     prevent orphaned processes.
+
+-----------------------------------------------------------------------------
+**Dependencies:**
+-----------------------------------------------------------------------------
+- **Python 3.6+**
+- **Libraries:**
+  - `pywin32` (for COM automation with Microsoft Word)
+  - `openpyxl` (for Excel file creation and manipulation)
+  - `logging` (for logging script activities)
+  - Standard Python libraries: `os`, `re`, `time`, `gc`, `functools`, `collections`, `pythoncom`, `atexit`
+
+-----------------------------------------------------------------------------
+**Installation:**
+-----------------------------------------------------------------------------
+Ensure that all dependencies are installed. You can install the required 
+libraries using `pip`:
+
+```bash
+pip install pywin32 openpyxl
+```
+
+-----------------------------------------------------------------------------
+**Usage:**
+-----------------------------------------------------------------------------
+- Configuration:
+  Root Directory: Modify the root_dir variable in the main() function to specify the directory you want to scan for Word documents.
+```
+root_dir = r'C:\Path\To\Your\Documents'  # Replace with your target directory
+```
+  Logging Level: The logging level is set to INFO by default. For more detailed logs, you can change it to DEBUG in the logging configuration section.
+```
+logging.basicConfig(
+    filename='doc_processing.log',
+    filemode='a',
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    level=logging.INFO  # Change to logging.DEBUG for detailed logs
+)
+```
+  Heading Styles and Sections: Customize the headings_dict and heading_styles_ordered to match the specific headings and styles used in your Word documents.
+
+- Execution:
+  Direct Execution: Run the script using Python from the command line:
+```
+python your_script_name.py
+```
+  Batch File (Optional): You can create a .bat file to automate execution and monitor logs simultaneously. Refer to the assistant's previous messages for guidance on setting this up.
+
+- Output:
+  Excel Workbook: After execution, check the doc_output.xlsx file for the compiled data.
+  Log File: Review the doc_processing.log file for detailed logs, including any errors or warnings encountered during processing.
+
+-----------------------------------------------------------------------------
+**Error Handling:**
+-----------------------------------------------------------------------------
+- The script includes robust error handling mechanisms:
+  COM Errors: Utilizes a decorator (retry_on_COM_error) to retry functions that fail due to transient COM errors.
+  Logging: All errors, warnings, and critical issues are logged in doc_processing.log for easy debugging.
+  Cleanup: Ensures that the Word application is properly closed even if unexpected errors occur, preventing orphaned Word processes.
+
+-----------------------------------------------------------------------------
+**Customization:**
+-----------------------------------------------------------------------------
+- Headings: Modify the headings_dict to include all the headings you wish to extract from your documents.
+- Output Fields: Adjust the headers and data fields in the setup_excel_workbook and process_document functions to capture additional or different information as needed.
+
+===============================================================================
+"""
 import os
 import re
 import time
@@ -497,10 +607,6 @@ def write_to_excel(data, workbook):
     """
     ws = workbook.active
     ws.title = "Document Data"
-
-    # Write the header row
-    header = ['Document', 'Directory', 'N# Pages', 'N# Paragraphs', 'Size (Bytes)', 'Objective', 'Scope', 'Content']
-    ws.append(header)
 
     # Adjust column widths for better readability
     column_widths = [30, 100, 15, 20, 15, 50, 50, 50]
