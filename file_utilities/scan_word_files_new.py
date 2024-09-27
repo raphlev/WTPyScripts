@@ -101,7 +101,7 @@ for i, column_width in enumerate(column_widths, 1):
     ws.column_dimensions[get_column_letter(i)].width = column_width
 
 # Root directory to scan
-root_dir = r'C:\Users\levequer\Downloads'  # Replace with your folder path
+root_dir = r'C:\Users\levequer\OneDrive - TRANSITION TECHNOLOGIES PSC S.A\Documents\Backup\Projects\Safran\SAE Indigo\Technical Space\DOCUMENTATION_APPLICATIONS'  # Replace with your folder path
 
 # List to keep track of skipped files
 skipped_files = []
