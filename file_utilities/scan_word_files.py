@@ -645,7 +645,7 @@ def main():
 
     # Define the headings to search for each section
     headings_dict = OrderedDict([
-        ('objective', ['Objectif', 'But du document', 'Purpose', 'OBJECTIF ET CONTEXTE', 'Objet du document', "OBJET", "INTRODUCTION"]),
+        ('objective', ['Objectif', 'Objectif du document', 'But du document', 'Purpose', 'OBJECTIF ET CONTEXTE', 'Objet du document', "OBJET", "INTRODUCTION"]),
         ('scope', ['Périmètre', 'Périmètre fonctionnel']),
         ('content', ['Contenu', 'Content'])
     ])

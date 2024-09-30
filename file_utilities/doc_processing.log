@@ -3285,3 +3285,51 @@
 All files were processed successfully.
 2024-09-27 20:47:07,778 - INFO - Attempting to quit Word application during cleanup.
 2024-09-27 20:47:07,782 - INFO - Word application closed successfully during cleanup.
+2024-09-30 16:13:21,606 - INFO - Word application initialized successfully.
+2024-09-30 16:13:21,607 - INFO - 
+--------------------------------------------------------------------------------
+2024-09-30 16:13:21,607 - INFO - Processing file 1: C:\Users\levequer\Downloads\OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx
+2024-09-30 16:13:21,607 - INFO - File name: OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx
+2024-09-30 16:13:21,607 - INFO - --------------------------------------------------------------------------------
+2024-09-30 16:13:21,608 - INFO - Processing file: C:\Users\levequer\Downloads\OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx
+2024-09-30 16:13:22,320 - INFO - Successfully opened document 'OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx'.
+2024-09-30 16:13:22,320 - INFO - Size of document: 588614 bytes.
+2024-09-30 16:13:22,860 - INFO - Total pages: 37.
+2024-09-30 16:13:22,896 - INFO - Number of paragraphs: 989.
+2024-09-30 16:13:22,896 - INFO - Searching limit is set to 13 pages
+2024-09-30 16:13:22,896 - INFO - Entering 'extract_section_content' for sections: ['objective', 'scope', 'content']
+2024-09-30 16:13:22,922 - INFO - Table of contents found in 'OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx'.
+2024-09-30 16:13:22,925 - INFO - TOC end position: 2919
+2024-09-30 16:13:23,027 - INFO - End position of page 13: 14252
+2024-09-30 16:13:23,027 - INFO - Searching for section 'objective' with possible headings: ['Objectif', 'But du document', 'Purpose', 'OBJECTIF ET CONTEXTE', 'Objet du document', 'OBJET', 'INTRODUCTION']
+2024-09-30 16:13:24,252 - WARNING - Heading 'Objectif' not found between positions 2919 and 14252.
+2024-09-30 16:13:24,847 - WARNING - Heading 'But du document' not found between positions 2919 and 14252.
+2024-09-30 16:13:25,444 - WARNING - Heading 'Purpose' not found between positions 2919 and 14252.
+2024-09-30 16:13:26,060 - WARNING - Heading 'OBJECTIF ET CONTEXTE' not found between positions 2919 and 14252.
+2024-09-30 16:13:26,703 - WARNING - Heading 'Objet du document' not found between positions 2919 and 14252.
+2024-09-30 16:13:27,442 - WARNING - Heading 'OBJET' not found between positions 2919 and 14252.
+2024-09-30 16:13:27,449 - INFO - Matched heading 'Introduction' at position 2933.
+2024-09-30 16:13:27,453 - INFO - Reached a new heading 'Documents applicables' with style variants ['heading 2', 'h2', 'arial 12 fett kursiv', 'titreo 2', 'numbered - 2', 'main heading', 't2', 'titre 2-enh', 'unterkapitel', 'heading 2', 'h2', '2', 'headi', 'heading2', 'h21', 'h22', '21', 'cgey heading 2', 'fonctionnalité', 'titre 21', 't2.t2', 'fonctionnalitè', 'fonctionnalité1', 'fonctionnalité2', 'fonctionnalité3', 'hd2']. Stopping content extraction.
+2024-09-30 16:13:27,454 - INFO - Extracted content under heading ending at position 2933: ...
+2024-09-30 16:13:27,454 - WARNING - No matching heading found for section 'objective'.
+2024-09-30 16:13:27,454 - INFO - Searching for section 'scope' with possible headings: ['Périmètre', 'Périmètre fonctionnel']
+2024-09-30 16:13:28,224 - WARNING - Heading 'Périmètre' not found between positions 2919 and 14252.
+2024-09-30 16:13:28,905 - WARNING - Heading 'Périmètre fonctionnel' not found between positions 2919 and 14252.
+2024-09-30 16:13:28,906 - WARNING - No matching heading found for section 'scope'.
+2024-09-30 16:13:28,906 - INFO - Searching for section 'content' with possible headings: ['Contenu', 'Content']
+2024-09-30 16:13:29,591 - WARNING - Heading 'Contenu' not found between positions 2919 and 14252.
+2024-09-30 16:13:30,273 - WARNING - Heading 'Content' not found between positions 2919 and 14252.
+2024-09-30 16:13:30,273 - WARNING - No matching heading found for section 'content'.
+2024-09-30 16:13:30,273 - INFO - No content found for any of the specified sections.
+2024-09-30 16:13:30,273 - INFO - Exiting 'extract_section_content' for sections: ['objective', 'scope', 'content']
+2024-09-30 16:13:30,284 - INFO - Closing document 'OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx'.
+2024-09-30 16:13:30,364 - INFO - Successfully closed document 'OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx'.
+2024-09-30 16:13:30,365 - INFO - Data appended for 'OP2-STD-16-0018-Specification_Technique_Iteration_2-V1.2.docx'.
+2024-09-30 16:13:30,368 - INFO - Excel workbook initialized with headers and column widths.
+2024-09-30 16:13:30,368 - INFO - Starting to write accumulated data to Excel.
+2024-09-30 16:13:30,368 - INFO - All accumulated data has been written to Excel.
+2024-09-30 16:13:30,381 - INFO - Excel workbook 'doc_output.xlsx' saved successfully.
+2024-09-30 16:13:30,381 - INFO - 
+All files were processed successfully.
+2024-09-30 16:13:30,381 - INFO - Attempting to quit Word application during cleanup.
+2024-09-30 16:13:30,432 - INFO - Word application closed successfully during cleanup.
