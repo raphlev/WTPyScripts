@@ -106,7 +106,13 @@ python your_script_name.py
 - Headings: Modify the headings_dict to include all the headings you wish to extract from your documents.
 - Output Fields: Adjust the headers and data fields in the setup_excel_workbook and process_document functions to capture additional or different information as needed.
 
+-----------------------------------------------------------------------------
+**Concatenation of the 3 text columns in the Excel sheet:**
+-----------------------------------------------------------------------------
+- TEXTJOIN(CHAR(10), TRUE, F2, G2, H2, I2)
+- Apply Wrap format to the text column
 ===============================================================================
+
 """
 import os
 import re
