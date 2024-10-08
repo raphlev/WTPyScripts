@@ -35,6 +35,7 @@ following actions:
 4. **Output Generation:**
    - Writes the compiled data into an Excel workbook (`doc_output.xlsx`) with 
      predefined headers and column widths for readability.
+   - Columns 'Objective', 'Scope', 'Content' are hidden and 'Description' column is the last column which concatenates the content of 'Objective', 'Scope', 'Content'.
    - Maintains a log file (`doc_processing.log`) to record the script's activities, 
      warnings, and errors for debugging and auditing purposes.
 
@@ -274,18 +275,24 @@ def setup_excel_workbook():
     wb = Workbook()
     ws = wb.active
     ws.title = "Document Data"
-    
+
     # Write the header row
-    header = ['Document', 'Directory', 'N# Pages', 'N# Paragraphs', 'Size (Bytes)', 'Objective', 'Scope', 'Content']
+    header = ['Document', 'Directory', 'N# Pages', 'N# Paragraphs', 'Size (Bytes)', 'Objective', 'Scope', 'Content', 'Description']
     ws.append(header)
-    
+
     # Adjust column widths for better readability
-    column_widths = [30, 100, 15, 20, 15, 50, 50, 50]
+    column_widths = [30, 100, 15, 20, 15, 50, 50, 50, 150]  # Added width for 'Concatenation' column
     for i, column_width in enumerate(column_widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = column_width
-    
-    logging.info("Excel workbook initialized with headers and column widths.")
+
+    # Hide 'Objective', 'Scope', and 'Content' columns
+    ws.column_dimensions['F'].hidden = True  # 'Objective' column
+    ws.column_dimensions['G'].hidden = True  # 'Scope' column
+    ws.column_dimensions['H'].hidden = True  # 'Content' column
+
+    logging.info("Excel workbook initialized with headers, column widths, and hidden columns.")
     return wb
+
 
 # ============================
 # 7. Document Processing Functions
@@ -573,6 +580,16 @@ def process_document(file_path, headings_dict, heading_styles_set, heading_numbe
         scope_content = remove_illegal_characters(extracted_sections.get('scope', '').strip())
         content_content = remove_illegal_characters(extracted_sections.get('content', '').strip())
 
+        # Create concatenated content with line returns and empty lines between sections
+        contents = []
+        if objective_content:
+            contents.append(objective_content)
+        if scope_content:
+            contents.append(scope_content)
+        if content_content:
+            contents.append(content_content)
+        concatenated_content = '\n\n'.join(contents).strip()
+
         # Sanitize file name and directory path
         file_name_sanitized = remove_illegal_characters(file_name)
         directory_path_sanitized = remove_illegal_characters(directory_path)
@@ -585,7 +602,8 @@ def process_document(file_path, headings_dict, heading_styles_set, heading_numbe
             size,
             objective_content,
             scope_content,
-            content_content
+            content_content,
+            concatenated_content  # Added concatenated content to the returned data
         ]
 
     except Exception as e:
