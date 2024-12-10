@@ -24,6 +24,9 @@ DEFAULT_SUFFIX = "Exigence"
 # Noms des colonnes dans le fichier Excel
 EXCEL_COLUMNS = ["Titre", "Nom Exigence", "Description"]
 
+# Caractères qui définissent un paragraphe comme une puce
+BULLET_CHARS = ['', '•', '-', '	', '\uf0fc', '\uf0fc\t']
+
 ############################################
 #             FONCTION PRINCIPALE
 ############################################
@@ -63,7 +66,22 @@ def extract_requirements(docx_path, xlsx_path):
             
             # Si on est en mode collecte, chaque paragraphe non vide est une exigence
             if collecting and current_chapter is not None:
-                chapter_requirements[current_chapter].append(text)
+                # Vérifier si le paragraphe est un paragraphe à puce
+                # On considère un paragraphe "à puce" s'il commence par un caractère figurant dans BULLET_CHARS
+                is_bullet = any(text.startswith(bullet_char) for bullet_char in BULLET_CHARS)
+                
+                if is_bullet:
+                    # Si c'est une puce et qu'il existe déjà au moins une exigence dans ce chapitre,
+                    # on l'ajoute à la dernière exigence
+                    if chapter_requirements[current_chapter]:
+                        chapter_requirements[current_chapter][-1] += "\n" + text
+                    else:
+                        # Si aucune exigence n'a encore été créée, on traite cette puce comme une nouvelle exigence
+                        # (Cas rare, selon la structure du document)
+                        chapter_requirements[current_chapter].append(text)
+                else:
+                    # Paragraphe normal: créer une nouvelle exigence
+                    chapter_requirements[current_chapter].append(text)
     
     # Génération du fichier Excel
     if os.path.exists(xlsx_path):
@@ -107,7 +125,7 @@ def extract_requirements(docx_path, xlsx_path):
 
 if __name__ == "__main__":
     # Exemple d'utilisation:
-    # python extract_requirements.py input.docx output.xlsx
+    # python extract_docx_requirements.py input.docx output.xlsx
     if len(sys.argv) < 3:
         print("Usage: python script.py input.docx output.xlsx")
         sys.exit(1)
