@@ -16,13 +16,19 @@ CHAPTER_STYLES = ["Heading 1", "Heading 2", "Heading 3", "Heading 4", "Heading 5
 EXIGENCES_TRIGGER_REGEX = r"^Exigences?\s*:"
 
 # Liste des suffixes/keywords utilisés pour nommer l'exigence
-SUFFIX_KEYWORDS = ["Création", "Créer", "Filtre", "Filtrer", "Recherche", "Rechercher" , "Service", "Interface", "Data Model", "UI", "Contrôle"]
+SUFFIX_KEYWORDS = ["Création", "Créer", "Filtre", "Filtrer", "Recherche", "Rechercher",
+                   "Service", "Interface", "Data Model", "UI", "Contrôle"]
 
 # Suffixe par défaut si aucun des mots-clés ci-dessus n'est trouvé
 DEFAULT_SUFFIX = "Exigence"
 
 # Noms des colonnes dans le fichier Excel
 EXCEL_COLUMNS = ["Titre", "Nom Exigence", "Description"]
+
+# Regex pour détecter les paragraphes à puces.
+# Ajustez les caractères selon les puces réellement utilisées dans votre document.
+# Ici, on tente d'attraper les paragraphes commençant par , • ou - suivi éventuellement d'espaces.
+BULLET_REGEX = r"^[•-]\s*"
 
 ############################################
 #             FONCTION PRINCIPALE
@@ -38,34 +44,65 @@ def extract_requirements(docx_path, xlsx_path):
     
     current_chapter = None
     collecting = False  # Indique si on est en train de collecter des exigences
-    
+    current_requirement_text = None  # Pour stocker l'exigence en cours de construction
+
     # Parcourir tous les paragraphes du document
     for para in document.paragraphs:
         style_name = para.style.name if para.style else ""
-        
+        text = para.text.strip()
+
         # Vérifier si le paragraphe est un chapitre
         if style_name in CHAPTER_STYLES:
             # Nouveau chapitre détecté : on arrête la collecte d'exigences en cours
+            # et on enregistre l'exigence en cours s'il y en a une
+            if current_requirement_text and current_chapter is not None:
+                chapter_requirements[current_chapter].append(current_requirement_text)
+                current_requirement_text = None
+            
             collecting = False
-            current_chapter = para.text.strip()
+            current_chapter = text
             if current_chapter not in chapter_requirements:
                 chapter_requirements[current_chapter] = []
+        
         else:
             # Paragraphe "normal" (corps)
-            text = para.text.strip()
             if not text:
                 continue
             
             # Si on détecte la ligne déclenchant la collecte
             if re.match(EXIGENCES_TRIGGER_REGEX, text, re.IGNORECASE):
+                # Avant de commencer à collecter, on clôture l'exigence en cours
+                if current_requirement_text and current_chapter is not None:
+                    chapter_requirements[current_chapter].append(current_requirement_text)
+                    current_requirement_text = None
                 collecting = True
                 continue
             
-            # Si on est en mode collecte, chaque paragraphe non vide est une exigence
+            # Si on est en mode collecte
             if collecting and current_chapter is not None:
-                chapter_requirements[current_chapter].append(text)
+                # On détermine si le paragraphe est une puce
+                if re.match(BULLET_REGEX, text):
+                    # C'est une puce : on l'ajoute à l'exigence en cours
+                    if current_requirement_text is None:
+                        # Si aucune exigence n'était encore ouverte, on en crée une
+                        current_requirement_text = text
+                    else:
+                        # Sinon, on ajoute simplement ce paragraphe à la fin de l'exigence courante
+                        current_requirement_text += "\n" + text
+                else:
+                    # Paragraphe normal, non bullet
+                    # On clôture l'exigence précédente si elle existe
+                    if current_requirement_text is not None:
+                        chapter_requirements[current_chapter].append(current_requirement_text)
+                    # On démarre une nouvelle exigence
+                    current_requirement_text = text
+
+    # A la fin du document, si une exigence est en cours, on l'ajoute
+    if current_requirement_text and current_chapter is not None:
+        chapter_requirements[current_chapter].append(current_requirement_text)
     
     # Génération du fichier Excel
+    # On écrase le fichier si déjà existant
     if os.path.exists(xlsx_path):
         os.remove(xlsx_path)
     
