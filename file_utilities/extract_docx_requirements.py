@@ -12,22 +12,13 @@ import re
 CHAPTER_STYLES = ["Heading 1", "Heading 2", "Heading 3", "Heading 4", "Heading 5"]
 
 # Expression régulière pour détecter la ligne annonçant les exigences
-# "Exigences :" ou "Exigence :"
 EXIGENCES_TRIGGER_REGEX = r"^Exigences?\s*:"
-
-# Liste des suffixes/keywords utilisés pour nommer l'exigence
-SUFFIX_KEYWORDS = ["Création", "Créer", "Filtre", "Filtrer", "Recherche", "Rechercher",
-                   "Service", "Interface", "Data Model", "UI", "Contrôle"]
-
-# Suffixe par défaut si aucun des mots-clés ci-dessus n'est trouvé
-DEFAULT_SUFFIX = "Exigence"
 
 # Noms des colonnes dans le fichier Excel
 EXCEL_COLUMNS = ["Titre", "Nom Exigence", "Description"]
 
 # Regex pour détecter les paragraphes à puces.
 # Ajustez les caractères selon les puces réellement utilisées dans votre document.
-# Ici, on tente d'attraper les paragraphes commençant par , • ou - suivi éventuellement d'espaces.
 BULLET_REGEX = r"^[•-]\s*"
 
 ############################################
@@ -113,27 +104,19 @@ def extract_requirements(docx_path, xlsx_path):
     ws.append(EXCEL_COLUMNS)
     
     # Définir une fonction locale pour générer le nom d'exigence
-    def generate_requirement_name(chapter_title, requirement_text):
-        # Retirer les espaces du titre pour le nom
-        base_name = chapter_title.replace(" ", "")
-        
-        # Chercher un suffixe parmi les mots clés
-        chosen_suffix = None
-        for s in SUFFIX_KEYWORDS:
-            if re.search(rf"\b{s}\b", requirement_text, re.IGNORECASE):
-                chosen_suffix = s
-                break
-        if chosen_suffix is None:
-            # Si aucun suffixe trouvé, utiliser le suffixe par défaut
-            chosen_suffix = DEFAULT_SUFFIX
-        
-        return f"{base_name} - {chosen_suffix}"
+    # Ici, on prend la partie de l'exigence avant le ":" si présent
+    def extract_req_name_from_text(requirement_text):
+        parts = requirement_text.split(":", 1)
+        return parts[0].strip() if len(parts) > 1 else requirement_text.strip()
     
     # Remplir le tableau
     for chapter, req_list in chapter_requirements.items():
+        # Extraire uniquement la partie du chapitre avant le premier ":" s'il existe
+        chapter_title = chapter.split(":", 1)[0].strip()
+        
         for req in req_list:
-            req_name = generate_requirement_name(chapter, req)
-            ws.append([chapter, req_name, req])
+            req_name = extract_req_name_from_text(req)
+            ws.append([chapter_title, req_name, req])
     
     # Enregistrer le fichier Excel
     wb.save(xlsx_path)
